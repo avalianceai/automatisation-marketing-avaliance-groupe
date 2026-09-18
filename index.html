@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ⚠ PARTAGEABLE, PAS REFERENCABLE. La page nomme cinq comptes clients et
+     decrit leur process : elle se transmet par lien, elle ne se trouve pas
+     dans un moteur. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- L'APERCU DES MESSAGERIES. WhatsApp, Telegram et LinkedIn lisent ces
+     quatre balises. L'image doit etre une URL ABSOLUE : un chemin relatif
+     n'est pas resolu par le robot qui fabrique l'apercu. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahmedbentaleb.github.io/schema-directeur-marketing/">
+<meta property="og:title" content="Schéma directeur d'automatisation du service marketing — Groupe Avaliance">
+<meta property="og:description" content="Six comptes, quatorze étapes, un seul process. Trois volets : par où passe chaque compte, ce qui se regroupe en sept machines communes, et la chaîne une fois regroupée. Note interne du 18 septembre 2026.">
+<meta property="og:image" content="https://ahmedbentaleb.github.io/schema-directeur-marketing/vignette.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Schema directeur d automatisation du service marketing, Groupe Avaliance">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Six comptes, quatorze étapes, un seul process. Trois volets : par où passe chaque compte, ce qui se regroupe en sept machines communes, et la chaîne une fois regroupée. Note interne du 18 septembre 2026.">
+<title>Schéma directeur</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --fond:        #FFFFFF;
+    --fond-carte:  #F7F7F8;
+    --fond-noeud:  #FFFFFF;
+    --trait:       #DDDCE0;
+    --encre:       #212529;
+    --encre-douce: #5D5D5D;
+    --encre-pale:  #8E8D94;
+
+    --commun:      #430A4B;
+    --commun-pale: #F1E9F3;
+    --mesure:      #C2600B;
+    --mesure-pale: #FBF1E6;
+
+    --c1: #1D6FD0;
+    --c2: #7C3AED;
+    --c3: #0E8F5F;
+    --c4: #C2600B;
+    --c5: #C2185B;
+    --c6: #0E7490;
+
+    --fait:    #1E5B3A;
+    --partiel: #D9A21B;
+    --humain:  #5D5D5D;
+
+    /* LA RAMPE DE LA NOTE — cinq couleurs vives, deux cases chacune.
+       ⚠ Elle s'applique a la POSITION de la case, jamais a la note : les
+       dix cases portent toujours les memes couleurs dans le meme ordre, et
+       ce qui se lit c'est OU la barre s'arrete. C'est ce qui a supprime le
+       defaut d'avant : six etapes notaient 6 ou 7, donc six barres etaient
+       de la meme couleur — 43 % du schema. Maintenant 6 s'arrete dans le
+       blanc et 7 dans le bleu ciel, sans changer une seule note.
+
+       ⛔ POURQUOI PAS L'ECHELLE DE GRAVITE DE LA CHARTE. Le premier essai
+       prenait son rouge brique #A93226 et son orange profond #C75B12. Ces
+       valeurs sont concues pour du TEXTE et de grands aplats, ou leur
+       contraste compte. A 8 x 5 px elles deviennent deux nuances du meme
+       orange — et la charte dit elle-meme qu'une couleur porte un sens ou
+       n'est pas la. Ce qui decide sur une puce de 8 px n'est pas le
+       contraste avec le fond, c'est la SEPARATION DES TEINTES entre deux
+       bandes voisines : 2°, 48°, blanc, 205°, 145° sur le cercle.
+
+       ⚠ Aucune de ces cinq valeurs n'est le vert de marque #AEBF38, et
+       c'est voulu : il veut dire « Avaliance », pas « c'est bon ». Le bleu
+       ciel est choisi loin des six couleurs de compte. Le blanc n'a pas de
+       jeton : c'est #FFFFFF, et c'est son CONTOUR qui le rend visible. */
+    --n-rouge: #E4322B;
+    --n-jaune: #EFC10B;
+    --n-ciel:  #2F9BE3;
+    --n-vert:  #17A94A;
+
+    /* LES MEMES TEINTES, EN ENCRE. Un aplat de 8 px et un chiffre de 11 px
+       ne posent pas le meme probleme : le premier doit se distinguer de sa
+       voisine, le second doit etre lisible. Sur la carte claire #F7F7F8 le
+       jaune donne 1,9:1, le blanc 1,0:1 et le vert vif 3,1:1 — trois
+       valeurs sur cinq sont inutilisables en encre. C'est la regle de la
+       charte prise dans l'autre sens : elle interdit le vert de marque en
+       encre et l'excelle en fond. Le blanc, lui, n'a pas de version
+       sombre : son encre est l'encre courante. */
+    --ni-rouge: #C4251F;
+    --ni-jaune: #8A6A00;
+    --ni-ciel:  #1C6FA8;
+    --ni-vert:  #137A38;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fond:        #0E0E11;
+      --fond-carte:  #16161A;
+      --fond-noeud:  #1D1D22;
+      --trait:       #34343C;
+      --encre:       #F2F2F4;
+      --encre-douce: #A9A8B2;
+      --encre-pale:  #6E6D77;
+      --commun:      #C9A6D4;
+      --commun-pale: #1F1726;
+      --mesure:      #FB923C;
+      --mesure-pale: #241A11;
+      --c1: #5AA9FF; --c2: #A78BFA; --c3: #34D399;
+      --c4: #FB923C; --c5: #F472B6; --c6: #22D3EE;
+      --fait: #34D399; --partiel: #E9B949; --humain: #A9A8B2;
+      --n-rouge: #FF5A4D; --n-jaune: #FFD43B; --n-ciel: #5BC0FF; --n-vert: #34D95F;
+      --ni-rouge: #FF5A4D; --ni-jaune: #FFD43B; --ni-ciel: #5BC0FF; --ni-vert: #34D95F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fond:        #0E0E11;
+    --fond-carte:  #16161A;
+    --fond-noeud:  #1D1D22;
+    --trait:       #34343C;
+    --encre:       #F2F2F4;
+    --encre-douce: #A9A8B2;
+    --encre-pale:  #6E6D77;
+    --commun:      #C9A6D4;
+    --commun-pale: #1F1726;
+    --mesure:      #FB923C;
+    --mesure-pale: #241A11;
+    --c1: #5AA9FF; --c2: #A78BFA; --c3: #34D399;
+    --c4: #FB923C; --c5: #F472B6; --c6: #22D3EE;
+    --fait: #34D399; --partiel: #E9B949; --humain: #A9A8B2;
+    --n-rouge: #FF5A4D; --n-jaune: #FFD43B; --n-ciel: #5BC0FF; --n-vert: #34D95F;
+    --ni-rouge: #FF5A4D; --ni-jaune: #FFD43B; --ni-ciel: #5BC0FF; --ni-vert: #34D95F;
+  }
+
+  /* ══ LE BANDEAU — violet Avaliance, logo blanc ════════════════════════
+     La version du logo se DEDUIT du fond, elle ne se choisit pas : sur
+     violet Avaliance, c'est la version blanche. Et le vert ne porte aucun
+     texte — 1,8:1 sur fond clair, mesure — donc il sert de filet sous le
+     bandeau, jamais d'encre. C'est sa place. */
+  .bandeau {
+    background: #430A4B;
+    border-radius: 12px 12px 0 0;
+    padding: 20px 26px 18px;
+    display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 18px 26px;
+  }
+  .bandeau img { display: block; height: 34px; width: auto; }
+  .bandeau .qui {
+    text-align: right; color: #FFFFFF;
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; line-height: 1.5;
+  }
+  .bandeau .qui b {
+    display: block; font-family: "Sora", sans-serif; font-size: 15px;
+    font-weight: 600; letter-spacing: -0.005em;
+  }
+  .bandeau .qui span { color: rgba(255,255,255,0.72); }
+  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 30px; }
+
+  body {
+    background: var(--fond);
+    color: var(--encre);
+    font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+    line-height: 1.55;
+    padding: 40px 28px 72px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .sous { color: var(--encre-douce); font-size: 16px; max-width: 76ch; margin: 0 0 6px; }
+  .source {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12.5px; color: var(--encre-pale); margin: 0 0 30px;
+  }
+
+  .compte { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 36px; }
+  .compte div {
+    flex: 1 1 200px; border: 1px solid var(--trait); border-radius: 10px;
+    padding: 14px 16px; background: var(--fond-carte);
+  }
+  .compte b {
+    display: block; font-family: "IBM Plex Mono", monospace; font-size: 27px;
+    font-weight: 500; line-height: 1.1; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .compte span { font-size: 13px; color: var(--encre-douce); }
+  .compte .commun b { color: var(--commun); }
+  .compte .mesure b { color: var(--mesure); }
+
+  /* ══ LES TROIS VOLETS, chacun avec son bouton ═════════════════════════
+     Hamada, 18/09 : « On a trois volets. Trois volets, chacun avec un
+     bouton, et on commence par un seul process, le regroupement, et
+     l'autre. » Trois questions differentes, donc trois figures — et une
+     seule a l'ecran, parce que trois graphes empiles ne se comparent pas,
+     ils se melangent. */
+  .onglets {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 4px;
+    border-bottom: 1px solid var(--trait); padding-bottom: 12px;
+  }
+  .onglets button {
+    display: flex; align-items: baseline; gap: 10px; text-align: left;
+    border: 1px solid var(--trait); background: var(--fond-carte);
+    color: var(--encre-douce); font-family: inherit; font-size: 14.5px;
+    font-weight: 400; padding: 11px 17px; border-radius: 10px; cursor: pointer;
+  }
+  .onglets button:hover { border-color: var(--encre-pale); color: var(--encre); }
+  .onglets button:focus-visible { outline: 2px solid var(--encre-douce); outline-offset: 2px; }
+  .onglets button em {
+    font-style: normal; font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--encre-pale);
+  }
+  .onglets button[aria-selected="true"] {
+    background: var(--commun); border-color: var(--commun);
+    color: #FFFFFF; font-weight: 600;
+  }
+  .onglets button[aria-selected="true"] em { color: rgba(255,255,255,0.72); }
+  :root[data-theme="dark"] .onglets button[aria-selected="true"],
+  :root:not([data-theme="light"]) .onglets button[aria-selected="true"] { color: #14101A; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .onglets button[aria-selected="true"] { color: #FFFFFF; }
+  }
+  :root[data-theme="dark"] .onglets button[aria-selected="true"] em,
+  :root:not([data-theme="light"]) .onglets button[aria-selected="true"] em { color: rgba(20,16,26,0.66); }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .onglets button[aria-selected="true"] em { color: rgba(255,255,255,0.72); }
+  }
+
+  .volet { padding-top: 28px; }
+  .volet[hidden] { display: none; }
+  .volet h2 {
+    font-size: clamp(20px, 2.2vw, 26px); font-weight: 600;
+    letter-spacing: -0.015em; margin: 0;
+  }
+  .volet .intro { color: var(--encre-douce); font-size: 15px; margin: 6px 0 20px; max-width: 78ch; }
+
+  .cadre {
+    position: relative; border: 1px solid var(--trait); border-radius: 12px;
+    background: var(--fond-carte); padding: 12px; overflow-x: auto;
+  }
+  svg.graphe { display: block; width: 100%; height: auto; }
+  svg#g1 { min-width: 1120px; }
+  svg#g2 { min-width: 980px; }
+  svg#g3 { min-width: 1000px; }
+
+  .bloc-commun { fill: var(--commun-pale); stroke: var(--commun); stroke-width: 1.6; }
+  .bloc-mesure { fill: var(--mesure-pale); stroke: var(--mesure); stroke-width: 1.6; }
+
+  .boite { fill: var(--fond-noeud); stroke: var(--trait); stroke-width: 1; }
+  .boite.machine { stroke: var(--commun); }
+  .boite.module  { stroke: var(--mesure); }
+  /* LE POINTILLE DIT UN MANQUE, et c'est le seul trait qui le dise.
+     Hamada, 18/09 : « il faut ajouter X et en pointille, c'est tres
+     important. » Un canal qu'aucun compte n'a ne peut pas etre dessine
+     plein : un trait plein se lit comme un canal qui marche, et six mois
+     plus tard personne ne se souvient qu'il n'existait pas. */
+  .boite.futur { stroke: var(--encre-pale); stroke-dasharray: 5 4; }
+  .lien.futur  { stroke-dasharray: 5 4; }
+
+  .nom {
+    font-family: "Sora", sans-serif; font-size: 13px; font-weight: 400;
+    fill: var(--encre); dominant-baseline: middle;
+  }
+  .nom.pale { fill: var(--encre-douce); }
+  .nom.gras { font-weight: 600; }
+  .mono {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 500;
+    dominant-baseline: middle; font-variant-numeric: tabular-nums;
+  }
+  .mono.fin { fill: var(--encre-pale); text-anchor: end; }
+  .mono.v1 { fill: var(--c1); } .mono.v2 { fill: var(--c2); } .mono.v3 { fill: var(--c3); }
+  .mono.v4 { fill: var(--c4); } .mono.v5 { fill: var(--c5); } .mono.v6 { fill: var(--c6); }
+
+  .jauge-vide { fill: none; stroke: var(--trait); stroke-width: 1; }
+  .jauge-plein.c { fill: var(--commun); stroke: none; }
+  .jauge-plein.m { fill: var(--mesure); stroke: none; }
+
+  .colonne, .titre-bande {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: 0.085em; text-transform: uppercase;
+  }
+  .colonne { fill: var(--encre-pale); text-anchor: middle; }
+  .titre-bande.g { fill: var(--encre-pale); }
+  .titre-bande.c { fill: var(--commun); }
+  .titre-bande.m { fill: var(--mesure); }
+  .total { font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500; }
+  .total.c { fill: var(--commun); }
+  .total.m { fill: var(--mesure); }
+
+  .lien { fill: none; stroke: var(--trait); stroke-width: 1.2; }
+  .rail { fill: none; stroke: var(--mesure); stroke-width: 1.3; }
+
+  /* ══ UN SEUL CHEMIN ALLUME A LA FOIS ══════════════════════════════════
+     Ce qui n'est pas sur le chemin ne disparait pas : il reste lisible en
+     gris, parce que c'est lui qui donne le contexte. Et les cases ne
+     bougent jamais d'un compte a l'autre — c'est ce qui permet de comparer
+     deux chemins en appuyant deux fois.
+     ⚠ Le :not([data-chemin=""]) n'est pas decoratif : l'attribut VIDE
+     correspond aussi a [data-chemin], et sans lui tous les noms partaient
+     en gris au repos, avant le moindre clic. */
+  svg[data-chemin]:not([data-chemin=""]) .nom { fill: var(--encre-pale); }
+  svg[data-chemin]:not([data-chemin=""]) .mono.fin { fill: var(--trait); }
+
+  svg[data-chemin="c1"] .c1 .boite { stroke: var(--c1); stroke-width: 2; }
+  svg[data-chemin="c2"] .c2 .boite { stroke: var(--c2); stroke-width: 2; }
+  svg[data-chemin="c3"] .c3 .boite { stroke: var(--c3); stroke-width: 2; }
+  svg[data-chemin="c4"] .c4 .boite { stroke: var(--c4); stroke-width: 2; }
+  svg[data-chemin="c5"] .c5 .boite { stroke: var(--c5); stroke-width: 2; }
+  svg[data-chemin="c6"] .c6 .boite { stroke: var(--c6); stroke-width: 2; }
+
+  svg[data-chemin="c1"] .c1 .nom,
+  svg[data-chemin="c2"] .c2 .nom,
+  svg[data-chemin="c3"] .c3 .nom,
+  svg[data-chemin="c4"] .c4 .nom,
+  svg[data-chemin="c5"] .c5 .nom,
+  svg[data-chemin="c6"] .c6 .nom { fill: var(--encre); font-weight: 600; }
+
+  svg[data-chemin="c1"] .c1 .mono.fin,
+  svg[data-chemin="c2"] .c2 .mono.fin,
+  svg[data-chemin="c3"] .c3 .mono.fin,
+  svg[data-chemin="c4"] .c4 .mono.fin,
+  svg[data-chemin="c5"] .c5 .mono.fin,
+  svg[data-chemin="c6"] .c6 .mono.fin { fill: var(--encre-pale); }
+
+  svg[data-chemin="c1"] .lien.c1 { stroke: var(--c1); stroke-width: 2.5; }
+  svg[data-chemin="c2"] .lien.c2 { stroke: var(--c2); stroke-width: 2.5; }
+  svg[data-chemin="c3"] .lien.c3 { stroke: var(--c3); stroke-width: 2.5; }
+  svg[data-chemin="c4"] .lien.c4 { stroke: var(--c4); stroke-width: 2.5; }
+  svg[data-chemin="c5"] .lien.c5 { stroke: var(--c5); stroke-width: 2.5; }
+  svg[data-chemin="c6"] .lien.c6 { stroke: var(--c6); stroke-width: 2.5; }
+
+  .pastilles { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+  .pastilles button {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--trait); background: var(--fond-carte);
+    color: var(--encre); font-family: inherit; font-size: 14px; font-weight: 400;
+    padding: 9px 15px; border-radius: 999px; cursor: pointer;
+  }
+  .pastilles button:hover { border-color: var(--encre-pale); }
+  .pastilles button:focus-visible { outline: 2px solid var(--encre-douce); outline-offset: 2px; }
+  .pastilles i { width: 10px; height: 10px; border-radius: 3px; display: block; }
+  .pastilles button[aria-pressed="true"] { font-weight: 600; }
+  .pastilles button[data-c="c1"] i { background: var(--c1); }
+  .pastilles button[data-c="c2"] i { background: var(--c2); }
+  .pastilles button[data-c="c3"] i { background: var(--c3); }
+  .pastilles button[data-c="c4"] i { background: var(--c4); }
+  .pastilles button[data-c="c5"] i { background: var(--c5); }
+  .pastilles button[data-c="c6"] i { background: var(--c6); }
+  .pastilles button[data-c="c1"][aria-pressed="true"] { border-color: var(--c1); }
+  .pastilles button[data-c="c2"][aria-pressed="true"] { border-color: var(--c2); }
+  .pastilles button[data-c="c3"][aria-pressed="true"] { border-color: var(--c3); }
+  .pastilles button[data-c="c4"][aria-pressed="true"] { border-color: var(--c4); }
+  .pastilles button[data-c="c5"][aria-pressed="true"] { border-color: var(--c5); }
+  .pastilles button[data-c="c6"][aria-pressed="true"] { border-color: var(--c6); }
+
+  .phrase { margin: 0 0 16px; min-height: 64px; }
+  .phrase .t { font-size: 15.5px; font-weight: 600; }
+  .phrase .t em { font-style: normal; font-weight: 300; color: var(--encre-douce); }
+  .phrase .p {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    color: var(--encre-douce); margin-top: 3px;
+  }
+
+  .rond {
+    fill: var(--fond-noeud); stroke: var(--encre-douce); stroke-width: 1.6;
+    cursor: pointer; outline: none;
+  }
+  .rond:hover, .rond:focus-visible { fill: var(--encre-douce); }
+  .rond:focus-visible { outline: 2px solid var(--encre-douce); outline-offset: 3px; }
+  .rond.c { stroke: var(--commun); }
+  .rond.c:hover, .rond.c:focus-visible { fill: var(--commun); }
+  .rond.m { stroke: var(--mesure); }
+  .rond.m:hover, .rond.m:focus-visible { fill: var(--mesure); }
+
+  /* ══ LA NOTE — dix segments, de 0 a 10 ════════════════════════════════
+     Hamada, 18/09 : « vas-y avec B », apres maquette a la taille reelle.
+     ⭐ Dix segments valent dix unites : aucune demie a deviner, et la
+     valeur se lit sans compter. C'est deja le langage de la jauge du
+     volet 2 — six cases pour six comptes — donc un seul vocabulaire.
+     ⚠ Les segments VIDES gardent leur contour : une barre blanche se
+     lirait « donnee manquante », dix cases vides dessinees se lisent zero.
+     ⭐ Et la barre porte la couleur de la NOTE, plus celle de l'etat : une
+     marque, un sens. L'etat reste dit par l'icone d'acteur.
+     ⛔ Ce qui a ete abandonne : l'etoile de 11 px perdait ses cinq
+     branches, et la demi-etoile etait invisible — « 7 sur 10 » affichait
+     trois etoiles et demie et se lisait 6. */
+  .barre { pointer-events: none; }
+  .seg-plein { stroke: none; }
+  .seg-plein.n-rouge { fill: var(--n-rouge); }
+  .seg-plein.n-jaune { fill: var(--n-jaune); }
+  .seg-plein.n-ciel  { fill: var(--n-ciel); }
+  .seg-plein.n-vert  { fill: var(--n-vert); }
+  /* ⚠ LE BLANC — un segment blanc REMPLI porte un contour #8E8D94 ; un
+     segment VIDE porte #DDDCE0, plus clair, et aucun fond. C'est cette
+     difference de contour qui rend le blanc utilisable, et elle se mesure.
+     Sans elle, une case blanche remplie et une case vide sont la meme
+     chose sur fond clair — c'est pour ca que la rampe precedente avait
+     remplace le blanc par l'ambre. */
+  .seg-plein.n-blanc  { fill: #FFFFFF; stroke: var(--encre-pale); stroke-width: 1; }
+  .seg-vide { fill: none; stroke: var(--trait); stroke-width: 1; }
+
+  .acteur { pointer-events: none; }
+  .acteur.e-f { color: var(--fait); }
+  .acteur.e-p { color: var(--partiel); }
+  .acteur.e-n { color: var(--encre-pale); }
+  .acteur.e-h { color: var(--humain); }
+
+  .fiche {
+    position: absolute; z-index: 20; width: 352px; max-width: calc(100% - 24px);
+    background: var(--fond); border: 1px solid var(--encre-douce);
+    border-radius: 11px; padding: 15px 17px 16px;
+    font-size: 13.5px; line-height: 1.5; color: var(--encre); display: none;
+  }
+  .fiche[data-ouverte="oui"] { display: block; }
+  .fiche h3 {
+    margin: 0 0 2px; font-size: 16px; font-weight: 600;
+    letter-spacing: -0.01em; padding-right: 26px;
+  }
+  .fiche .etat-fiche {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 12px;
+    color: var(--encre-douce);
+  }
+  .fiche .etat-fiche.f { color: var(--fait); }
+  .fiche .etat-fiche.p { color: var(--partiel); }
+  .fiche .etat-fiche.h { color: var(--humain); }
+  .fiche dl { margin: 0 0 11px; }
+  .fiche dt {
+    font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 2px; color: var(--encre-pale);
+  }
+  .fiche dd { margin: 0; }
+  .fiche dl.une dt { color: var(--commun); }
+  .fiche dl.six dt { color: var(--mesure); }
+  .fiche .facilite {
+    margin: 0 0 11px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
+  }
+  .fiche .facilite svg.barre-fiche { width: 89px; height: 5px; flex: 0 0 auto; }
+  .fiche .facilite .chiffre {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 600;
+  }
+  .fiche .facilite .motif { font-size: 12.5px; color: var(--encre-douce); flex: 1 1 100%; }
+  .fiche .cle {
+    margin: 0; padding-top: 11px; border-top: 1px solid var(--trait); font-size: 13px;
+  }
+  .fiche .cle b { font-weight: 600; }
+  .fiche .garde { margin: 9px 0 0; color: var(--encre-douce); font-size: 12.5px; }
+  .fiche .comptes {
+    margin: 10px 0 0; font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px; color: var(--encre-pale);
+  }
+  .fiche button.fermer {
+    position: absolute; top: 9px; right: 9px; width: 24px; height: 24px;
+    line-height: 1; border: 1px solid var(--trait); border-radius: 6px;
+    background: var(--fond-carte); color: var(--encre-douce);
+    font-family: inherit; font-size: 15px; cursor: pointer;
+  }
+  .fiche button.fermer:hover { border-color: var(--encre-pale); color: var(--encre); }
+
+  /* ══ LA LEGENDE — le rond, et une phrase. Rien d'autre ════════════════
+     Hamada, 18/09, deux fois : « Corrige les legendes, les legendes sont
+     mal faites. Le rond, tu mets le rond et tu mets l'explication du rond.
+     Juste le rond et une phrase courte. »
+     Les legendes precedentes alignaient des icones d'acteur sur DEUX axes —
+     qui fait le geste, et l'etat de l'automatisation. Deux axes dans une
+     legende, c'est plus d'effort que la figure qu'elle explique. Et les
+     icones se rendaient de travers : un <use> sans x, y, width ni height
+     ne sait pas a quelle taille deplier un <symbol> qui porte son propre
+     viewBox. Tout ce qu'elles disaient est maintenant ECRIT dans la fiche
+     de chaque case, a la ligne « qui fait ». */
+  .legende {
+    margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--trait);
+    display: grid; grid-template-columns: auto 1fr; gap: 9px 16px;
+    font-size: 13.5px; color: var(--encre-douce);
+  }
+  .legende dt {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--encre-pale);
+    padding-top: 3px; white-space: nowrap;
+  }
+  .legende dd { margin: 0; display: flex; flex-wrap: wrap; gap: 7px 18px; align-items: center; }
+  .legende .item { display: inline-flex; align-items: center; gap: 7px; }
+  /* ⚠ Un <use> SANS x, y, width ni height ne sait pas a quelle taille
+     deplier un <symbol> qui porte son propre viewBox : c'est ce qui rendait
+     les anciennes icones de legende en fragments tordus. Les quatre
+     attributs sont obligatoires, ici comme dans les figures. */
+  .legende svg { flex: 0 0 auto; width: 18px; height: 18px; }
+  .legende svg.barre-demo { width: 89px; height: 5px; }
+  .legende svg.jauge-demo { width: 87px; height: 12px; }
+  .legende svg.futur-demo { width: 54px; height: 20px; }
+  .legende .bornes { gap: 10px; }
+  .legende .bout { font-size: 12.5px; color: var(--encre-douce); white-space: nowrap; }
+  .legende .jauge-plein.c { fill: var(--commun); stroke: none; }
+  .legende .jauge-vide { fill: none; stroke: var(--trait); stroke-width: 1; }
+  .legende dd b {
+    font-family: "IBM Plex Mono", monospace; font-weight: 600; color: var(--encre);
+  }
+  .legende .rond-demo { fill: none; stroke: var(--encre-douce); stroke-width: 1.7; }
+  .legende .forme { color: var(--encre-douce); }
+  .legende .pastille {
+    width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; display: block;
+  }
+  .legende .e-f { color: var(--fait); }
+  .legende .e-p { color: var(--partiel); }
+  .legende .e-n { color: var(--encre-pale); }
+  .legende .e-h { color: var(--humain); }
+  .legende .e-f .pastille { background: var(--fait); }
+  .legende .e-p .pastille { background: var(--partiel); }
+  .legende .e-n .pastille { background: var(--encre-pale); }
+  .legende .e-h .pastille { background: var(--humain); }
+
+
+  .consequence {
+    margin: 26px 0 0; border-left: 3px solid var(--commun);
+    padding: 2px 0 2px 16px; font-size: 15.5px; color: var(--encre); max-width: 82ch;
+    min-height: 52px;
+  }
+  .consequence b { font-weight: 600; }
+
+  h3.section { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin: 50px 0 6px; }
+  h3.section + p { color: var(--encre-douce); font-size: 15px; margin: 0 0 20px; max-width: 78ch; }
+  .tableau { overflow-x: auto; border: 1px solid var(--trait); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 780px; font-size: 14px; }
+  th, td { text-align: left; padding: 11px 15px; border-bottom: 1px solid var(--trait);
+           vertical-align: top; }
+  th {
+    font-weight: 600; font-size: 12px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--encre-pale); background: var(--fond-carte);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  th.une { color: var(--commun); }
+  th.six { color: var(--mesure); }
+  td.six { color: var(--encre-douce); }
+  .num, .etat {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 500;
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  /* ══ LES ICONES REVIENNENT DANS LE TABLEAU ════════════════════════════
+     Hamada, 18/09 : « C'est bien de laisser le truc ecrit, mais de remettre
+     les icones avec les memes couleurs, les memes codes de couleur. »
+     Le mot dit l'etat, l'icone dit qui fait le geste, et les deux portent la
+     MEME couleur d'etat — on retrouve la figure sans relire la legende. */
+  td.etat { white-space: nowrap; }
+  td.etat .ligne { display: flex; align-items: center; gap: 7px; }
+  td.etat svg { flex: 0 0 auto; width: 16px; height: 16px; }
+  td.etat .note-tab { display: flex; align-items: center; gap: 7px; margin-top: 6px; }
+  td.etat .note-tab svg { width: 89px; height: 5px; flex: 0 0 auto; }
+  td.etat .chiffre { font-size: 11.5px; letter-spacing: 0.03em; margin-left: 3px; }
+  /* ⭐ LE CHIFFRE SUIT LA COULEUR DE LA BANDE OU LA BARRE S'ARRETE.
+     Hamada, 18/09 : « les notes doivent suivre la couleur. »
+     ⚠ En encre, et pas en aplat : voir les jetons --ni-*. Et le blanc n'a
+     pas d'encre — sa bande prend l'encre courante, qui est sa valeur
+     neutre. */
+  .chiffre.n-rouge { color: var(--ni-rouge); }
+  .chiffre.n-jaune { color: var(--ni-jaune); }
+  .chiffre.n-blanc { color: var(--encre); }
+  .chiffre.n-ciel  { color: var(--ni-ciel); }
+  .chiffre.n-vert  { color: var(--ni-vert); }
+  .etat.f { color: var(--fait); }
+  .etat.p { color: var(--partiel); }
+  .etat.n { color: var(--encre-douce); }
+  .etat.h { color: var(--humain); }
+
+  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--trait);
+           font-size: 13px; color: var(--encre-pale); }
+  @media (prefers-reduced-motion: no-preference) {
+    .rond, .boite, .nom, .lien { transition: fill .18s ease, stroke .18s ease, stroke-width .18s ease; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ LES TROIS TRACES D'ACTEUR, definies UNE fois, hors des volets.
+     Un <symbol> n'est jamais rendu la ou il est declare : le sortir des
+     panneaux garantit que les trois figures y accedent, meme quand deux
+     panneaux sur trois sont masques. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="a-script" viewBox="-9 -9 18 18">
+      <rect x="-7.6" y="-6.4" width="15.2" height="12.8" rx="2.6" fill="none"
+            stroke="currentColor" stroke-width="1.5"/>
+      <polyline points="-4.1,-2.6 -1.6,0 -4.1,2.6" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="0.6" y1="3.1" x2="4.4" y2="3.1" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="a-robot" viewBox="-9 -9 18 18">
+      <line x1="0" y1="-8" x2="0" y2="-5.6" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round"/>
+      <rect x="-6" y="-5.6" width="12" height="11.4" rx="3" fill="none"
+            stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="-2.6" cy="-0.2" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="2.6" cy="-0.2" r="1.3" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="a-humain" viewBox="-9 -9 18 18">
+      <circle cx="0" cy="-3.8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M -5.6 7 Q -5.6 1.4 0 1.4 Q 5.6 1.4 5.6 7" fill="none"
+            stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="bandeau">
+  <img src="logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84">
+  <div class="qui">
+    <b>Bentaleb Ahmed</b>
+    <span>18 septembre 2026 &middot; note interne</span>
+  </div>
+</div>
+<div class="filet"></div>
+
+<h1>Schéma directeur d'automatisation du service marketing &mdash; Groupe Avaliance</h1>
+<p class="sous">Six comptes, quatorze étapes, un seul process. Trois volets pour trois
+questions : par où passe chaque compte, qu'est-ce qui se regroupe, et à quoi ressemble la
+chaîne une fois regroupée.</p>
+<p class="source">Relevé sur Avaliance Process par Projets.xlsx — six feuilles, six comptes</p>
+
+<div class="compte">
+  <div><b>14</b><span>étapes distinctes, les mêmes pour les six comptes</span></div>
+  <div><b>47</b><span>passages d'étape par cycle, tous comptes confondus</span></div>
+  <div class="commun"><b>7</b><span>machines communes, qui portent 39 de ces 47</span></div>
+  <div class="mesure"><b>7</b><span>modules sur mesure, qui portent les 8 restants</span></div>
+</div>
+
+<div class="onglets" role="tablist" aria-label="Les trois volets">
+  <button role="tab" id="o1" aria-controls="v1" aria-selected="true">
+    <em>Volet 1</em> Un seul process
+  </button>
+  <button role="tab" id="o2" aria-controls="v2" aria-selected="false">
+    <em>Volet 2</em> Ce qui se regroupe
+  </button>
+  <button role="tab" id="o3" aria-controls="v3" aria-selected="false">
+    <em>Volet 3</em> La chaîne regroupée
+  </button>
+</div>
+
+<!-- ══════════════════════════ VOLET 1 ══════════════════════════ -->
+<section class="volet" id="v1" role="tabpanel" aria-labelledby="o1" tabindex="0">
+  <h2>Un seul process, six comptes qui le traversent</h2>
+  <p class="intro">Les quatorze étapes ne changent pas d'un compte à l'autre. Ce qui change,
+  c'est lesquelles sont traversées, et qui valide à la fin. Appuyez sur un compte : son chemin
+  s'allume, et lui seul — les cinq autres restent lisibles en gris, parce que c'est eux qui
+  donnent le contexte.</p>
+
+  <div class="pastilles" role="group" aria-label="Choisir un compte">
+    <button data-c="c1" aria-pressed="false"><i></i>C1 Avaliance</button>
+    <button data-c="c2" aria-pressed="false"><i></i>C2 Docdialy</button>
+    <button data-c="c3" aria-pressed="false"><i></i>C3 Shifaa</button>
+    <button data-c="c4" aria-pressed="false"><i></i>C4 Vistapp</button>
+    <button data-c="c5" aria-pressed="false"><i></i>C5 High Tech</button>
+    <button data-c="c6" aria-pressed="false"><i></i>C6 MaTeCC</button>
+  </div>
+
+  <div class="phrase" id="phrase1">
+    <div class="t">Le process complet <em>· appuyez sur un compte pour n'en voir qu'un</em></div>
+    <div class="p">14 etapes · 6 comptes · 1 seul graphe</div>
+  </div>
+
+<div class="cadre">
+<svg class="graphe" id="g1" viewBox="0 0 1200 640" data-chemin="" role="img"
+     aria-label="Graphe des quatorze etapes du process marketing, traverse par six comptes">
+
+  <text class="colonne" x="110" y="26">ENTREE</text>
+  <text class="colonne" x="300" y="26">PLAN</text>
+  <text class="colonne" x="500" y="26">PRODUCTION</text>
+  <text class="colonne" x="700" y="26">CONTROLE</text>
+  <text class="colonne" x="890" y="26">DIFFUSION</text>
+  <text class="colonne" x="1080" y="26">BILAN</text>
+
+  <line class="lien c1 c2 c3 c4 c6" x1="185" y1="300" x2="225" y2="300"/>
+  <line class="lien c6"             x1="185" y1="118" x2="232" y2="282"/>
+  <line class="lien c5"             x1="185" y1="100" x2="425" y2="60"/>
+  <line class="lien c1 c2 c3 c4 c6" x1="375" y1="292" x2="425" y2="66"/>
+  <line class="lien c1 c2 c3 c4 c6" x1="375" y1="294" x2="425" y2="158"/>
+  <line class="lien c2"             x1="375" y1="300" x2="425" y2="250"/>
+  <line class="lien c2"             x1="375" y1="306" x2="425" y2="342"/>
+  <line class="lien c2"             x1="375" y1="308" x2="425" y2="434"/>
+  <line class="lien c3"             x1="375" y1="310" x2="425" y2="526"/>
+  <line class="lien c1 c2 c3 c4 c5 c6" x1="575" y1="66"  x2="625" y2="292"/>
+  <line class="lien c1 c2 c3 c4 c6"    x1="575" y1="158" x2="625" y2="294"/>
+  <line class="lien c2"                x1="575" y1="250" x2="625" y2="300"/>
+  <line class="lien c2"                x1="575" y1="342" x2="625" y2="306"/>
+  <line class="lien c2"                x1="575" y1="434" x2="625" y2="308"/>
+  <line class="lien c3"                x1="575" y1="526" x2="625" y2="310"/>
+  <line class="lien c1 c2 c3 c4 c5 c6" x1="775" y1="292" x2="815" y2="206"/>
+  <line class="lien c4"                x1="775" y1="310" x2="815" y2="494"/>
+  <line class="lien c6" x1="890" y1="220" x2="890" y2="380"/>
+  <line class="lien c1 c2 c3 c5" x1="965" y1="206" x2="1005" y2="292"/>
+  <line class="lien c6"          x1="965" y1="400" x2="1005" y2="308"/>
+  <line class="lien c4"          x1="965" y1="494" x2="1005" y2="312"/>
+
+  <g class="c5 c6">
+    <rect class="boite" x="35" y="80" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="53" cy="101" r="6" data-case="cadrage"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="68" y="102">Cadrage</text>
+    <use class="acteur e-n" href="#a-robot" x="163" y="93" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="68" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="77" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="86" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="95" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="104" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="113" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="122" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="131" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="140" y="116" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="149" y="116" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite" x="35" y="280" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="53" cy="301" r="6" data-case="veille"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="68" y="302">Veille</text>
+    <use class="acteur e-f" href="#a-script" x="163" y="293" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="68" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="77" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="86" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="95" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="104" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="113" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="122" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="131" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-vert" x="140" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-vert" x="149" y="316" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite" x="225" y="280" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="243" cy="301" r="6" data-case="calendrier"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="258" y="302">Calendrier</text>
+    <use class="acteur e-n" href="#a-robot" x="353" y="293" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="258" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="267" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="276" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="285" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="294" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="303" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="312" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="321" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="330" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="339" y="316" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite" x="425" y="40" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="443" cy="61" r="6" data-case="redaction"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="62">Rédaction</text>
+    <use class="acteur e-f" href="#a-robot" x="553" y="53" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="503" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="512" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="521" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="530" y="76" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="76" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite" x="425" y="135" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="443" cy="156" r="6" data-case="visuel"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="157">Visuel</text>
+    <use class="acteur e-f" href="#a-robot" x="537" y="148" width="16" height="16"/>
+    <use class="acteur e-f" href="#a-script" x="553" y="148" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="503" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="512" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="521" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-vert" x="530" y="171" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="171" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c2">
+    <rect class="boite" x="425" y="230" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="443" cy="251" r="6" data-case="ads"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="252">Ads</text>
+    <use class="acteur e-n" href="#a-robot" x="537" y="243" width="16" height="16"/>
+    <use class="acteur e-n" href="#a-humain" x="553" y="243" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="503" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="512" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="521" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="530" y="266" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="266" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c2">
+    <rect class="boite" x="425" y="325" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="443" cy="346" r="6" data-case="seo"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="347">SEO / SEA</text>
+    <use class="acteur e-n" href="#a-robot" x="553" y="338" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="503" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="512" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="521" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="530" y="361" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="361" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c2">
+    <rect class="boite" x="425" y="420" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="443" cy="441" r="6" data-case="newsletter"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="442">Newsletter</text>
+    <use class="acteur e-n" href="#a-robot" x="553" y="433" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="503" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="512" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="521" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="530" y="456" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="456" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c3">
+    <rect class="boite" x="425" y="515" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="443" cy="536" r="6" data-case="siteweb"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="458" y="537">Site web</text>
+    <use class="acteur e-n" href="#a-robot" x="553" y="528" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="458" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="467" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="476" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="485" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="494" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="503" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="512" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="521" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="530" y="551" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="539" y="551" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite" x="625" y="280" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="643" cy="301" r="6" data-case="validation"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="658" y="302">Validation</text>
+    <use class="acteur e-h" href="#a-robot" x="737" y="293" width="16" height="16"/>
+    <use class="acteur e-h" href="#a-humain" x="753" y="293" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="658" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="667" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="676" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="685" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="694" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="703" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="712" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="721" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="730" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="739" y="316" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite" x="815" y="186" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="833" cy="207" r="6" data-case="diffusion"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="848" y="208">Diffusion</text>
+    <use class="acteur e-p" href="#a-script" x="927" y="199" width="16" height="16"/>
+    <use class="acteur e-p" href="#a-humain" x="943" y="199" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="848" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="857" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="866" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="875" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="884" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="893" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-ciel" x="902" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="911" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="920" y="222" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="929" y="222" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c6">
+    <rect class="boite" x="815" y="380" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="833" cy="401" r="6" data-case="live"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="848" y="402">Live</text>
+    <use class="acteur e-h" href="#a-humain" x="943" y="393" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-vide" x="848" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="857" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="866" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="875" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="884" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="893" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="902" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="911" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="920" y="416" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="929" y="416" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c4">
+    <rect class="boite" x="815" y="474" width="150" height="56" rx="7"/>
+    <circle class="rond m" cx="833" cy="495" r="6" data-case="prospect"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="848" y="496">Prospect</text>
+    <use class="acteur e-n" href="#a-robot" x="927" y="487" width="16" height="16"/>
+    <use class="acteur e-n" href="#a-humain" x="943" y="487" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="848" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="857" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="866" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="875" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="884" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="893" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="902" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="911" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="920" y="510" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="929" y="510" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite" x="1005" y="280" width="150" height="56" rx="7"/>
+    <circle class="rond c" cx="1023" cy="301" r="6" data-case="reporting"
+            tabindex="0" role="button" aria-label="Voir l explication de cette etape"/>
+    <text class="nom" x="1038" y="302">Reporting</text>
+    <use class="acteur e-n" href="#a-robot" x="1133" y="293" width="16" height="16"/>
+    <g class="barre">
+      <rect class="seg-plein n-rouge" x="1038" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-rouge" x="1047" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="1056" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-jaune" x="1065" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="1074" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-plein n-blanc" x="1083" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="1092" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="1101" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="1110" y="316" width="8" height="5" rx="1.5"/>
+      <rect class="seg-vide" x="1119" y="316" width="8" height="5" rx="1.5"/>
+    </g>
+  </g>
+</svg>
+
+<div class="fiche" role="dialog" aria-live="polite" aria-label="Explication de la case">
+  <button class="fermer" type="button" aria-label="Fermer">&times;</button>
+  <div class="corps"></div>
+</div>
+
+<dl class="legende">
+  <dt>Le rond</dt>
+  <dd><span class="item"><svg viewBox="0 0 18 18" aria-hidden="true"><circle
+      class="rond-demo" cx="9" cy="9" r="6.5"/></svg> appuyez dessus : l'explication de la
+      case s'ouvre</span></dd>
+
+  <dt>Qui fait</dt>
+  <dd>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg> un script déterministe</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> un agent</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> une personne</span>
+  </dd>
+
+  <dt>L'état</dt>
+  <dd>
+    <span class="item e-f"><i class="pastille"></i> ça tourne</span>
+    <span class="item e-p"><i class="pastille"></i> à moitié</span>
+    <span class="item e-n"><i class="pastille"></i> à construire</span>
+    <span class="item e-h"><i class="pastille"></i> humain par nature</span>
+  </dd>
+
+  <dt>La note</dt>
+  <dd>
+    <span class="item bornes">
+      <span class="bout">très difficile</span>
+      <svg class="barre-demo" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-vert" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-vert" x="81" y="0" width="8" height="5" rx="1.5"/></svg>
+      <span class="bout">très facile</span>
+    </span>
+  </dd>
+</dl>
+</div>
+
+<p class="consequence" id="consequence1">Les quatorze étapes ne changent pas d'un compte à
+l'autre. Ce qui change, c'est lesquelles sont traversées, et qui valide à la fin.</p>
+
+<h3 class="section">Ce que chaque étape demande, et ce que l'agent peut en prendre</h3>
+<p>Trois étapes tournent déjà chez nous — ce sont les seules qu'on peut promettre sans
+condition. Une tourne à moitié. Deux ne s'automatiseront pas, et c'est une décision.</p>
+
+<div class="tableau">
+<table>
+  <thead>
+    <tr><th>Étape</th><th>État et facilité</th><th>Ce que l'agent fait</th><th>Qui décide encore</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Veille</td>
+        <td class="etat f">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg> ça tourne</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-vert" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-vert" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-vert">10/10</span></span>
+        </td>
+        <td>ratisse des flux et des pages toute la journée, groupe par sujet, garde tout</td>
+        <td class="six">personne, c'est mécanique</td></tr>
+    <tr><td>Cadrage</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-ciel">7/10</span></span>
+        </td>
+        <td>transforme une demande informelle en brief cadré : objectif, délai, format</td>
+        <td class="six">le chargé de compte valide le brief</td></tr>
+    <tr><td>Calendrier</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-ciel">7/10</span></span>
+        </td>
+        <td>propose un calendrier équilibré entre piliers de contenu et par plateforme</td>
+        <td class="six">le marketing manager arbitre</td></tr>
+    <tr><td>Rédaction</td>
+        <td class="etat f">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> ça tourne</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-ciel">8/10</span></span>
+        </td>
+        <td>écrit le papier depuis un angle validé, dans la voix documentée du compte</td>
+        <td class="six">le rédacteur en chef choisit l'angle</td></tr>
+    <tr><td>Visuel</td>
+        <td class="etat f">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg> ça tourne</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-vert" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-vert">9/10</span></span>
+        </td>
+        <td>remplit un moule et capture l'image au format exact du canal</td>
+        <td class="six">personne ne dessine librement, et c'est le but</td></tr>
+    <tr><td>Ads</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-blanc">5/10</span></span>
+        </td>
+        <td>génère plusieurs variantes d'accroche et de description pour comparer</td>
+        <td class="six">le media buyer tient le budget</td></tr>
+    <tr><td>SEO / SEA</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-blanc">6/10</span></span>
+        </td>
+        <td>propose mots-clés, méta-descriptions, sujets d'articles à potentiel</td>
+        <td class="six">le media buyer</td></tr>
+    <tr><td>Newsletter</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-ciel">7/10</span></span>
+        </td>
+        <td>rédige un brouillon segmenté depuis les contenus publiés dans le mois</td>
+        <td class="six">le chargé de contenu</td></tr>
+    <tr><td>Site web</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-blanc">5/10</span></span>
+        </td>
+        <td>propose des textes de pages depuis l'arborescence et les mots-clés cibles</td>
+        <td class="six">le marketing manager</td></tr>
+    <tr><td>Validation</td>
+        <td class="etat h">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> humain</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-jaune">3/10</span></span>
+        </td>
+        <td>prépare le dossier : orthographe, ton, conformité, cohérence des chiffres</td>
+        <td class="six">la signature reste humaine, sans exception</td></tr>
+    <tr><td>Diffusion</td>
+        <td class="etat p">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> à moitié</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-ciel" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-ciel">7/10</span></span>
+        </td>
+        <td>livre la pièce signée ; les créneaux optimaux restent à faire</td>
+        <td class="six">le community manager</td></tr>
+    <tr><td>Live</td>
+        <td class="etat h">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> humain</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-vide" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-rouge">0/10</span></span>
+        </td>
+        <td>propose une légende depuis une photo prise sur place</td>
+        <td class="six">quelqu'un est sur place, rien ne remplace ça</td></tr>
+    <tr><td>Prospect</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-jaune">4/10</span></span>
+        </td>
+        <td>identifie des profils à cibler selon des critères écrits</td>
+        <td class="six">l'approche est personnalisée à la main</td></tr>
+    <tr><td>Reporting</td>
+        <td class="etat n">
+          <span class="ligne"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> à construire</span>
+          <span class="note-tab"><svg class="barre-tab" viewBox="0 0 89 5" aria-hidden="true"><rect class="seg-plein n-rouge" x="0" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-rouge" x="9" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="18" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-jaune" x="27" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="36" y="0" width="8" height="5" rx="1.5"/><rect class="seg-plein n-blanc" x="45" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="54" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="63" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="72" y="0" width="8" height="5" rx="1.5"/><rect class="seg-vide" x="81" y="0" width="8" height="5" rx="1.5"/></svg><span class="chiffre n-blanc">6/10</span></span>
+        </td>
+        <td>consolide les exports en un rapport unique, avec recommandations classées</td>
+        <td class="six">le chargé de compte présente</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="section">Les deux étapes qu'on n'automatisera pas</h3>
+<p>Ce n'est pas une limite technique, c'est une décision. La validation engage la signature
+d'un cabinet, et une couverture en direct demande que quelqu'un soit dans la salle. Tout le
+reste du process existe pour amener une pièce jusqu'à cette signature le plus vite
+possible.</p>
+</section>
+
+<!-- ══════════════════════════ VOLET 2 ══════════════════════════ -->
+<section class="volet" id="v2" role="tabpanel" aria-labelledby="o2" tabindex="0" hidden>
+  <h2>Ce qui se regroupe</h2>
+  <p class="intro">Chaque ligne porte une jauge de six cases : une case par compte servi. À
+  gauche, les jauges sont presque pleines — ce sont les machines qu'on construit une fois pour
+  tout le monde. À droite, une seule case est remplie : ces modules ne servent qu'un compte, et
+  les mutualiser coûterait plus que de les écrire.</p>
+
+<div class="cadre">
+<svg class="graphe" id="g2" viewBox="0 0 1060 510" role="img"
+     aria-label="Sept machines communes servent cinq ou six comptes chacune, sept modules sur mesure n en servent qu un">
+
+  <text class="titre-bande c" x="20" y="24">L'atelier commun — sept machines</text>
+  <text class="titre-bande m" x="560" y="24">Sur mesure — sept modules</text>
+
+  <rect class="bloc-commun" x="20" y="36" width="500" height="444" rx="12"/>
+  <rect class="bloc-mesure" x="560" y="36" width="500" height="444" rx="12"/>
+
+  <g>
+    <rect class="boite machine" x="40" y="52" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="75" r="6" data-case="veille" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="76">Veille</text>
+    <text class="mono fin" x="286" y="76">5 / 6</text>
+    <rect class="jauge-plein c" x="300" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="360" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="69" width="12" height="12" rx="2"/>
+    <use class="acteur e-f" href="#a-script" x="470" y="67" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="110" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="133" r="6" data-case="calendrier" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="134">Calendrier</text>
+    <text class="mono fin" x="286" y="134">5 / 6</text>
+    <rect class="jauge-plein c" x="300" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="360" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="127" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="470" y="125" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="168" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="191" r="6" data-case="redaction" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="192">Rédaction</text>
+    <text class="mono fin" x="286" y="192">6 / 6</text>
+    <rect class="jauge-plein c" x="300" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="360" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="185" width="12" height="12" rx="2"/>
+    <use class="acteur e-f" href="#a-robot" x="470" y="183" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="226" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="249" r="6" data-case="visuel" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="250">Visuel</text>
+    <text class="mono fin" x="286" y="250">5 / 6</text>
+    <rect class="jauge-plein c" x="300" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="360" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="243" width="12" height="12" rx="2"/>
+    <use class="acteur e-f" href="#a-robot"  x="454" y="241" width="16" height="16"/>
+    <use class="acteur e-f" href="#a-script" x="470" y="241" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="284" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="307" r="6" data-case="validation" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="308">Validation</text>
+    <text class="mono fin" x="286" y="308">6 / 6</text>
+    <rect class="jauge-plein c" x="300" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="360" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="301" width="12" height="12" rx="2"/>
+    <use class="acteur e-h" href="#a-robot"  x="454" y="299" width="16" height="16"/>
+    <use class="acteur e-h" href="#a-humain" x="470" y="299" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="342" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="365" r="6" data-case="diffusion" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="366">Diffusion</text>
+    <text class="mono fin" x="286" y="366">6 / 6</text>
+    <rect class="jauge-plein c" x="300" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="360" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="359" width="12" height="12" rx="2"/>
+    <use class="acteur e-p" href="#a-script" x="454" y="357" width="16" height="16"/>
+    <use class="acteur e-p" href="#a-humain" x="470" y="357" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite machine" x="40" y="400" width="460" height="46" rx="7"/>
+    <circle class="rond c" cx="58" cy="423" r="6" data-case="reporting" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="73" y="424">Reporting</text>
+    <text class="mono fin" x="286" y="424">6 / 6</text>
+    <rect class="jauge-plein c" x="300" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="315" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="330" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="345" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="360" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein c" x="375" y="417" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="470" y="415" width="16" height="16"/>
+  </g>
+  <text class="total c" x="40" y="466">39 des 47 passages, soit 83 pour cent</text>
+
+  <g>
+    <rect class="boite module" x="580" y="52" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="75" r="6" data-case="cadrage" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="76">Cadrage</text>
+    <text class="mono fin" x="826" y="76">2 / 6</text>
+    <rect class="jauge-vide"    x="840" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="855" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="900" y="69" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="915" y="69" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="1010" y="67" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="110" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="133" r="6" data-case="ads" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="134">Ads</text>
+    <text class="mono fin" x="826" y="134">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="855" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="127" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="915" y="127" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot"  x="994" y="125" width="16" height="16"/>
+    <use class="acteur e-n" href="#a-humain" x="1010" y="125" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="168" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="191" r="6" data-case="seo" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="192">SEO / SEA</text>
+    <text class="mono fin" x="826" y="192">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="855" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="185" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="915" y="185" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="1010" y="183" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="226" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="249" r="6" data-case="newsletter" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="250">Newsletter</text>
+    <text class="mono fin" x="826" y="250">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="855" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="243" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="915" y="243" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="1010" y="241" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="284" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="307" r="6" data-case="siteweb" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="308">Site web</text>
+    <text class="mono fin" x="826" y="308">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="855" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="870" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="301" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="915" y="301" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot" x="1010" y="299" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="342" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="365" r="6" data-case="live" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="366">Live</text>
+    <text class="mono fin" x="826" y="366">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="855" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="885" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="359" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="915" y="359" width="12" height="12" rx="2"/>
+    <use class="acteur e-h" href="#a-humain" x="1010" y="357" width="16" height="16"/>
+  </g>
+  <g>
+    <rect class="boite module" x="580" y="400" width="460" height="46" rx="7"/>
+    <circle class="rond m" cx="598" cy="423" r="6" data-case="prospect" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom gras" x="613" y="424">Prospect</text>
+    <text class="mono fin" x="826" y="424">1 / 6</text>
+    <rect class="jauge-vide"    x="840" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="855" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="870" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-plein m" x="885" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="900" y="417" width="12" height="12" rx="2"/>
+    <rect class="jauge-vide"    x="915" y="417" width="12" height="12" rx="2"/>
+    <use class="acteur e-n" href="#a-robot"  x="994" y="415" width="16" height="16"/>
+    <use class="acteur e-n" href="#a-humain" x="1010" y="415" width="16" height="16"/>
+  </g>
+  <text class="total m" x="580" y="466">8 des 47 passages, soit 17 pour cent</text>
+</svg>
+
+<div class="fiche" role="dialog" aria-live="polite" aria-label="Explication de la case">
+  <button class="fermer" type="button" aria-label="Fermer">&times;</button>
+  <div class="corps"></div>
+</div>
+
+<dl class="legende">
+  <dt>Le rond</dt>
+  <dd><span class="item"><svg viewBox="0 0 18 18" aria-hidden="true"><circle
+      class="rond-demo" cx="9" cy="9" r="6.5"/></svg> appuyez dessus : l'explication de la
+      case s'ouvre</span></dd>
+
+  <dt>Qui fait</dt>
+  <dd>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg> un script déterministe</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> un agent</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> une personne</span>
+  </dd>
+
+  <dt>L'état</dt>
+  <dd>
+    <span class="item e-f"><i class="pastille"></i> ça tourne</span>
+    <span class="item e-p"><i class="pastille"></i> à moitié</span>
+    <span class="item e-n"><i class="pastille"></i> à construire</span>
+    <span class="item e-h"><i class="pastille"></i> humain par nature</span>
+  </dd>
+
+  <dt>La jauge</dt>
+  <dd>
+    <span class="item"><svg class="jauge-demo" viewBox="0 0 87 12" aria-hidden="true"><rect
+        class="jauge-plein c" x="0" y="0" width="12" height="12" rx="2"/><rect
+        class="jauge-plein c" x="15" y="0" width="12" height="12" rx="2"/><rect
+        class="jauge-plein c" x="30" y="0" width="12" height="12" rx="2"/><rect
+        class="jauge-plein c" x="45" y="0" width="12" height="12" rx="2"/><rect
+        class="jauge-vide" x="60" y="0" width="12" height="12" rx="2"/><rect
+        class="jauge-plein c" x="75" y="0" width="12" height="12" rx="2"/></svg>
+      une case par compte servi — cinq sur six, ici</span>
+  </dd>
+</dl>
+</div>
+
+<p class="consequence"><b>La machine ne sait rien du client.</b> Tout ce qui est propre à un
+compte — ses sources, sa voix, sa charte, ses canaux, son signataire — est un fichier qu'on
+lit, pas du code qu'on duplique. C'est ce qui fait qu'un septième compte s'ouvre en écrivant
+un dossier, et pas en reconstruisant une chaîne.</p>
+
+<h3 class="section">Ce qui se construit une fois, ce qui s'écrit six fois</h3>
+<p>La colonne de gauche est du code, écrit une seule fois. Celle de droite est du texte, écrit
+une fois par compte et corrigible en une ligne. La frontière entre les deux est la seule
+décision d'architecture qui compte ici.</p>
+
+<div class="tableau">
+<table>
+  <thead>
+    <tr>
+      <th>Machine</th><th class="num">Comptes</th>
+      <th class="une">Construit une fois</th><th class="six">Écrit une fois par compte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Veille</td><td class="num">5 / 6</td>
+        <td>Le ratisseur : il lit des flux et des pages toute la journée, groupe par sujet, garde tout</td>
+        <td class="six">Les sources, les mots-clés à inclure et à exclure</td></tr>
+    <tr><td>Calendrier</td><td class="num">5 / 6</td>
+        <td>Le moteur qui répartit des sujets sur des semaines et des plateformes</td>
+        <td class="six">Les piliers de contenu, la cadence, les plateformes, les dates bloquées</td></tr>
+    <tr><td>Rédaction</td><td class="num">6 / 6</td>
+        <td>Le rédacteur, qui écrit depuis un angle déjà validé</td>
+        <td class="six">La voix, le glossaire métier, les interdits, la langue</td></tr>
+    <tr><td>Visuel</td><td class="num">5 / 6</td>
+        <td>Dix moules figés et le graveur qui capture au format exact du canal</td>
+        <td class="six">La charte : couleurs, polices, logo, formats retenus</td></tr>
+    <tr><td>Validation</td><td class="num">6 / 6</td>
+        <td>Le contrôle mécanique, et un dossier de la semaine qui se lit d'un coup</td>
+        <td class="six">Qui signe, les interdits de conformité, les sujets sensibles</td></tr>
+    <tr><td>Diffusion</td><td class="num">6 / 6</td>
+        <td>Le facteur, qui distribue la pièce signée sans appeler aucun modèle</td>
+        <td class="six">Les canaux, les comptes, les créneaux, et qui publie</td></tr>
+    <tr><td>Reporting</td><td class="num">6 / 6</td>
+        <td>Le consolidateur, qui fusionne les exports en un rapport unique</td>
+        <td class="six">Les indicateurs qui comptent, les objectifs, les segments à séparer</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="section">Le cadrage est le huitième candidat</h3>
+<p>Des sept modules sur mesure, six ne servent qu'un compte : les mutualiser coûterait plus
+cher que de les écrire. Le cadrage en sert deux — High Tech et MaTeCC — et c'est le seul qui
+mérite de monter dans l'atelier. Transformer une demande arrivée en trois lignes par messagerie
+en brief cadré est le même geste dans les deux cas ; ce qui change est la liste des questions à
+poser, donc un fichier.</p>
+</section>
+
+<!-- ══════════════════════════ VOLET 3 ══════════════════════════ -->
+<section class="volet" id="v3" role="tabpanel" aria-labelledby="o3" tabindex="0" hidden>
+  <h2>La chaîne regroupée, compte par compte</h2>
+  <p class="intro">Le même process, mais dessiné comme il se construit : un dossier de
+  configuration entre à gauche, l'atelier commun le traite, une diffusion sort à droite, et les
+  modules sur mesure se branchent en dessous. Appuyez sur un compte pour suivre son chemin.
+  <strong>Le pointillé marque ce qui n'existe pas encore</strong> — aujourd'hui, le canal X.</p>
+
+  <div class="pastilles" role="group" aria-label="Choisir un compte">
+    <button data-c="c1" aria-pressed="false"><i></i>C1 Avaliance</button>
+    <button data-c="c2" aria-pressed="false"><i></i>C2 Docdialy</button>
+    <button data-c="c3" aria-pressed="false"><i></i>C3 Shifaa</button>
+    <button data-c="c4" aria-pressed="false"><i></i>C4 Vistapp</button>
+    <button data-c="c5" aria-pressed="false"><i></i>C5 High Tech</button>
+    <button data-c="c6" aria-pressed="false"><i></i>C6 MaTeCC</button>
+  </div>
+
+  <div class="phrase" id="phrase3">
+    <div class="t">Les six chemins ensemble <em>· appuyez sur un compte pour n'en voir qu'un</em></div>
+    <div class="p">6 dossiers · 7 machines communes · 7 modules sur mesure</div>
+  </div>
+
+<div class="cadre">
+<svg class="graphe" id="g3" viewBox="0 0 1080 660" data-chemin="" role="img"
+     aria-label="Six dossiers entrent dans l atelier commun et ressortent en six diffusions, sept modules sur mesure se branchent en dessous">
+
+  <text class="titre-bande g" x="30" y="44">Six dossiers</text>
+  <text class="titre-bande c" x="530" y="74" text-anchor="middle">L'atelier commun</text>
+  <text class="titre-bande g" x="1040" y="44" text-anchor="end">Six diffusions</text>
+
+  <rect class="bloc-commun" x="350" y="44" width="360" height="496" rx="12"/>
+
+  <path class="lien c1" d="M 240 86 L 350 292"/>
+  <path class="lien c2" d="M 240 158 L 350 292"/>
+  <path class="lien c3" d="M 240 230 L 350 292"/>
+  <path class="lien c4" d="M 240 302 L 350 292"/>
+  <path class="lien c5" d="M 240 374 L 350 292"/>
+  <path class="lien c6" d="M 240 446 L 350 292"/>
+
+  <path class="lien c1" d="M 710 292 L 850 86"/>
+  <path class="lien c2" d="M 710 292 L 850 158"/>
+  <path class="lien c3" d="M 710 292 L 850 230"/>
+  <path class="lien c4" d="M 710 292 L 850 302"/>
+  <path class="lien c5" d="M 710 292 L 850 374"/>
+  <path class="lien c6" d="M 710 292 L 850 446"/>
+  <path class="lien futur" d="M 710 292 L 850 518"/>
+
+  <g class="c1">
+    <rect class="boite" x="30" y="64" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="86" r="6" data-case="d1" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v1" x="62" y="87">C1</text>
+    <text class="nom" x="84" y="87">Avaliance</text>
+    <text class="mono fin" x="226" y="87">7 étapes</text>
+  </g>
+  <g class="c2">
+    <rect class="boite" x="30" y="136" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="158" r="6" data-case="d2" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v2" x="62" y="159">C2</text>
+    <text class="nom" x="84" y="159">Docdialy</text>
+    <text class="mono fin" x="226" y="159">10 étapes</text>
+  </g>
+  <g class="c3">
+    <rect class="boite" x="30" y="208" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="230" r="6" data-case="d3" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v3" x="62" y="231">C3</text>
+    <text class="nom" x="84" y="231">Shifaa</text>
+    <text class="mono fin" x="226" y="231">8 étapes</text>
+  </g>
+  <g class="c4">
+    <rect class="boite" x="30" y="280" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="302" r="6" data-case="d4" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v4" x="62" y="303">C4</text>
+    <text class="nom" x="84" y="303">Vistapp</text>
+    <text class="mono fin" x="226" y="303">8 étapes</text>
+  </g>
+  <g class="c5">
+    <rect class="boite" x="30" y="352" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="374" r="6" data-case="d5" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v5" x="62" y="375">C5</text>
+    <text class="nom" x="84" y="375">High Tech</text>
+    <text class="mono fin" x="226" y="375">5 étapes</text>
+  </g>
+  <g class="c6">
+    <rect class="boite" x="30" y="424" width="210" height="44" rx="7"/>
+    <circle class="rond" cx="48" cy="446" r="6" data-case="d6" tabindex="0"
+            role="button" aria-label="Voir l explication de ce compte"/>
+    <text class="mono v6" x="62" y="447">C6</text>
+    <text class="nom" x="84" y="447">MaTeCC</text>
+    <text class="mono fin" x="226" y="447">9 étapes</text>
+  </g>
+
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite machine" x="376" y="96" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="119" r="6" data-case="veille" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="120">Veille</text>
+    <text class="mono fin" x="600" y="120">5 sur 6</text>
+    <use class="acteur e-f" href="#a-script" x="662" y="111" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite machine" x="376" y="160" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="183" r="6" data-case="calendrier" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="184">Calendrier</text>
+    <text class="mono fin" x="600" y="184">5 sur 6</text>
+    <use class="acteur e-n" href="#a-robot" x="662" y="175" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite machine" x="376" y="224" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="247" r="6" data-case="redaction" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="248">Rédaction</text>
+    <text class="mono fin" x="600" y="248">6 sur 6</text>
+    <use class="acteur e-f" href="#a-robot" x="662" y="239" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c6">
+    <rect class="boite machine" x="376" y="288" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="311" r="6" data-case="visuel" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="312">Visuel</text>
+    <text class="mono fin" x="600" y="312">5 sur 6</text>
+    <use class="acteur e-f" href="#a-robot"  x="646" y="303" width="16" height="16"/>
+    <use class="acteur e-f" href="#a-script" x="662" y="303" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite machine" x="376" y="352" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="375" r="6" data-case="validation" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="376">Validation</text>
+    <text class="mono fin" x="600" y="376">6 sur 6</text>
+    <use class="acteur e-h" href="#a-robot"  x="646" y="367" width="16" height="16"/>
+    <use class="acteur e-h" href="#a-humain" x="662" y="367" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite machine" x="376" y="416" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="439" r="6" data-case="diffusion" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="440">Diffusion</text>
+    <text class="mono fin" x="600" y="440">6 sur 6</text>
+    <use class="acteur e-p" href="#a-script" x="646" y="431" width="16" height="16"/>
+    <use class="acteur e-p" href="#a-humain" x="662" y="431" width="16" height="16"/>
+  </g>
+  <g class="c1 c2 c3 c4 c5 c6">
+    <rect class="boite machine" x="376" y="480" width="308" height="46" rx="7"/>
+    <circle class="rond c" cx="394" cy="503" r="6" data-case="reporting" tabindex="0"
+            role="button" aria-label="Voir l explication de cette machine"/>
+    <text class="nom gras" x="409" y="504">Reporting</text>
+    <text class="mono fin" x="600" y="504">6 sur 6</text>
+    <use class="acteur e-n" href="#a-robot" x="662" y="495" width="16" height="16"/>
+  </g>
+
+  <g class="c1">
+    <rect class="boite" x="850" y="64" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="86" r="6" data-case="s1" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="87">LinkedIn</text>
+  </g>
+  <g class="c2">
+    <rect class="boite" x="850" y="136" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="158" r="6" data-case="s2" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="159">Cinq canaux</text>
+  </g>
+  <g class="c3">
+    <rect class="boite" x="850" y="208" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="230" r="6" data-case="s3" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="231">Réseaux et site</text>
+  </g>
+  <g class="c4">
+    <rect class="boite" x="850" y="280" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="302" r="6" data-case="s4" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="303">Maroc et Dubaï</text>
+  </g>
+  <g class="c5">
+    <rect class="boite" x="850" y="352" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="374" r="6" data-case="s5" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="375">À la demande</text>
+  </g>
+  <g class="c6">
+    <rect class="boite" x="850" y="424" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="446" r="6" data-case="s6" tabindex="0"
+            role="button" aria-label="Voir l explication de cette diffusion"/>
+    <text class="nom" x="884" y="447">L'événement</text>
+  </g>
+  <g>
+    <rect class="boite futur" x="850" y="496" width="190" height="44" rx="7"/>
+    <circle class="rond" cx="868" cy="518" r="6" data-case="x" tabindex="0"
+            role="button" aria-label="Voir l explication de ce canal"/>
+    <text class="nom pale" x="884" y="519">X</text>
+    <text class="mono fin" x="1026" y="519">à ouvrir</text>
+  </g>
+
+  <text class="titre-bande m" x="30" y="570">Sept modules sur mesure</text>
+  <path class="rail" d="M 530 540 L 530 578 M 97 578 L 967 578
+                        M 97 578 L 97 596 M 242 578 L 242 596 M 387 578 L 387 596
+                        M 532 578 L 532 596 M 677 578 L 677 596 M 822 578 L 822 596
+                        M 967 578 L 967 596"/>
+
+  <g class="c5 c6">
+    <rect class="boite module" x="30" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="46" cy="615" r="5.5" data-case="cadrage" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="59" y="616">Cadrage</text>
+    <text class="mono v5" x="151" y="616" text-anchor="end">C5 C6</text>
+  </g>
+  <g class="c2">
+    <rect class="boite module" x="175" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="191" cy="615" r="5.5" data-case="ads" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="204" y="616">Ads</text>
+    <text class="mono v2" x="296" y="616" text-anchor="end">C2</text>
+  </g>
+  <g class="c2">
+    <rect class="boite module" x="320" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="336" cy="615" r="5.5" data-case="seo" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="349" y="616">SEO / SEA</text>
+    <text class="mono v2" x="441" y="616" text-anchor="end">C2</text>
+  </g>
+  <g class="c2">
+    <rect class="boite module" x="465" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="481" cy="615" r="5.5" data-case="newsletter" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="494" y="616">Newsletter</text>
+    <text class="mono v2" x="586" y="616" text-anchor="end">C2</text>
+  </g>
+  <g class="c3">
+    <rect class="boite module" x="610" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="626" cy="615" r="5.5" data-case="siteweb" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="639" y="616">Site web</text>
+    <text class="mono v3" x="731" y="616" text-anchor="end">C3</text>
+  </g>
+  <g class="c6">
+    <rect class="boite module" x="755" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="771" cy="615" r="5.5" data-case="live" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="784" y="616">Live</text>
+    <text class="mono v6" x="876" y="616" text-anchor="end">C6</text>
+  </g>
+  <g class="c4">
+    <rect class="boite module" x="900" y="596" width="135" height="38" rx="7"/>
+    <circle class="rond m" cx="916" cy="615" r="5.5" data-case="prospect" tabindex="0"
+            role="button" aria-label="Voir l explication de ce module"/>
+    <text class="nom" x="929" y="616">Prospect</text>
+    <text class="mono v4" x="1021" y="616" text-anchor="end">C4</text>
+  </g>
+</svg>
+
+<div class="fiche" role="dialog" aria-live="polite" aria-label="Explication de la case">
+  <button class="fermer" type="button" aria-label="Fermer">&times;</button>
+  <div class="corps"></div>
+</div>
+
+<dl class="legende">
+  <dt>Le rond</dt>
+  <dd><span class="item"><svg viewBox="0 0 18 18" aria-hidden="true"><circle
+      class="rond-demo" cx="9" cy="9" r="6.5"/></svg> appuyez dessus : l'explication de la
+      case s'ouvre</span></dd>
+
+  <dt>Qui fait</dt>
+  <dd>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-script" x="-9" y="-9" width="18" height="18"/></svg> un script déterministe</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-robot" x="-9" y="-9" width="18" height="18"/></svg> un agent</span>
+    <span class="item forme"><svg viewBox="-9 -9 18 18" aria-hidden="true"><use href="#a-humain" x="-9" y="-9" width="18" height="18"/></svg> une personne</span>
+  </dd>
+
+  <dt>L'état</dt>
+  <dd>
+    <span class="item e-f"><i class="pastille"></i> ça tourne</span>
+    <span class="item e-p"><i class="pastille"></i> à moitié</span>
+    <span class="item e-n"><i class="pastille"></i> à construire</span>
+    <span class="item e-h"><i class="pastille"></i> humain par nature</span>
+  </dd>
+
+  <dt>Le pointillé</dt>
+  <dd>
+    <span class="item"><svg class="futur-demo" viewBox="0 0 54 20" aria-hidden="true"><rect
+        class="boite futur" x="1" y="1" width="52" height="18" rx="5"/></svg>
+      un canal qui n'existe pas encore</span>
+  </dd>
+</dl>
+</div>
+
+<p class="consequence" id="consequence3"><b>La machine ne sait rien du client.</b> Un dossier
+entre, une diffusion sort, et entre les deux rien ne connaît le nom du compte. C'est ce qui
+fait qu'un septième compte s'ouvre en écrivant un dossier, et pas en reconstruisant une
+chaîne.</p>
+
+<h3 class="section">Le canal qui manque : X</h3>
+<p>Aucun des six comptes n'est présent sur X. C'est la seule case du schéma dessinée en
+pointillé, et c'est délibéré : un trait plein se lirait comme un canal qui fonctionne, et dans
+six mois personne ne se souviendrait qu'il n'existait pas. Le branchement, lui, est bon marché
+— l'atelier produit déjà le papier et le facteur distribue déjà. Ouvrir X ajoute une sortie à
+une chaîne qui tourne. Ce qui demande du travail n'est pas la plomberie, c'est le ton : un post
+LinkedIn reposté tel quel sur X se lit comme un copier-coller. Le ton se documente par compte
+avant d'ouvrir, sinon on ouvre un canal qu'on ne tiendra pas.</p>
+
+<h3 class="section">Ce que la mutualisation ne résout pas</h3>
+<p>Trois choses restent irréductiblement par compte, et aucun atelier ne les absorbe. La
+signature engage un cabinet, et trois comptes la font signer par le client : l'attente sort de
+la maison. Une couverture en direct demande que quelqu'un soit dans la salle. Et la voix d'un
+compte se documente par compte — un rédacteur commun qui écrirait la même phrase pour un
+promoteur immobilier et pour un médecin ferait perdre les deux.</p>
+</section>
+
+<footer>Note interne — 18 septembre 2026. Les comptes traversés sont relevés sur le graphe des
+quatorze étapes, pas estimés. Les états d'automatisation décrivent ce qui tourne
+aujourd'hui.</footer>
+
+<script>
+  /* ══ UNE FICHE PAR SUJET, pas une par case ═══════════════════════════
+     Les trois volets montrent les mêmes quatorze sujets sous trois angles.
+     Une seule fiche chacun : la veille du volet 1 et la veille du volet 2
+     sont la même veille, et deux textes qui divergent sont deux textes dont
+     un devient faux.
+     La ligne « qui fait » remplace la légende d'icônes : elle disait en
+     dessins, sur deux axes, ce qui se dit mieux en mots. */
+  const FICHES = {
+    veille: {
+      nom: "Veille", famille: "machine", etat: "f", label: "ça tourne · 5 comptes sur 6",
+      note: [10, "un script deterministe, il tourne deja"],
+      qui: "Un script déterministe. Il n'appelle aucun modèle de langage.",
+      fait: "Il suit l'actualité du secteur et des concurrents, repère les sujets à fort potentiel, et rend une liste hebdomadaire avec des angles possibles.",
+      une: "Le ratisseur : il lit des flux et des pages toute la journée, groupe les dépêches par sujet, et garde tout dans une bibliothèque relisible dix jours plus tard.",
+      six: "Les sources à suivre, et les mots-clés à inclure et à exclure. Le secteur change par compte : conseil et transformation digitale, santé digitale, immobilier et proptech, cybersécurité.",
+      cle: "<b>Un flux ajouté sert les cinq comptes le jour même.</b> C'est la machine où la mutualisation rapporte le plus : le coût d'une source est nul une fois qu'elle est branchée.",
+      garde: "Un mot-clé trop large remplit la bibliothèque de bruit pour tout le monde, pas seulement pour le compte qui l'a demandé. Le filtre appartient au dossier, jamais au ratisseur.",
+      comptes: "Avaliance · Docdialy · Shifaa · Vistapp · MaTeCC"
+    },
+    calendrier: {
+      nom: "Calendrier éditorial", famille: "machine", etat: "n", label: "à construire · 5 comptes sur 6",
+      note: [7, "a construire, rien ne bloque"],
+      qui: "Un agent propose, le marketing manager arbitre.",
+      fait: "Il définit les piliers de contenu et les répartit par plateforme et par semaine. Docdialy en tient deux en parallèle, B2B et B2C. MaTeCC en fait un teasing qui monte jusqu'au jour J.",
+      une: "Le moteur qui répartit des sujets déjà validés sur des semaines et des plateformes, en équilibrant les piliers.",
+      six: "Les piliers, la cadence, les plateformes, les dates bloquées.",
+      cle: "<b>Deux calendriers ne demandent pas deux moteurs.</b> Docdialy le prouve : ses deux cibles sont deux dossiers lus par la même machine, et c'est ce qui permet d'en ouvrir un troisième sans rien écrire.",
+      garde: "La cadence n'est pas un paramètre libre. Deux posts par semaine et quatre ne se remplissent pas avec la même quantité de veille — le dossier doit dire les deux ensemble.",
+      comptes: "Avaliance · Docdialy · Shifaa · Vistapp · MaTeCC"
+    },
+    redaction: {
+      nom: "Rédaction", famille: "machine", etat: "f", label: "ça tourne · 6 comptes sur 6",
+      note: [8, "il tourne, mais la voix doit etre documentee"],
+      qui: "Un agent, à partir d'un angle qu'un humain a déjà tranché.",
+      fait: "Il écrit les posts : analyse, prise de position, retour d'expérience, décryptage d'actualité. Deux à quatre par semaine selon le compte.",
+      une: "Il écrit depuis cet angle et n'invente aucun chiffre : ce qui n'est pas dans le dossier de preuves s'écrit comme un trou visible, et le contrôle refuse la pièce.",
+      six: "La voix, le glossaire métier, les interdits, la langue. Expert accessible pour le cabinet, rassurant pour un médecin, orienté preuve pour un promoteur, et en anglais sur le marché de Dubaï.",
+      cle: "<b>La seule étape que les six comptes traversent tous.</b> Une correction de méthode faite une fois profite aux six — c'est le meilleur endroit pour améliorer la chaîne entière d'un coup.",
+      garde: "La voix vit dans le dossier, jamais dans une consigne de séance. Un ton corrigé à la main se perd au réveil suivant, et personne ne s'en aperçoit avant de relire un post.",
+      comptes: "les six"
+    },
+    visuel: {
+      nom: "Visuel", famille: "machine", etat: "f", label: "ça tourne · 5 comptes sur 6",
+      note: [9, "des moules figes, il tourne deja"],
+      qui: "Un agent remplit les champs, un script capture l'image.",
+      fait: "Il produit les visuels, carrousels, vidéos courtes, cartes d'intervenant et maquettes de démonstration produit, au format exact de chaque canal.",
+      une: "Dix moules figés, conçus une fois, et un graveur qui capture au format du canal.",
+      six: "La charte du compte : couleurs, polices, logo, formats retenus.",
+      cle: "<b>Un moule ajouté sert les cinq comptes le jour même.</b> Et aucune machine ne dessine librement, ce qui est le but : une machine qui dessine à chaque publication dérive de la charte au douzième visuel.",
+      garde: "Un texte trop long se raccourcit ; on ne déforme jamais le moule pour le faire tenir. C'est le rédacteur en chef qui coupe, pas le gabarit qui cède.",
+      comptes: "Avaliance · Docdialy · Shifaa · Vistapp · MaTeCC"
+    },
+    validation: {
+      nom: "Validation", famille: "machine", etat: "h", label: "humain par nature · 6 comptes sur 6",
+      note: [3, "le controle s'automatise, la signature jamais"],
+      qui: "Un agent prépare, une personne signe. La signature ne se délègue pas.",
+      fait: "Relecture orthographique et éditoriale, cohérence de ton, conformité. Pour le cabinet, la direction valide toute prise de position sensible ; pour Shifaa, High Tech et MaTeCC, c'est le client.",
+      une: "Le contrôle mécanique — orthographe, ton, conformité, cohérence des chiffres — et la compilation de la semaine en un document qui se lit d'un coup.",
+      six: "Qui signe, les interdits de conformité, les sujets sensibles.",
+      cle: "<b>Même file d'attente, signataire différent.</b> Ce qui se mutualise ici n'est pas la décision, c'est sa préparation : un client répond vite à ce qui se lit vite, et ça se construit une fois.",
+      garde: "Quand le signataire est le client, l'attente sort de la maison et aucun outil ne la raccourcit. On peut seulement rendre la lecture plus rapide.",
+      comptes: "les six · le CLIENT valide sur Shifaa, High Tech et MaTeCC"
+    },
+    diffusion: {
+      nom: "Diffusion", famille: "machine", etat: "p", label: "à moitié · 6 comptes sur 6",
+      note: [7, "a moitie fait, les creneaux restent"],
+      qui: "Un script distribue, une personne décide du moment.",
+      fait: "Il programme les contenus validés aux meilleurs créneaux par plateforme, publie, lance et surveille les campagnes, envoie les lettres aux dates prévues.",
+      une: "Le facteur, qui distribue la pièce signée depuis le serveur et n'appelle aucun modèle. Ce qui reste à écrire : les créneaux proposés depuis l'historique, et l'alerte quand un coût d'acquisition dérape.",
+      six: "Les canaux, les comptes, les créneaux — et qui publie, nous ou l'équipe du client.",
+      cle: "<b>Six comptes, un seul distributeur.</b> Un canal nouveau se branche une fois et devient disponible pour tous ceux dont le dossier le réclame.",
+      garde: "Clarifier systématiquement qui publie. C'est la source d'erreur la plus banale et la plus visible, et elle appartient au dossier du compte, pas à la mémoire de quelqu'un.",
+      comptes: "les six"
+    },
+    reporting: {
+      nom: "Reporting", famille: "machine", etat: "n", label: "à construire · 6 comptes sur 6",
+      note: [6, "depend des exports de chaque plateforme"],
+      qui: "Un agent consolide, le chargé de compte présente.",
+      fait: "Il analyse les indicateurs et ajuste la ligne éditoriale. Ce qu'on regarde change par compte : impressions et contacts entrants, coût d'acquisition, croissance de page par marché, bilan d'une édition.",
+      une: "Le consolidateur, qui fusionne les exports de toutes les plateformes en un rapport unique, avec des recommandations classées par priorité.",
+      six: "Les indicateurs qui comptent, les objectifs du mois, et les segments à séparer.",
+      cle: "<b>C'est la machine manquante la plus chère.</b> Sans elle, personne ne sait si un téléchargement vient de l'annonce, du référencement ou de la lettre — et Docdialy croise cinq canaux.",
+      garde: "Séparer le B2B du B2C, le Maroc de Dubaï. Un rapport qui moyenne deux stratégies n'en décrit aucune, et c'est le dossier qui dit où passent les coupes.",
+      comptes: "les six · sur demande seulement pour High Tech"
+    },
+
+    cadrage: {
+      nom: "Cadrage de la demande", famille: "module", etat: "n", label: "sur mesure · High Tech et MaTeCC",
+      note: [7, "a construire, une liste de questions suffit"],
+      qui: "Un agent reformule, le chargé de compte valide le brief.",
+      fait: "Il reçoit une demande informelle par messagerie et la reformule : objectif, délai, format attendu. Pour MaTeCC, il cadre l'édition entière — dates, thématiques, intervenants.",
+      une: "La transformation d'un message brut en brief structuré, et les questions qui manquent avant que la production commence.",
+      six: "La liste des questions à poser systématiquement, et le format de brief attendu.",
+      cle: "<b>Le seul module qui mérite de monter dans l'atelier.</b> Il sert deux comptes, et c'est le même geste dans les deux cas : ce qui change est la liste des questions, donc un fichier.",
+      garde: "Reformuler avant de lancer la production. Une demande de trois lignes envoyée directement en production devient un malentendu, et le malentendu se voit sur le livrable.",
+      comptes: "High Tech · MaTeCC"
+    },
+    ads: {
+      nom: "Campagnes payantes", famille: "module", etat: "n", label: "sur mesure · Docdialy seul",
+      note: [5, "politique publicitaire sante, budget humain"],
+      qui: "Un agent génère les variantes, le media buyer tient le budget.",
+      fait: "Il conçoit les campagnes Meta et Google pour générer des téléchargements grand public et des contacts médecins qualifiés, avec un ciblage dédié à chaque cible.",
+      une: "La production de plusieurs accroches et descriptions, pour les comparer entre elles avant de dépenser.",
+      six: "L'objectif de campagne, le persona, le budget, l'offre éventuelle.",
+      cle: "<b>Un seul compte achète de la publicité.</b> Mutualiser un module qui ne sert qu'une fois coûte plus que de l'écrire — et il faudrait le reconcevoir au premier autre compte, dont on ne connaît pas encore les contraintes.",
+      garde: "Les politiques publicitaires santé de Meta et de Google. Aucune allégation médicale non autorisée : c'est un motif de suspension de compte, pas un avertissement.",
+      comptes: "Docdialy"
+    },
+    seo: {
+      nom: "Référencement", famille: "module", etat: "n", label: "sur mesure · Docdialy seul",
+      note: [6, "depend de donnees de positionnement"],
+      qui: "Un agent propose, le media buyer arbitre.",
+      fait: "Il optimise le référencement naturel du site et de l'application sur les recherches de gestion de cabinet et de prise de rendez-vous, et gère les campagnes de recherche associées.",
+      une: "La proposition de mots-clés, de méta-descriptions, et de sujets d'articles à fort potentiel.",
+      six: "Les mots-clés déjà ciblés, le positionnement actuel, les personas.",
+      cle: "<b>Un seul compte a un site à référencer.</b> Le jour où un deuxième en a un, ce module et « Site web » se regardent ensemble : ils partagent la moitié de leur matière.",
+      garde: "La qualité avant la densité. Un texte bourré de mots-clés se fait déclasser, et il ne se lit pas.",
+      comptes: "Docdialy"
+    },
+    newsletter: {
+      nom: "Lettre d'information", famille: "module", etat: "n", label: "sur mesure · Docdialy seul",
+      note: [7, "il lit ce que l'atelier produit deja"],
+      qui: "Un agent rédige le brouillon, le chargé de contenu l'envoie.",
+      fait: "Il conçoit deux lettres segmentées : une pour les médecins — nouveautés produit, conseils de gestion — et une pour les patients.",
+      une: "La rédaction d'un brouillon segmenté depuis les contenus publiés dans le mois et l'actualité produit.",
+      six: "Les contenus du mois, l'actualité produit, la segmentation de la base.",
+      cle: "<b>Un seul compte a une base d'abonnés.</b> Le module lit ce que la rédaction commune a déjà produit : c'est un consommateur de l'atelier, pas un doublon.",
+      garde: "Un objet accrocheur mais jamais trompeur, sinon la lettre part en courrier indésirable. Et le consentement se respecte.",
+      comptes: "Docdialy"
+    },
+    siteweb: {
+      nom: "Refonte du site", famille: "module", etat: "n", label: "sur mesure · Shifaa seul",
+      note: [5, "l'identite de marque n'est pas figee"],
+      qui: "Un agent propose les textes, le marketing manager tranche.",
+      fait: "Il coordonne le contenu du futur site — arborescence, textes, référencement — et assure la continuité de communication pendant la refonte.",
+      une: "La proposition de textes de pages depuis l'arborescence et les mots-clés cibles.",
+      six: "L'arborescence du site, les mots-clés cibles, le contenu existant à reprendre.",
+      cle: "<b>Un projet, pas un cycle.</b> C'est le seul module qui se termine : une refonte se livre et s'arrête, alors que les six autres tournent. Il n'a donc pas vocation à monter dans l'atelier.",
+      garde: "Cohérence avec la nouvelle identité de marque, encore en cours de définition — un texte écrit trop tôt sera à réécrire.",
+      comptes: "Shifaa"
+    },
+    live: {
+      nom: "Couverture en direct", famille: "module", etat: "h", label: "humain par nature · MaTeCC seul",
+      note: [0, "quelqu'un est dans la salle, il n'y a rien à automatiser"],
+      qui: "Une personne, sur place. C'est la seule case où il n'y a rien d'autre.",
+      fait: "Il capte et publie en temps réel pendant l'événement : stories, photos, citations marquantes des intervenants.",
+      une: "Rien ne se construit ici. Un agent peut proposer une légende depuis une photo ou une citation notée en direct, et c'est tout.",
+      six: "Les photos et vidéos brutes, les citations notées sur place.",
+      cle: "<b>La seule étape du process qui ne se prépare pas à l'avance.</b> Tout le reste de MaTeCC — le teasing, le bilan — se programme des semaines avant ou après. Pas ça.",
+      garde: "Personne ne remplace quelqu'un qui est dans la salle. Ce n'est pas une limite technique, c'est la définition de l'étape.",
+      comptes: "MaTeCC"
+    },
+    prospect: {
+      nom: "Prospection", famille: "module", etat: "n", label: "sur mesure · Vistapp seul",
+      note: [4, "cibler oui, approcher non"],
+      qui: "Un agent cible, un humain écrit l'approche.",
+      fait: "Il identifie des promoteurs immobiliers ciblés au Maroc et à Dubaï, et engage la mise en relation depuis la page dédiée.",
+      une: "L'identification de profils selon des critères écrits — taille d'entreprise, marché, poste — en excluant ceux déjà contactés.",
+      six: "Les critères de ciblage, et la liste des prospects déjà approchés.",
+      cle: "<b>La prospection n'est pas de la diffusion.</b> Un agent qui cible des profils n'est pas un agent qui écrit : deux métiers, deux jeux de critères, et c'est pour ça que ce module est à part et pas dans l'atelier.",
+      garde: "Pas de sollicitation en masse. L'agent cible, il n'écrit pas le message d'approche : une approche personnalisée reste écrite par un humain.",
+      comptes: "Vistapp"
+    },
+
+    d1: {
+      nom: "C1 Avaliance corporate", famille: "dossier", label: "7 étapes · le compte de la maison",
+      qui: "Objectif : bâtir le positionnement d'expert du cabinet sur LinkedIn.",
+      fait: "Le dossier le plus simple du portefeuille : une cible, un canal, un signataire interne.",
+      une: "Les sept machines communes, et aucun module sur mesure. C'est le chemin le plus court du document.",
+      six: "Sa voix, sa charte, ses sources, son signataire — tous dans la maison.",
+      cle: "<b>Le seul compte dont la signature ne sort pas de la maison.</b> C'est donc celui qui peut tourner le plus vite, et le bon endroit pour essayer une automatisation avant de la proposer à un client.",
+      garde: "Jamais de donnée client confidentielle dans un post du cabinet, même anonymisée.",
+      comptes: "sortie : LinkedIn"
+    },
+    d2: {
+      nom: "C2 Docdialy", famille: "dossier", label: "10 étapes · le chemin le plus long",
+      qui: "Deux cibles : les médecins en B2B, les patients en B2C.",
+      fait: "Le compte le plus large : réseaux, campagnes payantes, référencement, lettre d'information, fiches d'application.",
+      une: "Les sept machines communes, plus trois modules à lui seul : Ads, SEO/SEA, Newsletter.",
+      six: "Deux calendriers en parallèle, deux personas, deux tons — et une seule base d'abonnés segmentée.",
+      cle: "<b>Cinq canaux se nourrissent du même papier.</b> C'est l'argument le plus fort pour l'atelier — et le compte où le reporting consolidé vaut le plus cher, parce que sans lui personne ne sait d'où vient un téléchargement.",
+      garde: "Les politiques publicitaires santé, et zéro allégation médicale non vérifiée. C'est le compte le plus exposé du portefeuille.",
+      comptes: "sortie : cinq canaux"
+    },
+    d3: {
+      nom: "C3 Shifaa", famille: "dossier", label: "8 étapes · validation client",
+      qui: "Client externe, secteur santé, refonte de site en cours.",
+      fait: "Un cycle éditorial classique, plus un projet de refonte qui court à côté.",
+      une: "Les sept machines communes, plus le module Site web pendant la refonte.",
+      six: "Sa charte en cours de refonte, son signataire chez le client, ses interdits de conformité santé.",
+      cle: "<b>La validation sort de la maison, et aucune automatisation ne raccourcit cette attente.</b> Ce qu'un agent peut faire, c'est présenter la semaine entière dans un seul document clair : un client répond vite à ce qui se lit vite.",
+      garde: "L'identité de marque n'est pas figée : un texte de page écrit trop tôt sera à réécrire.",
+      comptes: "sortie : réseaux et site"
+    },
+    d4: {
+      nom: "C4 Vistapp", famille: "dossier", label: "8 étapes · deux marchés",
+      qui: "B2B immobilier et proptech, au Maroc et à Dubaï.",
+      fait: "Un cycle éditorial sur deux marchés, doublé d'une prospection ciblée.",
+      une: "Les sept machines communes, plus le module Prospect.",
+      six: "Deux marchés, deux langues — la rédaction passe en anglais sur Dubaï — et des critères de ciblage propres.",
+      cle: "<b>La prospection n'est pas de la diffusion.</b> Et le reporting doit séparer les deux marchés, sinon il moyenne deux stratégies et n'en décrit aucune.",
+      garde: "Pas de sollicitation en masse. L'approche personnalisée reste écrite par un humain.",
+      comptes: "sortie : Maroc et Dubaï"
+    },
+    d5: {
+      nom: "C5 High Tech", famille: "dossier", label: "5 étapes · le chemin le plus court",
+      qui: "À la demande, sans calendrier éditorial.",
+      fait: "Des pièces ponctuelles : un contenu, un visuel, une remise. Rien ne se planifie.",
+      une: "Cadrage, puis Rédaction, Validation, Diffusion, Reporting. Il ne passe <b>ni par la veille, ni par le calendrier, ni par le visuel</b> — le seul compte qui saute trois machines communes.",
+      six: "La liste des questions de cadrage, et son signataire chez le client.",
+      cle: "<b>Pas de calendrier, donc pas de stock.</b> Tout le délai se joue dans le cadrage : une demande arrivée en trois lignes devient un brief ou reste un malentendu. C'est la seule étape qui mérite un agent sur ce chemin.",
+      garde: "Le reporting n'est produit que sur demande. Ne pas le lancer par réflexe mensuel.",
+      comptes: "sortie : à la demande"
+    },
+    d6: {
+      nom: "C6 MaTeCC", famille: "dossier", label: "9 étapes · autour d'un événement",
+      qui: "Un événement : avant, pendant, après.",
+      fait: "Un teasing qui monte en intensité, une couverture en direct, puis un bilan d'édition.",
+      une: "Les sept machines communes, plus deux modules : Cadrage de l'édition, et Live.",
+      six: "Les dates de l'édition, les intervenants, la montée en intensité du teasing.",
+      cle: "<b>Le direct ne s'automatise pas.</b> Quelqu'un est dans la salle, et c'est irréductible. Ce que l'atelier prend, c'est tout ce qui précède — le teasing se programme des semaines à l'avance — et tout ce qui suit.",
+      garde: "Zéro erreur sur le nom ou le titre d'un intervenant. C'est la faute qui se voit le plus, et elle ne se corrige pas après publication.",
+      comptes: "sortie : l'événement"
+    },
+
+    s1: {
+      nom: "LinkedIn", famille: "diffusion", label: "C1 Avaliance · 2 à 4 posts par semaine",
+      qui: "Un script publie, le community manager choisit le créneau.",
+      fait: "Un seul réseau, et c'est un choix : le positionnement d'expert se joue là où sont les décideurs.",
+      une: "La programmation et la publication, depuis le serveur, de la pièce signée.",
+      six: "Le compte, les créneaux, et qui publie.",
+      cle: "<b>Un seul canal rend la mesure lisible.</b> Ce qui marche et ce qui ne marche pas se lit sans démêler cinq sources — c'est aussi pour ça que ce compte sert de terrain d'essai.",
+      garde: "On ne répond pas aux commentaires, et on n'envoie aucun message privé.",
+      comptes: "C1 Avaliance"
+    },
+    s2: {
+      nom: "Cinq canaux", famille: "diffusion", label: "C2 Docdialy · la sortie la plus large",
+      qui: "Un script publie, le media buyer surveille les campagnes.",
+      fait: "Réseaux sociaux, campagnes Meta et Google, référencement, lettre d'information, et les fiches de l'application.",
+      une: "Un seul distributeur pour les cinq canaux, alimenté par la même rédaction.",
+      six: "Les cinq comptes, les budgets, les seuils de performance.",
+      cle: "<b>Cinq canaux qui se nourrissent du même papier.</b> C'est l'argument le plus fort pour l'atelier : la rédaction est écrite une fois et sert cinq sorties.",
+      garde: "Séparer les indicateurs B2B et B2C. Un chiffre global sur ce compte ne veut rien dire.",
+      comptes: "C2 Docdialy"
+    },
+    s3: {
+      nom: "Réseaux et site", famille: "diffusion", label: "C3 Shifaa · pendant une refonte",
+      qui: "Un script publie, le client a signé avant.",
+      fait: "Les réseaux sociaux, et les pages du nouveau site à mesure qu'elles sortent.",
+      une: "La distribution, une fois la signature du client obtenue.",
+      six: "Les comptes, et surtout : qui publie, nous ou l'équipe du client.",
+      cle: "<b>La continuité pendant une refonte est un sujet éditorial, pas technique.</b> Le site change, la parole ne doit pas s'interrompre.",
+      garde: "Clarifier qui publie avant chaque lot. C'est la source d'erreur la plus banale.",
+      comptes: "C3 Shifaa"
+    },
+    s4: {
+      nom: "Maroc et Dubaï", famille: "diffusion", label: "C4 Vistapp · deux marchés",
+      qui: "Un script publie, un humain approche les prospects.",
+      fait: "Les réseaux sur deux marchés, et une page dédiée à la mise en relation.",
+      une: "Le même distributeur pour les deux marchés.",
+      six: "Les comptes par marché, la langue de chacun, les créneaux — les deux fuseaux ne se recouvrent pas.",
+      cle: "<b>Deux marchés ne se moyennent pas.</b> Croissance de page, coût de contact, langue : tout se lit marché par marché, ou ne se lit pas.",
+      garde: "La rédaction passe en anglais sur Dubaï. Publier la version française sur le mauvais marché est une faute visible.",
+      comptes: "C4 Vistapp"
+    },
+    s5: {
+      nom: "À la demande", famille: "diffusion", label: "C5 High Tech · sans calendrier",
+      qui: "Parfois une publication, parfois une simple remise de fichier.",
+      fait: "Le livrable part en ligne, ou il est remis au client qui le publie lui-même.",
+      une: "La distribution quand elle a lieu — sinon, rien à distribuer.",
+      six: "Le mode de remise, et le signataire.",
+      cle: "<b>La remise n'est pas toujours une publication.</b> Ce compte est le seul où le travail peut se terminer par un fichier envoyé, sans rien mettre en ligne.",
+      garde: "Ne pas programmer de diffusion sans avoir vérifié qui publie. Ici, c'est souvent le client.",
+      comptes: "C5 High Tech"
+    },
+    s6: {
+      nom: "L'événement", famille: "diffusion", label: "C6 MaTeCC · avant, pendant, après",
+      qui: "Un script pour le teasing et le bilan, une personne pour le direct.",
+      fait: "Trois temps : le teasing qui monte en intensité, le direct depuis la salle, puis le bilan de l'édition.",
+      une: "La programmation du teasing et du bilan, des semaines avant et après.",
+      six: "Les dates de l'édition, les intervenants, et les comptes.",
+      cle: "<b>Deux des trois temps se programment des semaines à l'avance.</b> C'est ce qui rend le troisième supportable : le jour J, personne n'a à écrire autre chose que le direct.",
+      garde: "Le direct demande une réactivité quasi immédiate. Tout ce qui pouvait être préparé doit l'être avant.",
+      comptes: "C6 MaTeCC"
+    },
+    x: {
+      nom: "X", famille: "diffusion", label: "aucun compte · canal à ouvrir",
+      qui: "Personne, aujourd'hui. C'est la seule case du schéma qui ne décrit pas un geste existant.",
+      fait: "Rien. Aucun des six comptes n'est présent sur X.",
+      une: "Rien n'est construit. La case est en pointillé pour cette raison : un trait plein se lirait comme un canal qui marche, et dans six mois personne ne se souviendrait qu'il n'existait pas.",
+      six: "Pour chaque compte qui l'ouvrirait : le compte, le ton — X ne se parle pas comme LinkedIn — et la cadence.",
+      cle: "<b>Le canal ne coûte presque rien à brancher, et c'est là l'argument.</b> L'atelier produit déjà le papier ; le facteur distribue déjà. Ouvrir X, c'est ajouter une sortie à une chaîne qui tourne, pas construire une chaîne.",
+      garde: "Le format n'est pas le même. Un post LinkedIn reposté tel quel sur X se lit comme un copier-coller, et ça se voit. Le ton se documente par compte avant d'ouvrir, sinon on ouvre un canal qu'on ne tiendra pas.",
+      comptes: "aucun compte pour l'instant"
+    }
+  };
+
+  const CHEMINS = {
+    c1: {
+      nom: "C1 Avaliance", quoi: "le positionnement d'expert du cabinet",
+      v1: "Veille → Calendrier → Rédaction + Visuel → Validation → Diffusion → Reporting",
+      v3: "Dossier C1 → les 7 machines communes → LinkedIn · aucun module",
+      suite: "<b>Le seul chemin dont la signature reste dans la maison.</b> C'est donc celui qui peut tourner le plus vite, et le bon endroit pour essayer une automatisation avant de la proposer à un client."
+    },
+    c2: {
+      nom: "C2 Docdialy", quoi: "deux cibles, cinq canaux, un seul calendrier",
+      v1: "Veille → Calendrier double B2B/B2C → Rédaction + Visuel + Ads + SEO/SEA + Newsletter → Validation → Diffusion → Reporting",
+      v3: "Dossier C2 → les 7 machines + Ads, SEO/SEA, Newsletter → cinq canaux",
+      suite: "<b>Cinq canaux se nourrissent du même papier.</b> C'est l'argument le plus fort pour l'atelier — et le compte où le reporting consolidé vaut le plus cher, parce que sans lui personne ne sait d'où vient un téléchargement."
+    },
+    c3: {
+      nom: "C3 Shifaa", quoi: "client externe, refonte de site en cours",
+      v1: "Veille → Calendrier → Rédaction + Visuel + Site web → Validation CLIENT → Diffusion → Reporting",
+      v3: "Dossier C3 → les 7 machines + Site web → réseaux et site",
+      suite: "<b>La validation sort de la maison, et aucune automatisation ne raccourcit cette attente.</b> Ce qu'un agent peut faire, c'est présenter la semaine entière dans un seul document clair : un client répond vite à ce qui se lit vite."
+    },
+    c4: {
+      nom: "C4 Vistapp", quoi: "B2B immobilier, Maroc et Dubaï",
+      v1: "Veille → Calendrier → Rédaction + Visuel → Validation → Diffusion + Prospect → Reporting",
+      v3: "Dossier C4 → les 7 machines + Prospect → Maroc et Dubaï",
+      suite: "<b>La prospection n'est pas de la diffusion.</b> Deux métiers, deux jeux de critères — et le reporting doit séparer les deux marchés, sinon il moyenne deux stratégies et n'en décrit aucune."
+    },
+    c5: {
+      nom: "C5 High Tech", quoi: "à la demande, sans calendrier éditorial",
+      v1: "Cadrage → Rédaction → Validation CLIENT → Diffusion → Reporting · ni veille, ni calendrier, ni visuel",
+      v3: "Dossier C5 → Cadrage → Rédaction, Validation, Diffusion, Reporting · saute trois machines",
+      suite: "<b>Le seul compte qui saute trois machines communes.</b> Pas de calendrier, donc pas de stock : tout le délai se joue dans le cadrage, et c'est la seule étape qui mérite un agent sur ce chemin."
+    },
+    c6: {
+      nom: "C6 MaTeCC", quoi: "avant, pendant, après l'événement",
+      v1: "Cadrage de l'édition → Veille → Calendrier de teasing → Rédaction + Visuel → Validation CLIENT → Diffusion → Live → Reporting",
+      v3: "Dossier C6 → les 7 machines + Cadrage, Live → l'événement",
+      suite: "<b>Le direct ne s'automatise pas.</b> Quelqu'un est dans la salle, et c'est irréductible. Ce que l'atelier prend, c'est tout ce qui précède — le teasing se programme des semaines avant — et tout ce qui suit."
+    }
+  };
+
+  const REPOS = {
+    g1: {
+      titre: "Le process complet <em>· appuyez sur un compte pour n'en voir qu'un</em>",
+      parcours: "14 etapes · 6 comptes · 1 seul graphe",
+      suite: "Les quatorze étapes ne changent pas d'un compte à l'autre. Ce qui change, c'est lesquelles sont traversées, et qui valide à la fin."
+    },
+    g3: {
+      titre: "Les six chemins ensemble <em>· appuyez sur un compte pour n'en voir qu'un</em>",
+      parcours: "6 dossiers · 7 machines communes · 7 modules sur mesure",
+      suite: "<b>La machine ne sait rien du client.</b> Un dossier entre, une diffusion sort, et entre les deux rien ne connaît le nom du compte. C'est ce qui fait qu'un septième compte s'ouvre en écrivant un dossier, et pas en reconstruisant une chaîne."
+    }
+  };
+
+  /* ══ LE ROND OUVRE SA FICHE ══════════════════════════════════════════
+     Un cadre, une fiche, un épinglage. Les trois volets partagent ce code. */
+  /* La barre de la fiche. La rampe est celle de la POSITION : les dix
+     cases portent toujours les memes couleurs, et la note dit ou on
+     s'arrete. Le meme bareme que sous les cases — ce chiffre et celui du
+     graphe ne doivent jamais diverger, et c'est verifie par script. */
+  var RAMPE = ["rouge", "rouge", "jaune", "jaune", "blanc", "blanc",
+               "ciel", "ciel", "vert", "vert"];
+
+  /* La bande ou la barre S'ARRETE : celle de la derniere case pleine.
+     ⭐ A 0, aucune case n'est pleine et le chiffre prend quand meme le
+     rouge — zero est le bas de l'echelle, et c'est ce qu'il faut lire. */
+  function bande(note) { return note ? RAMPE[note - 1] : "rouge"; }
+
+  function barreHtml(note) {
+    var out = '<svg class="barre-fiche" viewBox="0 0 89 5" aria-hidden="true">';
+    for (var i = 0; i < 10; i++) {
+      var cl = i < note ? "seg-plein n-" + RAMPE[i] : "seg-vide";
+      out += '<rect class="' + cl + '" x="' + (i * 9) + '" y="0" width="8" height="5" rx="1.5"/>';
+    }
+    return out + "</svg>";
+  }
+
+  function brancher(cadre) {
+    const fiche = cadre.querySelector(".fiche");
+    const corps = fiche.querySelector(".corps");
+    let epingle = null;
+
+    function html(f) {
+      const machine = f.famille === "machine" || f.famille === "module";
+      let s = "<h3>" + f.nom + "</h3>"
+        + '<p class="etat-fiche ' + (f.etat || "") + '">' + f.label + "</p>"
+        + "<dl><dt>Qui fait</dt><dd>" + f.qui + "</dd></dl>"
+        + "<dl><dt>Ce que ça fait</dt><dd>" + f.fait + "</dd></dl>"
+        + '<dl class="une"><dt>' + (machine ? "Construit une fois" : "Par où ça passe")
+        + "</dt><dd>" + f.une + "</dd></dl>"
+        + '<dl class="six"><dt>' + (machine ? "Écrit une fois par compte" : "Ce qui lui est propre")
+        + "</dt><dd>" + f.six + "</dd></dl>"
+        + (f.note ? '<p class="facilite">' + barreHtml(f.note[0])
+             + '<span class="chiffre n-' + bande(f.note[0]) + '">' + f.note[0] + '/10</span>'
+             + '<span class="motif">facilite d&rsquo;automatisation &mdash; ' + f.note[1] + '</span></p>' : "")
+        + '<p class="cle">' + f.cle + "</p>"
+        + '<p class="garde"><b>À surveiller.</b> ' + f.garde + "</p>";
+      if (f.comptes) { s += '<p class="comptes">' + f.comptes + "</p>"; }
+      return s;
+    }
+
+    function placer(rond) {
+      const b = rond.parentNode.getBoundingClientRect();
+      const c = cadre.getBoundingClientRect();
+      const largeur = fiche.offsetWidth || 352;
+      const hauteur = fiche.offsetHeight || 380;
+      let x = b.right - c.left + cadre.scrollLeft + 14;
+      if (x + largeur > cadre.scrollLeft + c.width - 12) {
+        x = b.left - c.left + cadre.scrollLeft - largeur - 14;
+      }
+      x = Math.max(8, x);
+      let y = b.top - c.top + (b.height / 2) - (hauteur / 2);
+      y = Math.max(8, Math.min(y, cadre.scrollHeight - hauteur - 8));
+      fiche.style.left = x + "px";
+      fiche.style.top = y + "px";
+    }
+
+    function ouvrir(rond) {
+      const f = FICHES[rond.dataset.case];
+      if (!f) { return; }
+      corps.innerHTML = html(f);
+      fiche.setAttribute("data-ouverte", "oui");
+      placer(rond);
+    }
+
+    function fermer() {
+      fiche.removeAttribute("data-ouverte");
+      epingle = null;
+    }
+
+    Array.prototype.forEach.call(cadre.querySelectorAll(".rond[data-case]"), function (r) {
+      r.addEventListener("mouseenter", function () { if (!epingle) { ouvrir(r); } });
+      r.addEventListener("focus", function () { if (!epingle) { ouvrir(r); } });
+      r.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (epingle === r) { fermer(); return; }
+        epingle = r;
+        ouvrir(r);
+      });
+      r.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          r.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+        }
+      });
+    });
+
+    cadre.addEventListener("mouseleave", function () { if (!epingle) { fermer(); } });
+    fiche.querySelector(".fermer").addEventListener("click", function (e) {
+      e.stopPropagation();
+      fermer();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { fermer(); } });
+    document.addEventListener("click", function (e) {
+      if (epingle && !fiche.contains(e.target)) { fermer(); }
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".cadre"), brancher);
+
+  /* ══ LES CHEMINS — volet 1 et volet 3, chacun son graphe, un seul
+     compte allumé à la fois. Les deux gardent leur propre sélection :
+     on peut lire Docdialy dans le process et Shifaa dans la chaîne
+     regroupée sans que l'un efface l'autre. */
+  function brancherChemins(idGraphe, idPhrase, idSuite, champ) {
+    const graphe = document.getElementById(idGraphe);
+    const phrase = document.getElementById(idPhrase);
+    const suite = document.getElementById(idSuite);
+    const repos = REPOS[idGraphe];
+    const boutons = Array.prototype.slice.call(
+      graphe.closest(".volet").querySelectorAll(".pastilles button"));
+
+    function montrer(code) {
+      graphe.setAttribute("data-chemin", code || "");
+      boutons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.c === code));
+      });
+      if (!code) {
+        phrase.innerHTML = '<div class="t">' + repos.titre + "</div>"
+                         + '<div class="p">' + repos.parcours + "</div>";
+        suite.innerHTML = repos.suite;
+        return;
+      }
+      const c = CHEMINS[code];
+      phrase.innerHTML = '<div class="t">' + c.nom + " <em>· " + c.quoi + "</em></div>"
+                       + '<div class="p">' + c[champ] + "</div>";
+      suite.innerHTML = c.suite;
+    }
+
+    boutons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        montrer(graphe.getAttribute("data-chemin") === b.dataset.c ? "" : b.dataset.c);
+      });
+    });
+
+    /* ⭐ ON ARRIVE SUR UN CHEMIN DEJA ALLUME, pas sur l'etat neutre.
+       Hamada, 18/09 : « Quand on arrive sur le volet 1, on arrive deja sur
+       Avaliance appuye, pas sur un truc gris. »
+       Une figure au repos doit montrer une LECTURE, pas une absence de
+       lecture : le gris general ne repond a aucune question, et il faut
+       deviner qu'il y a des boutons pour que quelque chose arrive.
+       C1 est le bon defaut : c'est le compte de la maison, celui dont la
+       signature ne sort pas, donc le chemin le plus court des six. */
+    montrer("c1");
+  }
+
+  brancherChemins("g1", "phrase1", "consequence1", "v1");
+  brancherChemins("g3", "phrase3", "consequence3", "v3");
+
+  /* ══ LES TROIS VOLETS ════════════════════════════════════════════════ */
+  const onglets = Array.prototype.slice.call(document.querySelectorAll(".onglets button"));
+
+  function ouvrirVolet(id) {
+    onglets.forEach(function (o) {
+      const actif = o.getAttribute("aria-controls") === id;
+      o.setAttribute("aria-selected", String(actif));
+      document.getElementById(o.getAttribute("aria-controls")).hidden = !actif;
+    });
+  }
+
+  onglets.forEach(function (o) {
+    o.addEventListener("click", function () { ouvrirVolet(o.getAttribute("aria-controls")); });
+    o.addEventListener("keydown", function (e) {
+      const i = onglets.indexOf(o);
+      let j = -1;
+      if (e.key === "ArrowRight") { j = (i + 1) % onglets.length; }
+      if (e.key === "ArrowLeft")  { j = (i - 1 + onglets.length) % onglets.length; }
+      if (j >= 0) {
+        e.preventDefault();
+        onglets[j].focus();
+        ouvrirVolet(onglets[j].getAttribute("aria-controls"));
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
