@@ -1,4 +1,4 @@
-# Schéma directeur d'automatisation du service marketing
+# Automatisation du service Marketing Avaliance Groupe
 
 Note interne du Groupe Avaliance, 18 septembre 2026.
 
