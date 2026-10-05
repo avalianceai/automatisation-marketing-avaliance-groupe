@@ -176,7 +176,7 @@
   <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/agents.html">Agents</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html" aria-current="page">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html">Guide</a></nav>
 </div>
 <div class="filet"></div>
-<nav class="sous-menu" aria-label="Sur cette page"><a href="#comment">Comment ça marche</a><a href="#installation">Les étapes</a></nav>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#comment">Comment ça marche</a><a href="#installation">Les étapes</a><a href="#questions">Les questions</a></nav>
 <h1 class="titre-page">Installer le poste</h1>
 <h2 id="comment">Comment ça marche</h2>
 <p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
@@ -253,6 +253,7 @@
   <p class="attendu"><b>Résultat attendu :</b> Cloning into ... done. Le dossier Avaliance Marketing apparaît dans Documents.</p>
   <p>Puis :</p>
   <div class="bloc">setx CLAUDE_CODE_PLUGIN_PREFER_HTTPS 1</div>
+  <p class="pourquoi"><b>Pourquoi cette deuxième commande :</b> à l'étape 5, Claude va télécharger les agents depuis GitHub. Sans elle, il essaierait de passer par une « clé SSH », un fichier de sécurité que ce PC n'a pas, et l'installation échouerait. Avec elle, il passe par la connexion GitHub que la commande précédente vient d'enregistrer. Elle ne sert qu'une fois. Elle n'a rien à voir avec le serveur : vous n'y accédez jamais.</p>
   <p class="attendu"><b>Résultat attendu :</b> SUCCESS: Specified value was saved.</p>
 </section>
 <section class="etape" data-id="b6">
@@ -300,6 +301,22 @@
   <div class="bloc">/societe docdialy</div>
   <div class="bloc">/publier docdialy</div>
 </section>
+
+<h2 id="questions" style="margin-top:48px">Les questions qu'on pose toujours</h2>
+<div class="tab"><table>
+  <thead><tr><th>Question</th><th>Réponse</th></tr></thead>
+  <tbody>
+    <tr><td>Faut-il un accès au serveur (VPS) ?</td><td><b>Non, jamais.</b> Le robot du serveur travaille seul et dépose les sujets dans GitHub. Vous ne touchez qu'à GitHub, par Claude.</td></tr>
+    <tr><td>À quoi sert le <span class="mono">git clone</span> (étape 3) ?</td><td>Il copie le dossier partagé sur votre PC, dans Documents\Avaliance Marketing, et enregistre votre connexion GitHub.</td></tr>
+    <tr><td>À quoi sert le <span class="mono">setx</span> (étape 3) ?</td><td>À ce que Claude télécharge les agents par votre connexion GitHub, et non par une clé SSH que ce PC n'a pas.</td></tr>
+    <tr><td>Sur un PC qui a déjà Git, Chrome et Claude ?</td><td>Sautez les étapes 1, 2 et l'installation de Claude ; commencez au <span class="mono">git clone</span>.</td></tr>
+    <tr><td>Faut-il refaire l'installation chaque jour ?</td><td><b>Non.</b> Une seule fois. Chaque jour : Claude, onglet Code, une session sur Documents\Avaliance Marketing.</td></tr>
+    <tr><td>Le dossier existe déjà ?</td><td>Ne refaites pas le <span class="mono">git clone</span> : ouvrez Claude sur ce dossier et tapez <span class="mono">/installer-marketing</span>, qui vérifie tout sans rien effacer.</td></tr>
+    <tr><td>« Repository not found » à l'étape 5 ?</td><td>Votre compte GitHub n'a pas accès au dépôt, ou l'invitation n'est pas acceptée. Vérifiez vos e-mails GitHub, puis refaites l'étape 5.</td></tr>
+    <tr><td>Une commande du guide est « inconnue » ?</td><td>Tapez <span class="mono">/reload-plugins</span>, ou fermez et rouvrez la session.</td></tr>
+  </tbody>
+</table></div>
+
 <footer>Automatisation du service marketing Avaliance, version du 6 octobre 2026.</footer>
 </main>
 <script>
