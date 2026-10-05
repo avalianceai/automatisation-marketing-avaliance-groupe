@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Poste du service marketing</title>
+<title>Guide du service</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -119,27 +119,22 @@
   .ici b { color: var(--orange); }
   .ici ol { margin: 6px 0 0; padding-left: 20px; }
   @media (max-width: 560px) { .ici { margin-left: 0; } }
-  a.retour { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px;
-    color: var(--violet); border: 1px solid var(--violet); border-radius: 10px; padding: 8px 14px; margin: 0 0 18px; }
-  a.retour:hover { background: var(--violet-pale); }
-  @media print { a.retour { display: none; } }
+  .barre-haut { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    flex-wrap: wrap; margin: 0 0 26px; padding-bottom: 16px; border-bottom: 1px solid var(--trait); }
+  .barre-haut h1 { margin: 0; }
+  .barre-haut nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .barre-haut nav a { text-decoration: none; font-size: 14px; color: var(--encre); border: 1px solid var(--trait);
+    background: var(--carte); padding: 8px 14px; border-radius: 10px; }
+  .barre-haut nav a:hover { border-color: var(--violet); }
+  .barre-haut nav a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
+  @media print { .barre-haut nav { display: none; } }
 </style>
 </head>
 <body>
 <main>
-<a class="retour" href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">&larr; Retour au schéma directeur</a>
-<h1>Le poste du service marketing</h1>
-<p class="chapo">Automatisation du service marketing Avaliance. Un seul document : d'abord
-l'installation, une fois, puis le guide de tous les jours.</p>
-
-<div class="resume">Vous tapez <b>une commande</b> dans Claude. Une équipe d'agents fait le travail :
-elle trie l'actualité, écrit, dessine, vérifie. Elle <b>s'arrête pour vous demander</b> à chaque
-étape importante. Vous gardez toujours la main, et <b>c'est vous qui publiez</b>.</div>
-
+<header class="barre-haut"><h1>Le guide de tous les jours</h1><nav aria-label="Pages"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma directeur</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html" aria-current="page">Guide</a></nav></header>
 <nav class="sommaire" aria-label="Sommaire">
-  <a href="#comment">Comment ça marche</a>
-  <a href="#installation">A. Installer (une fois)</a>
-  <a href="#journee">B. Une journée type</a>
+  <a href="#journee">Une journée type</a>
   <a href="#commandes">Les commandes</a>
   <a href="#equipe">Les agents</a>
   <a href="#robot">Le robot de veille</a>
@@ -147,137 +142,10 @@ elle trie l'actualité, écrit, dessine, vérifie. Elle <b>s'arrête pour vous d
   <a href="#regles">Les règles</a>
   <a href="#aide">Si ça coince</a>
 </nav>
-
-<h2 id="comment">Comment ça marche</h2>
-<p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
-<div class="schema">
-<svg viewBox="0 0 820 250" role="img" aria-label="Le serveur depose les sujets dans GitHub, votre PC les y lit et y range votre travail">
-  <defs><marker id="f0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--douce)"/></marker></defs>
-  <g font-family="Sora, sans-serif" text-anchor="middle">
-    <rect x="10" y="40" width="220" height="150" rx="14" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="6 5"/>
-    <text x="120" y="76" font-size="16" font-weight="700" fill="var(--encre)">LE SERVEUR</text>
-    <text x="120" y="100" font-size="13" fill="var(--douce)">chez Avaliance</text>
-    <text x="120" y="130" font-size="13" fill="var(--douce)">un robot lit l'actualité</text>
-    <text x="120" y="150" font-size="13" fill="var(--douce)">jour et nuit</text>
-    <text x="120" y="176" font-size="12.5" font-weight="600" fill="var(--orange)">vous n'y allez jamais</text>
-
-    <rect x="300" y="40" width="220" height="150" rx="14" fill="var(--fond)" stroke="var(--violet)" stroke-width="2"/>
-    <text x="410" y="76" font-size="16" font-weight="700" fill="var(--encre)">GITHUB</text>
-    <text x="410" y="100" font-size="13" fill="var(--douce)">l'armoire partagée</text>
-    <text x="410" y="130" font-size="13" fill="var(--douce)">les sujets du robot,</text>
-    <text x="410" y="150" font-size="13" fill="var(--douce)">ses chartes, ses textes</text>
-    <text x="410" y="176" font-size="12.5" font-weight="600" fill="var(--violet)">votre compte y a accès</text>
-
-    <rect x="590" y="40" width="220" height="150" rx="14" fill="var(--fond)" stroke="var(--vert)" stroke-width="2"/>
-    <text x="700" y="76" font-size="16" font-weight="700" fill="var(--encre)">VOTRE PC</text>
-    <text x="700" y="100" font-size="13" fill="var(--douce)">Claude et les agents</text>
-    <text x="700" y="130" font-size="13" fill="var(--douce)">trient, écrivent,</text>
-    <text x="700" y="150" font-size="13" fill="var(--douce)">font le visuel</text>
-    <text x="700" y="176" font-size="12.5" font-weight="600" fill="var(--vert)">vous validez et publiez</text>
-
-    <g stroke="var(--douce)" stroke-width="1.6" fill="none" marker-end="url(#f0)">
-      <path d="M232,100 L296,100"/>
-      <path d="M298,140 L234,140"/>
-      <path d="M522,100 L586,100"/>
-      <path d="M588,140 L524,140"/>
-    </g>
-    <g font-size="11.5" fill="var(--douce)">
-      <text x="265" y="92">dépose</text><text x="265" y="160">relit</text>
-      <text x="555" y="92">lit</text><text x="555" y="160">range</text>
-    </g>
-    <text x="410" y="230" font-size="12.5" fill="var(--douce)">Le robot et vous ne vous parlez jamais : chacun pose et prend dans l'armoire.</text>
-  </g>
-</svg>
-</div>
-<div class="trois">
-  <div><b>Le serveur</b>Un robot d'Avaliance qui lit des sites d'actualité toute la journée et range les sujets dans l'armoire. Il tourne seul. Seul Avaliance s'en occupe.</div>
-  <div><b>GitHub, l'armoire</b>Un placard en ligne, privé. Le robot y dépose les sujets ; vous y rangez votre voix, votre charte, vos textes. Votre compte GitHub en a déjà la clé.</div>
-  <div><b>Son PC</b>Claude et les agents. Ils prennent les sujets dans l'armoire et vous proposent un sujet, un texte, un visuel. Vous choisissez, puis vous publiez.</div>
-</div>
-<div class="partie inst" id="installation">
-  <h2>A. Installer le poste</h2>
-  <p>Une seule fois, environ 25 minutes. Les étapes 1 à 3 se tapent dans PowerShell (menu Démarrer, taper « PowerShell »). Chaque commande a un bouton Copier. Cochez chaque étape faite.</p>
-</div>
-<div class="avance">
-  <div class="barre"><div class="plein" id="plein"></div></div>
-  <div class="txt" id="compte">0 étape faite</div>
-</div>
-<section class="etape" data-id="b3">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>1. Installer Git</h3><span class="qui">PowerShell · 3 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Git est l'outil qui ouvre l'armoire GitHub depuis votre PC : il ramène les sujets et y range votre travail.</p>
-  <div class="bloc">winget install --id Git.Git -e --source winget</div>
-  <p>Fermez PowerShell, rouvrez-le, puis vérifiez :</p>
-  <div class="bloc">git --version</div>
-  <p class="attendu"><b>Résultat attendu :</b> git version 2.x</p>
-</section>
-<section class="etape" data-id="b4">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>2. Installer Google Chrome</h3><span class="qui">PowerShell · 3 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Les agents dessinent le visuel en page web, puis Chrome le transforme en image à publier.</p>
-  <p>Chrome sert à fabriquer l'image du visuel. Si Chrome est déjà installé, passez à l'étape suivante.</p>
-  <div class="bloc">winget install --id Google.Chrome -e --source winget</div>
-</section>
-<section class="etape" data-id="b5">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>3. Connecter GitHub, une fois pour toutes</h3><span class="qui">PowerShell · 3 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Claude installe les agents depuis GitHub sans pouvoir afficher de fenêtre de connexion. On enregistre donc la connexion une fois, ici, pour qu'il ne la redemande plus.</p>
-  <p>Une fenêtre GitHub s'ouvre : connectez-vous avec votre compte GitHub.</p>
-  <div class="bloc">git ls-remote https://github.com/avalianceai/automatisation-marketing-avaliance-plugin.git HEAD</div>
-  <p class="attendu"><b>Résultat attendu :</b> une ligne de 40 caractères suivie de HEAD.</p>
-  <p>Puis :</p>
-  <div class="bloc">setx CLAUDE_CODE_PLUGIN_PREFER_HTTPS 1</div>
-  <p class="attendu"><b>Résultat attendu :</b> SUCCESS: Specified value was saved.</p>
-</section>
-<section class="etape" data-id="b6">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>4. Installer Claude et ouvrir une première session</h3><span class="qui">navigateur puis Claude · 7 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Claude est l'application dans laquelle vous travaillerez. On y parle dans une <b>session</b> : une conversation ouverte sur un dossier de votre PC. L'onglet Code est celui qui sait utiliser les agents.</p>
-  <p>Téléchargez et installez Claude depuis cette adresse, puis connectez-vous avec votre compte Claude Pro.</p>
-  <div class="bloc">https://claude.com/download</div>
-  <div class="ici"><b>Ouvrir une session, pas à pas :</b>
-    <ol>
-      <li>En haut de la fenêtre Claude, cliquez sur l'onglet <b>Code</b>.</li>
-      <li>Cliquez sur <b>Nouvelle session</b>.</li>
-      <li>Claude demande un dossier : choisissez le <b>Bureau</b> (pour l'installation seulement).</li>
-      <li>En bas de l'écran apparaît la zone où l'on écrit : c'est là que vous taperez les commandes de l'étape suivante.</li>
-    </ol>
-  </div>
-</section>
-<section class="etape" data-id="b7">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>5. Installer les agents</h3><span class="qui">Claude, onglet Code · 3 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> On installe le paquet d'agents d'Avaliance : le rédacteur en chef, le rédacteur, le maquettiste, le contrôleur, et les commandes. Ils ne contiennent aucune société : ce sont des méthodes. Ils s'installent une fois pour toutes dans Claude, et serviront dans toutes vos sessions.</p>
-  <div class="ici"><b>Où taper :</b> dans la session ouverte à l'étape 4 (sur le Bureau), dans la zone d'écriture en bas. Collez une commande, appuyez sur Entrée, attendez la réponse, puis passez à la suivante.</div>
-  <div class="bloc">/plugin marketplace add avalianceai/automatisation-marketing-avaliance-plugin</div>
-  <p class="attendu"><b>Résultat attendu :</b> Successfully added marketplace: avaliance-marketing</p>
-  <div class="bloc">/plugin install automatisation-marketing-avaliance@avaliance-marketing</div>
-  <p class="attendu"><b>Résultat attendu :</b> le plugin est indiqué comme installé.</p>
-  <div class="bloc">/reload-plugins</div>
-</section>
-<section class="etape" data-id="b8">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>6. Préparer le poste</h3><span class="qui">Claude, même session · 5 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Les agents sont là, mais pas encore les dossiers des sociétés. Cette commande copie l'armoire sur votre PC, dans Documents\Avaliance Marketing, et vérifie que tout répond, visuel compris.</p>
-  <div class="ici"><b>Où taper :</b> toujours dans la même session (celle du Bureau). Quand Claude demande d'autoriser la séance à écrire, répondez Oui.</div>
-  <div class="bloc">/installer</div>
-  <p class="attendu"><b>Résultat attendu :</b> prêt : tapez /societe docdialy</p>
-</section>
-<section class="etape" data-id="b9">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>7. Ouvrir votre session de travail, celle de tous les jours</h3><span class="qui">Claude · 1 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Les agents travaillent dans le dossier sur lequel la session est ouverte. Ce dossier est votre copie de l'armoire : c'est là qu'ils trouvent les chartes et les sujets. La session du Bureau ne servait qu'à installer : vous pouvez la fermer.</p>
-  <div class="ici"><b>Ouvrir la session de travail :</b>
-    <ol>
-      <li>Onglet <b>Code</b>, puis <b>Nouvelle session</b>.</li>
-      <li>Comme dossier, choisissez <b>Documents</b>, puis <b>Avaliance Marketing</b> (le chemin est ci-dessous).</li>
-      <li>Tapez <span class="mono">/societe docdialy</span> dans la zone d'écriture : c'est parti.</li>
-    </ol>
-  </div>
-  <div class="bloc">Documents\Avaliance Marketing</div>
-  <p class="attendu"><b>Chaque matin ensuite :</b> ouvrez Claude, onglet Code, et reprenez une session sur ce dossier. Toutes les commandes du guide se tapent là.</p>
-</section>
-<div class="partie" id="guide">
-  <h2>B. Le guide de tous les jours</h2>
-  <p>Ce que vous pouvez demander à Claude, avec quelle commande, et ce qui se passe ensuite.</p>
-</div>
 <!-- ═══════════ 1 ═══════════ -->
-<h2 id="journee"><span class="n">B1</span>Une journée type</h2>
+<h2 id="journee"><span class="n">1</span>Une journée type</h2>
 <p class="sous">Comptez de 20 à 40 minutes par publication.</p>
-<div class="ici" style="margin-left:0"><b>Où taper toutes les commandes de ce guide :</b> dans Claude, onglet <b>Code</b>, dans une session ouverte sur le dossier <span class="mono">Documents\Avaliance Marketing</span> (étape 7). Une session ouverte ailleurs ne trouvera pas vos sociétés.</div>
+<div class="ici" style="margin-left:0"><b>Où taper toutes les commandes de ce guide :</b> dans Claude, onglet <b>Code</b>, dans une session ouverte sur le dossier <span class="mono">Documents\Avaliance Marketing</span> (étape 7 de l'installation). Une session ouverte ailleurs ne trouvera pas vos sociétés.</div>
 <div class="bloc">/societe docdialy</div>
 
 <div class="schema">
@@ -323,7 +191,7 @@ l'image à joindre, et une fiche qui dit quoi mettre où. Vous publiez vous-mêm
 Instagram ou Facebook. Vous pouvez répondre à Claude en français, normalement, à tout moment.</p>
 
 <!-- ═══════════ 2 ═══════════ -->
-<h2 id="commandes"><span class="n">B2</span>Toutes les commandes</h2>
+<h2 id="commandes"><span class="n">2</span>Toutes les commandes</h2>
 <p class="sous">Une commande commence par une barre oblique. Remplacez <span class="mono">docdialy</span>
 par le nom de la société sur laquelle vous travaillez.</p>
 
@@ -423,7 +291,7 @@ par le nom de la société sur laquelle vous travaillez.</p>
 </div>
 
 <!-- ═══════════ 3 ═══════════ -->
-<h2 id="equipe"><span class="n">B3</span>L'équipe d'agents</h2>
+<h2 id="equipe"><span class="n">3</span>L'équipe d'agents</h2>
 <p class="sous">Vous ne les appelez jamais directement : les commandes le font pour vous. Ils sont
 les mêmes pour toutes les sociétés. Seul le dossier de la société change.</p>
 <div class="grille">
@@ -436,7 +304,7 @@ les mêmes pour toutes les sociétés. Seul le dossier de la société change.</
 </div>
 
 <!-- ═══════════ 4 ═══════════ -->
-<h2 id="robot"><span class="n">B4</span>Le robot de veille</h2>
+<h2 id="robot"><span class="n">4</span>Le robot de veille</h2>
 <p class="sous">Un robot d'Avaliance lit des sites d'actualité jour et nuit, pour chaque société,
 et range les sujets dans un espace partagé en ligne (GitHub). Vous n'avez rien à faire avec lui :
 votre séance y prend les sujets, et <span class="mono">/sources</span> lui dit quoi lire. Vous
@@ -468,7 +336,7 @@ n'avez aucun serveur à ouvrir.</p>
 </div>
 
 <!-- ═══════════ 5 ═══════════ -->
-<h2 id="fichiers"><span class="n">B5</span>Où sont vos fichiers</h2>
+<h2 id="fichiers"><span class="n">5</span>Où sont vos fichiers</h2>
 <p class="sous">Tout est dans <span class="mono">Documents\Avaliance Marketing</span>. Vous n'avez
 pas besoin d'y aller : Claude vous ouvre le bon dossier. Mais si vous cherchez quelque chose :</p>
 <div class="tab"><table>
@@ -482,7 +350,7 @@ pas besoin d'y aller : Claude vous ouvre le bon dossier. Mais si vous cherchez q
 </table></div>
 
 <!-- ═══════════ 6 ═══════════ -->
-<h2 id="regles"><span class="n">B6</span>Les règles que les agents respectent toujours</h2>
+<h2 id="regles"><span class="n">6</span>Les règles que les agents respectent toujours</h2>
 <div class="regle"><b>1</b><div><b>Pas de preuve, pas de publication.</b> Aucun chiffre, aucun nom de client, aucune affirmation qui ne figure pas dans les faits vérifiés de la société. Un trou est signalé, jamais comblé au hasard.</div></div>
 <div class="regle"><b>2</b><div><b>Santé : jamais de conseil médical.</b> On parle du logiciel, de l'organisation, des données. Jamais du patient, du soin ou du diagnostic.</div></div>
 <div class="regle"><b>3</b><div><b>Aucun émoji</b> dans ce qui porte le nom d'une société.</div></div>
@@ -490,7 +358,7 @@ pas besoin d'y aller : Claude vous ouvre le bon dossier. Mais si vous cherchez q
 <div class="regle"><b>5</b><div><b>Tout est gardé.</b> Chaque séance range son travail dans l'espace partagé. Si vous fermez Claude au milieu, la séance suivante reprend où elle s'était arrêtée.</div></div>
 
 <!-- ═══════════ 7 ═══════════ -->
-<h2 id="aide"><span class="n">B7</span>Si ça coince</h2>
+<h2 id="aide"><span class="n">7</span>Si ça coince</h2>
 <div class="tab"><table>
   <thead><tr><th>Ce que vous voyez</th><th>Ce que vous faites</th></tr></thead>
   <tbody>
@@ -531,8 +399,8 @@ pas besoin d'y aller : Claude vous ouvre le bon dossier. Mais si vous cherchez q
     function maj() {
       var n = 0;
       cases.forEach(function (c) { c.closest(".etape").classList.toggle("faite", c.checked); if (c.checked) n++; });
-      document.getElementById("plein").style.width = (100 * n / cases.length) + "%";
-      document.getElementById("compte").textContent = n + " étape" + (n > 1 ? "s" : "") + " faite" + (n > 1 ? "s" : "") + " sur " + cases.length;
+      (document.getElementById("plein") || {style:{}}).style.width = (100 * n / cases.length) + "%";
+      (document.getElementById("compte") || {}).textContent = n + " étape" + (n > 1 ? "s" : "") + " faite" + (n > 1 ? "s" : "") + " sur " + cases.length;
     }
     cases.forEach(function (c) {
       var id = c.closest(".etape").getAttribute("data-id");
