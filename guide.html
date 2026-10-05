@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Poste du service marketing</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --fond: #FFFFFF; --carte: #F7F7F8; --trait: #DDDCE0;
+    --encre: #212529; --douce: #5D5D5D; --pale: #8E8D94;
+    --violet: #430A4B; --violet-pale: #F1E9F3; --vert: #1E5B3A; --vert-pale: #E8F3EC;
+    --orange: #C2600B; --orange-pale: #FBF1E6; --rouge: #A93226;
+    --code: #16161A; --code-encre: #F2F2F4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fond: #0E0E11; --carte: #16161A; --trait: #34343C;
+      --encre: #F2F2F4; --douce: #A9A8B2; --pale: #6E6D77;
+      --violet: #C9A6D4; --violet-pale: #1F1726; --vert: #6FCF97; --vert-pale: #12221A;
+      --orange: #FB923C; --orange-pale: #241A11; --rouge: #F87171;
+      --code: #000000; --code-encre: #F2F2F4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fond: #0E0E11; --carte: #16161A; --trait: #34343C;
+    --encre: #F2F2F4; --douce: #A9A8B2; --pale: #6E6D77;
+    --violet: #C9A6D4; --violet-pale: #1F1726; --vert: #6FCF97; --vert-pale: #12221A;
+    --orange: #FB923C; --orange-pale: #241A11; --rouge: #F87171;
+    --code: #000000; --code-encre: #F2F2F4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--encre);
+         font-family: Sora, system-ui, sans-serif; font-size: 15.5px; line-height: 1.6; }
+  main { max-width: 900px; margin: 0 auto; padding: 32px 16px 80px; }
+  h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font-size: 22px; margin: 46px 0 6px; letter-spacing: -0.01em; }
+  h2 .n { color: var(--violet); margin-right: 8px; }
+  .chapo { color: var(--douce); margin: 0 0 18px; max-width: 70ch; }
+  .sous { color: var(--douce); margin: 0 0 16px; max-width: 72ch; }
+  nav.sommaire { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+  nav.sommaire a { font-size: 13.5px; text-decoration: none; color: var(--encre); border: 1px solid var(--trait);
+                   background: var(--carte); padding: 6px 12px; border-radius: 20px; }
+
+  .resume { background: var(--violet-pale); border-left: 4px solid var(--violet); border-radius: 10px;
+            padding: 16px 18px; font-size: 16px; }
+  .resume b { color: var(--violet); }
+
+  .schema { border: 1px solid var(--trait); border-radius: 12px; padding: 14px; overflow-x: auto; margin: 12px 0; }
+  .schema svg { display: block; width: 100%; min-width: 620px; }
+
+  .cmd { border: 1px solid var(--trait); border-radius: 14px; margin: 16px 0; overflow: hidden; }
+  .cmd .haut { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;
+               padding: 14px 18px; background: var(--carte); border-bottom: 1px solid var(--trait); }
+  .cmd .haut h3 { margin: 0; font-size: 17px; }
+  .cmd .freq { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--pale); }
+  .cmd .corps { padding: 6px 18px 16px; }
+  .cmd .corps p { margin: 10px 0 0; color: var(--douce); }
+  .cmd .corps b { color: var(--encre); }
+  .cmd.star { border-color: var(--violet); border-width: 2px; }
+  .cmd.star .haut { background: var(--violet-pale); }
+
+  .bloc { position: relative; margin: 10px 0 0; background: var(--code); color: var(--code-encre);
+          border-radius: 8px; padding: 12px 92px 12px 14px; font-family: "IBM Plex Mono", monospace;
+          font-size: 14px; white-space: pre-wrap; word-break: break-all; }
+  .bloc button { position: absolute; top: 8px; right: 8px; font: 600 12.5px Sora, sans-serif;
+                 background: #FFFFFF; color: #212529; border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+  .bloc button.ok { background: #6FCF97; }
+
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 12px; }
+  .grille div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--douce); }
+  .grille b { display: block; color: var(--encre); font-size: 15px; margin-bottom: 4px; }
+  .grille .tag { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+                 text-transform: uppercase; margin-bottom: 6px; }
+  .tag.fab { color: var(--orange); } .tag.jour { color: var(--violet); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--pale); }
+  .tab { overflow-x: auto; }
+  code, .mono { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; }
+  .v { color: var(--vert); font-weight: 600; } .o { color: var(--orange); font-weight: 600; } .r { color: var(--rouge); font-weight: 600; }
+  .regle { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--trait); }
+  .regle b { min-width: 30px; color: var(--violet); }
+  footer { margin-top: 50px; color: var(--pale); font-size: 13px; }
+  @media print {
+    nav.sommaire, .bloc button { display: none; }
+    .cmd, .schema, .regle { break-inside: avoid; }
+    h2 { break-after: avoid; }
+  }
+
+  .etape { border: 1px solid var(--trait); border-radius: 12px; padding: 16px 18px; margin: 14px 0; background: var(--fond); }
+  .etape.faite { opacity: .55; }
+  .tete { display: flex; align-items: flex-start; gap: 12px; }
+  .tete input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--vert); flex: 0 0 auto; cursor: pointer; }
+  .tete h3 { margin: 0; font-size: 16.5px; flex: 1; }
+  .qui { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--pale); white-space: nowrap; }
+  .etape > p, .etape > .bloc { margin-left: 34px; }
+  .etape > p { margin-top: 8px; margin-bottom: 0; color: var(--douce); }
+  .etape > p.attendu { font-size: 13.5px; color: var(--vert); }
+  .etape > p.pourquoi { padding: 8px 12px; border-radius: 8px; background: var(--carte); font-size: 14px; color: var(--encre); }
+  .pourquoi b { color: var(--violet); font-weight: 600; }
+  .partie { margin: 54px 0 6px; padding: 18px 20px; border-radius: 14px; background: var(--violet-pale); border-left: 5px solid var(--violet); }
+  .partie.inst { background: var(--orange-pale); border-left-color: var(--orange); }
+  .partie h2 { margin: 0; font-size: 24px; }
+  .partie p { margin: 4px 0 0; color: var(--douce); }
+  .avance { position: sticky; top: 0; z-index: 5; background: var(--fond); padding: 8px 0 10px; border-bottom: 1px solid var(--trait); }
+  .avance .barre { height: 8px; background: var(--carte); border-radius: 4px; overflow: hidden; border: 1px solid var(--trait); }
+  .avance .plein { height: 100%; width: 0; background: var(--vert); transition: width .2s; }
+  .avance .txt { font-size: 13px; color: var(--douce); margin-top: 5px; }
+  .trois { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 12px 0 0; }
+  .trois div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--douce); }
+  .trois b { display: block; color: var(--encre); font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 560px) { .etape > p, .etape > .bloc { margin-left: 0; } }
+  @media print { .avance, .tete input { display: none; } .etape { break-inside: avoid; opacity: 1 !important; } .partie { break-before: page; } }
+  .ici { margin: 10px 0 0 34px; border: 2px solid var(--orange); border-radius: 10px; padding: 10px 14px; background: var(--orange-pale); font-size: 14.5px; }
+  .ici b { color: var(--orange); }
+  .ici ol { margin: 6px 0 0; padding-left: 20px; }
+  @media (max-width: 560px) { .ici { margin-left: 0; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Le poste du service marketing</h1>
+<p class="chapo">Automatisation du service marketing Avaliance. Un seul document : d'abord
+l'installation, une fois, puis le guide de tous les jours.</p>
+
+<div class="resume">Vous tapez <b>une commande</b> dans Claude. Une équipe d'agents fait le travail :
+elle trie l'actualité, écrit, dessine, vérifie. Elle <b>s'arrête pour vous demander</b> à chaque
+étape importante. Vous gardez toujours la main, et <b>c'est vous qui publiez</b>.</div>
+
+<nav class="sommaire" aria-label="Sommaire">
+  <a href="#comment">Comment ça marche</a>
+  <a href="#installation">A. Installer (une fois)</a>
+  <a href="#journee">B. Une journée type</a>
+  <a href="#commandes">Les commandes</a>
+  <a href="#equipe">Les agents</a>
+  <a href="#robot">Le robot de veille</a>
+  <a href="#fichiers">Vos fichiers</a>
+  <a href="#regles">Les règles</a>
+  <a href="#aide">Si ça coince</a>
+</nav>
+
+<h2 id="comment">Comment ça marche</h2>
+<p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
+<div class="schema">
+<svg viewBox="0 0 820 250" role="img" aria-label="Le serveur depose les sujets dans GitHub, votre PC les y lit et y range votre travail">
+  <defs><marker id="f0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--douce)"/></marker></defs>
+  <g font-family="Sora, sans-serif" text-anchor="middle">
+    <rect x="10" y="40" width="220" height="150" rx="14" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="6 5"/>
+    <text x="120" y="76" font-size="16" font-weight="700" fill="var(--encre)">LE SERVEUR</text>
+    <text x="120" y="100" font-size="13" fill="var(--douce)">chez Avaliance</text>
+    <text x="120" y="130" font-size="13" fill="var(--douce)">un robot lit l'actualité</text>
+    <text x="120" y="150" font-size="13" fill="var(--douce)">jour et nuit</text>
+    <text x="120" y="176" font-size="12.5" font-weight="600" fill="var(--orange)">vous n'y allez jamais</text>
+
+    <rect x="300" y="40" width="220" height="150" rx="14" fill="var(--fond)" stroke="var(--violet)" stroke-width="2"/>
+    <text x="410" y="76" font-size="16" font-weight="700" fill="var(--encre)">GITHUB</text>
+    <text x="410" y="100" font-size="13" fill="var(--douce)">l'armoire partagée</text>
+    <text x="410" y="130" font-size="13" fill="var(--douce)">les sujets du robot,</text>
+    <text x="410" y="150" font-size="13" fill="var(--douce)">ses chartes, ses textes</text>
+    <text x="410" y="176" font-size="12.5" font-weight="600" fill="var(--violet)">votre compte y a accès</text>
+
+    <rect x="590" y="40" width="220" height="150" rx="14" fill="var(--fond)" stroke="var(--vert)" stroke-width="2"/>
+    <text x="700" y="76" font-size="16" font-weight="700" fill="var(--encre)">VOTRE PC</text>
+    <text x="700" y="100" font-size="13" fill="var(--douce)">Claude et les agents</text>
+    <text x="700" y="130" font-size="13" fill="var(--douce)">trient, écrivent,</text>
+    <text x="700" y="150" font-size="13" fill="var(--douce)">font le visuel</text>
+    <text x="700" y="176" font-size="12.5" font-weight="600" fill="var(--vert)">vous validez et publiez</text>
+
+    <g stroke="var(--douce)" stroke-width="1.6" fill="none" marker-end="url(#f0)">
+      <path d="M232,100 L296,100"/>
+      <path d="M298,140 L234,140"/>
+      <path d="M522,100 L586,100"/>
+      <path d="M588,140 L524,140"/>
+    </g>
+    <g font-size="11.5" fill="var(--douce)">
+      <text x="265" y="92">dépose</text><text x="265" y="160">relit</text>
+      <text x="555" y="92">lit</text><text x="555" y="160">range</text>
+    </g>
+    <text x="410" y="230" font-size="12.5" fill="var(--douce)">Le robot et vous ne vous parlez jamais : chacun pose et prend dans l'armoire.</text>
+  </g>
+</svg>
+</div>
+<div class="trois">
+  <div><b>Le serveur</b>Un robot d'Avaliance qui lit des sites d'actualité toute la journée et range les sujets dans l'armoire. Il tourne seul. Seul Avaliance s'en occupe.</div>
+  <div><b>GitHub, l'armoire</b>Un placard en ligne, privé. Le robot y dépose les sujets ; vous y rangez votre voix, votre charte, vos textes. Votre compte GitHub en a déjà la clé.</div>
+  <div><b>Son PC</b>Claude et les agents. Ils prennent les sujets dans l'armoire et vous proposent un sujet, un texte, un visuel. Vous choisissez, puis vous publiez.</div>
+</div>
+<div class="partie inst" id="installation">
+  <h2>A. Installer le poste</h2>
+  <p>Une seule fois, environ 25 minutes. Les étapes 1 à 3 se tapent dans PowerShell (menu Démarrer, taper « PowerShell »). Chaque commande a un bouton Copier. Cochez chaque étape faite.</p>
+</div>
+<div class="avance">
+  <div class="barre"><div class="plein" id="plein"></div></div>
+  <div class="txt" id="compte">0 étape faite</div>
+</div>
+<section class="etape" data-id="b3">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>1. Installer Git</h3><span class="qui">PowerShell · 3 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Git est l'outil qui ouvre l'armoire GitHub depuis votre PC : il ramène les sujets et y range votre travail.</p>
+  <div class="bloc">winget install --id Git.Git -e --source winget</div>
+  <p>Fermez PowerShell, rouvrez-le, puis vérifiez :</p>
+  <div class="bloc">git --version</div>
+  <p class="attendu"><b>Résultat attendu :</b> git version 2.x</p>
+</section>
+<section class="etape" data-id="b4">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>2. Installer Google Chrome</h3><span class="qui">PowerShell · 3 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Les agents dessinent le visuel en page web, puis Chrome le transforme en image à publier.</p>
+  <p>Chrome sert à fabriquer l'image du visuel. Si Chrome est déjà installé, passez à l'étape suivante.</p>
+  <div class="bloc">winget install --id Google.Chrome -e --source winget</div>
+</section>
+<section class="etape" data-id="b5">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>3. Connecter GitHub, une fois pour toutes</h3><span class="qui">PowerShell · 3 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Claude installe les agents depuis GitHub sans pouvoir afficher de fenêtre de connexion. On enregistre donc la connexion une fois, ici, pour qu'il ne la redemande plus.</p>
+  <p>Une fenêtre GitHub s'ouvre : connectez-vous avec votre compte GitHub.</p>
+  <div class="bloc">git ls-remote https://github.com/avalianceai/automatisation-marketing-avaliance-plugin.git HEAD</div>
+  <p class="attendu"><b>Résultat attendu :</b> une ligne de 40 caractères suivie de HEAD.</p>
+  <p>Puis :</p>
+  <div class="bloc">setx CLAUDE_CODE_PLUGIN_PREFER_HTTPS 1</div>
+  <p class="attendu"><b>Résultat attendu :</b> SUCCESS: Specified value was saved.</p>
+</section>
+<section class="etape" data-id="b6">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>4. Installer Claude et ouvrir une première session</h3><span class="qui">navigateur puis Claude · 7 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Claude est l'application dans laquelle vous travaillerez. On y parle dans une <b>session</b> : une conversation ouverte sur un dossier de votre PC. L'onglet Code est celui qui sait utiliser les agents.</p>
+  <p>Téléchargez et installez Claude depuis cette adresse, puis connectez-vous avec votre compte Claude Pro.</p>
+  <div class="bloc">https://claude.com/download</div>
+  <div class="ici"><b>Ouvrir une session, pas à pas :</b>
+    <ol>
+      <li>En haut de la fenêtre Claude, cliquez sur l'onglet <b>Code</b>.</li>
+      <li>Cliquez sur <b>Nouvelle session</b>.</li>
+      <li>Claude demande un dossier : choisissez le <b>Bureau</b> (pour l'installation seulement).</li>
+      <li>En bas de l'écran apparaît la zone où l'on écrit : c'est là que vous taperez les commandes de l'étape suivante.</li>
+    </ol>
+  </div>
+</section>
+<section class="etape" data-id="b7">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>5. Installer les agents</h3><span class="qui">Claude, onglet Code · 3 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> On installe le paquet d'agents d'Avaliance : le rédacteur en chef, le rédacteur, le maquettiste, le contrôleur, et les commandes. Ils ne contiennent aucune société : ce sont des méthodes. Ils s'installent une fois pour toutes dans Claude, et serviront dans toutes vos sessions.</p>
+  <div class="ici"><b>Où taper :</b> dans la session ouverte à l'étape 4 (sur le Bureau), dans la zone d'écriture en bas. Collez une commande, appuyez sur Entrée, attendez la réponse, puis passez à la suivante.</div>
+  <div class="bloc">/plugin marketplace add avalianceai/automatisation-marketing-avaliance-plugin</div>
+  <p class="attendu"><b>Résultat attendu :</b> Successfully added marketplace: avaliance-marketing</p>
+  <div class="bloc">/plugin install automatisation-marketing-avaliance@avaliance-marketing</div>
+  <p class="attendu"><b>Résultat attendu :</b> le plugin est indiqué comme installé.</p>
+  <div class="bloc">/reload-plugins</div>
+</section>
+<section class="etape" data-id="b8">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>6. Préparer le poste</h3><span class="qui">Claude, même session · 5 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Les agents sont là, mais pas encore les dossiers des sociétés. Cette commande copie l'armoire sur votre PC, dans Documents\Avaliance Marketing, et vérifie que tout répond, visuel compris.</p>
+  <div class="ici"><b>Où taper :</b> toujours dans la même session (celle du Bureau). Quand Claude demande d'autoriser la séance à écrire, répondez Oui.</div>
+  <div class="bloc">/installer</div>
+  <p class="attendu"><b>Résultat attendu :</b> prêt : tapez /societe docdialy</p>
+</section>
+<section class="etape" data-id="b9">
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>7. Ouvrir votre session de travail, celle de tous les jours</h3><span class="qui">Claude · 1 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Les agents travaillent dans le dossier sur lequel la session est ouverte. Ce dossier est votre copie de l'armoire : c'est là qu'ils trouvent les chartes et les sujets. La session du Bureau ne servait qu'à installer : vous pouvez la fermer.</p>
+  <div class="ici"><b>Ouvrir la session de travail :</b>
+    <ol>
+      <li>Onglet <b>Code</b>, puis <b>Nouvelle session</b>.</li>
+      <li>Comme dossier, choisissez <b>Documents</b>, puis <b>Avaliance Marketing</b> (le chemin est ci-dessous).</li>
+      <li>Tapez <span class="mono">/societe docdialy</span> dans la zone d'écriture : c'est parti.</li>
+    </ol>
+  </div>
+  <div class="bloc">Documents\Avaliance Marketing</div>
+  <p class="attendu"><b>Chaque matin ensuite :</b> ouvrez Claude, onglet Code, et reprenez une session sur ce dossier. Toutes les commandes du guide se tapent là.</p>
+</section>
+<div class="partie" id="guide">
+  <h2>B. Le guide de tous les jours</h2>
+  <p>Ce que vous pouvez demander à Claude, avec quelle commande, et ce qui se passe ensuite.</p>
+</div>
+<!-- ═══════════ 1 ═══════════ -->
+<h2 id="journee"><span class="n">B1</span>Une journée type</h2>
+<p class="sous">Comptez de 20 à 40 minutes par publication.</p>
+<div class="ici" style="margin-left:0"><b>Où taper toutes les commandes de ce guide :</b> dans Claude, onglet <b>Code</b>, dans une session ouverte sur le dossier <span class="mono">Documents\Avaliance Marketing</span> (étape 7). Une session ouverte ailleurs ne trouvera pas vos sociétés.</div>
+<div class="bloc">/societe docdialy</div>
+
+<div class="schema">
+<svg viewBox="0 0 1000 200" role="img" aria-label="Sujets, puis vous choisissez, texte, puis vous choisissez, visuel, puis vous validez, puis vous publiez">
+  <defs><marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs>
+  <g font-family="Sora, sans-serif" text-anchor="middle">
+    <g stroke="var(--pale)" stroke-width="1.5" marker-end="url(#f)">
+      <line x1="172" y1="80" x2="200" y2="80"/><line x1="372" y1="80" x2="400" y2="80"/>
+      <line x1="572" y1="80" x2="600" y2="80"/><line x1="772" y1="80" x2="800" y2="80"/>
+    </g>
+    <rect x="10"  y="40" width="160" height="80" rx="12" fill="var(--carte)" stroke="var(--trait)"/>
+    <rect x="208" y="40" width="160" height="80" rx="12" fill="var(--fond)" stroke="var(--violet)" stroke-width="2.5"/>
+    <rect x="408" y="40" width="160" height="80" rx="12" fill="var(--fond)" stroke="var(--violet)" stroke-width="2.5"/>
+    <rect x="608" y="40" width="160" height="80" rx="12" fill="var(--fond)" stroke="var(--violet)" stroke-width="2.5"/>
+    <rect x="808" y="40" width="180" height="80" rx="12" fill="var(--vert-pale)" stroke="var(--vert)" stroke-width="2"/>
+    <g font-size="15" font-weight="700" fill="var(--encre)">
+      <text x="90" y="76">Les sujets</text><text x="288" y="76">Le sujet</text>
+      <text x="488" y="76">Le texte</text><text x="688" y="76">Le visuel</text><text x="898" y="76">Publication</text>
+    </g>
+    <g font-size="12" fill="var(--douce)">
+      <text x="90" y="98">préparés la nuit</text><text x="288" y="98">3 à 5 proposés</text>
+      <text x="488" y="98">2 ou 3 versions</text><text x="688" y="98">après le texte</text><text x="898" y="98">texte + image prêts</text>
+    </g>
+    <g font-size="13" font-weight="600" fill="var(--violet)">
+      <text x="288" y="152">1. vous choisissez</text><text x="488" y="152">2. vous choisissez</text><text x="688" y="152">3. vous validez</text>
+    </g>
+    <text x="898" y="152" font-size="13" font-weight="600" fill="var(--vert)">vous publiez</text>
+    <text x="90" y="152" font-size="12.5" fill="var(--pale)">automatique</text>
+  </g>
+</svg>
+</div>
+
+<div class="tab"><table>
+  <thead><tr><th></th><th>Claude vous demande</th><th>Vous pouvez répondre</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Quel sujet publie-t-on aujourd'hui ?</td><td>un des sujets proposés, ou « refais le tri, je veux plutôt… »</td></tr>
+    <tr><td>2</td><td>Quel texte garde-t-on ?</td><td>la version A, B ou C, ou « reprends-le, plus court », « change le début »…</td></tr>
+    <tr><td>3</td><td>Le visuel convient-il ?</td><td>oui, un autre modèle, une retouche, ou « sans visuel »</td></tr>
+  </tbody>
+</table></div>
+<p class="sous" style="margin-top:12px">À la fin, un dossier s'ouvre avec le texte à copier,
+l'image à joindre, et une fiche qui dit quoi mettre où. Vous publiez vous-même sur LinkedIn,
+Instagram ou Facebook. Vous pouvez répondre à Claude en français, normalement, à tout moment.</p>
+
+<!-- ═══════════ 2 ═══════════ -->
+<h2 id="commandes"><span class="n">B2</span>Toutes les commandes</h2>
+<p class="sous">Une commande commence par une barre oblique. Remplacez <span class="mono">docdialy</span>
+par le nom de la société sur laquelle vous travaillez.</p>
+
+<div class="cmd star">
+  <div class="haut"><h3>Publier : la séance du jour</h3><span class="freq">tous les jours</span></div>
+  <div class="corps">
+    <div class="bloc">/societe docdialy</div>
+    <p><b>Ce qu'elle fait :</b> récupère les sujets trouvés par le robot, les fait trier, écrire,
+    vérifier, puis habiller, en s'arrêtant trois fois pour vous demander.</p>
+    <p><b>Ce que vous obtenez :</b> un dossier « prêt » avec le texte par réseau et l'image.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Tester un site avant de le surveiller</h3><span class="freq">quand vous trouvez un site</span></div>
+  <div class="corps">
+    <div class="bloc">/tester-source https://www.dsih.fr docdialy</div>
+    <p><b>Ce qu'elle fait :</b> vérifie en une minute si le robot pourra lire ce site, et s'il parle
+    vraiment de votre métier. Rien n'est ajouté.</p>
+    <p><b>Ce que vous obtenez :</b> <span class="v">vert</span> (bon, on peut l'ajouter),
+    <span class="o">orange</span> (possible, mais le site publie peu ou n'a pas de flux),
+    <span class="r">rouge</span> (le site bloque les robots, ou il est hors sujet), avec la raison.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Changer ce que le robot surveille</h3><span class="freq">quand vous voulez</span></div>
+  <div class="corps">
+    <div class="bloc">/sources docdialy</div>
+    <p><b>Ce qu'elle fait :</b> vous dites en français ce que vous voulez : « ajoute le site de
+    l'ANAM », « retire Ouest-France », « ramène aussi les articles sur l'assurance maladie ».
+    Le site est testé d'abord, puis inscrit.</p>
+    <p><b>Ce que vous obtenez :</b> le robot en tient compte au plus tard 20 minutes après. Les
+    nouveaux sujets arrivent dans votre prochaine séance.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Définir ou corriger la voix d'une société</h3><span class="freq">au début, puis de temps en temps</span></div>
+  <div class="corps">
+    <div class="bloc">/automatisation-marketing-avaliance:ligne-editoriale docdialy</div>
+    <p><b>Ce qu'elle fait :</b> un entretien. L'agent vous montre ce qui existe déjà et vous pose
+    des questions : à qui parle-t-on, sur quel ton, ce qu'on dit, ce qu'on ne dit jamais, les
+    faits qu'on a le droit de citer, les sujets à surveiller.</p>
+    <p><b>Ce que vous obtenez :</b> la ligne éditoriale de la société, que tous les agents suivent
+    ensuite. Tapez bien la commande en entier : la forme courte appelle un autre outil.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Définir ou corriger la charte graphique</h3><span class="freq">au début, puis de temps en temps</span></div>
+  <div class="corps">
+    <div class="bloc">/charte docdialy</div>
+    <p><b>Ce qu'elle fait :</b> couleurs, polices, logo, formats par réseau. L'agent mesure que les
+    textes restent lisibles sur chaque couleur.</p>
+    <p><b>Ce que vous obtenez :</b> la charte et les modèles de visuels de la société.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Ajouter une nouvelle société</h3><span class="freq">rarement</span></div>
+  <div class="corps">
+    <div class="bloc">/nouvelle-societe shifaa</div>
+    <p><b>Ce qu'elle fait :</b> enchaîne la ligne éditoriale puis la charte graphique pour une
+    société qui n'existe pas encore.</p>
+    <p><b>Ce que vous obtenez :</b> son dossier complet. Dès le lendemain, vous pouvez taper
+    <span class="mono">/societe shifaa</span>.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Réparer le poste</h3><span class="freq">si quelque chose ne marche plus</span></div>
+  <div class="corps">
+    <div class="bloc">/installer</div>
+    <p><b>Ce qu'elle fait :</b> revérifie tout (accès, dossiers, fabrication des images) et répare
+    ce qui manque. Elle ne supprime rien.</p>
+  </div>
+</div>
+
+<div class="cmd">
+  <div class="haut"><h3>Recevoir les améliorations</h3><span class="freq">quand Avaliance vous le dit</span></div>
+  <div class="corps">
+    <div class="bloc">/plugin marketplace update avaliance-marketing</div>
+    <p><b>Ce qu'elle fait :</b> met à jour les agents. Vos sociétés et vos publications ne sont pas
+    touchées.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 3 ═══════════ -->
+<h2 id="equipe"><span class="n">B3</span>L'équipe d'agents</h2>
+<p class="sous">Vous ne les appelez jamais directement : les commandes le font pour vous. Ils sont
+les mêmes pour toutes les sociétés. Seul le dossier de la société change.</p>
+<div class="grille">
+  <div><span class="tag fab">Prépare une société</span><b>Ligne éditoriale</b>Écrit la voix, les interdits, les faits citables et les sites à surveiller.</div>
+  <div><span class="tag fab">Prépare une société</span><b>Charte graphique</b>Écrit les couleurs, les polices, le logo et les modèles de visuels.</div>
+  <div><span class="tag jour">Chaque jour</span><b>Rédacteur en chef</b>Lit les sujets du robot, en garde 3 à 5, propose un angle pour chacun, jette le reste.</div>
+  <div><span class="tag jour">Chaque jour</span><b>Rédacteur</b>Écrit 2 ou 3 versions du texte, dans la voix de la société, avec ses seuls faits vérifiés.</div>
+  <div><span class="tag jour">Chaque jour</span><b>Directeur de publication</b>Relit avant vous : refuse tout chiffre non prouvé, tout mot interdit, tout conseil médical.</div>
+  <div><span class="tag jour">Chaque jour</span><b>Maquettiste</b>Après votre choix de texte, l'adapte à chaque réseau et fabrique l'image.</div>
+</div>
+
+<!-- ═══════════ 4 ═══════════ -->
+<h2 id="robot"><span class="n">B4</span>Le robot de veille</h2>
+<p class="sous">Un robot d'Avaliance lit des sites d'actualité jour et nuit, pour chaque société,
+et range les sujets dans un espace partagé en ligne (GitHub). Vous n'avez rien à faire avec lui :
+votre séance y prend les sujets, et <span class="mono">/sources</span> lui dit quoi lire. Vous
+n'avez aucun serveur à ouvrir.</p>
+<div class="schema">
+<svg viewBox="0 0 820 170" role="img" aria-label="Le robot depose les sujets dans l'espace partage, votre poste les y prend">
+  <defs><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--douce)"/></marker></defs>
+  <g font-family="Sora, sans-serif" text-anchor="middle">
+    <rect x="10" y="20" width="220" height="120" rx="14" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="6 5"/>
+    <text x="120" y="60" font-size="16" font-weight="700" fill="var(--encre)">Le robot</text>
+    <text x="120" y="84" font-size="13" fill="var(--douce)">lit l'actualité</text>
+    <text x="120" y="104" font-size="13" fill="var(--douce)">jour et nuit</text>
+    <rect x="300" y="20" width="220" height="120" rx="14" fill="var(--fond)" stroke="var(--violet)" stroke-width="2"/>
+    <text x="410" y="60" font-size="16" font-weight="700" fill="var(--encre)">L'espace partagé</text>
+    <text x="410" y="84" font-size="13" fill="var(--douce)">sujets, chartes,</text>
+    <text x="410" y="104" font-size="13" fill="var(--douce)">vos publications</text>
+    <rect x="590" y="20" width="220" height="120" rx="14" fill="var(--fond)" stroke="var(--vert)" stroke-width="2"/>
+    <text x="700" y="60" font-size="16" font-weight="700" fill="var(--encre)">Votre poste</text>
+    <text x="700" y="84" font-size="13" fill="var(--douce)">Claude et</text>
+    <text x="700" y="104" font-size="13" fill="var(--douce)">les agents</text>
+    <g stroke="var(--douce)" stroke-width="1.6" fill="none" marker-end="url(#g)">
+      <path d="M232,62 L296,62"/><path d="M298,102 L234,102"/><path d="M522,62 L586,62"/><path d="M588,102 L524,102"/>
+    </g>
+    <g font-size="11.5" fill="var(--douce)">
+      <text x="265" y="54">dépose</text><text x="265" y="120">relit</text><text x="555" y="54">prend</text><text x="555" y="120">range</text>
+    </g>
+  </g>
+</svg>
+</div>
+
+<!-- ═══════════ 5 ═══════════ -->
+<h2 id="fichiers"><span class="n">B5</span>Où sont vos fichiers</h2>
+<p class="sous">Tout est dans <span class="mono">Documents\Avaliance Marketing</span>. Vous n'avez
+pas besoin d'y aller : Claude vous ouvre le bon dossier. Mais si vous cherchez quelque chose :</p>
+<div class="tab"><table>
+  <thead><tr><th>Dossier</th><th>Ce qu'il contient</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">missions\docdialy\pret\</td><td><b>vos publications prêtes</b> : un dossier par publication, avec le texte à copier, l'image et la fiche « à publier »</td></tr>
+    <tr><td class="mono">missions\docdialy\1-sujets\</td><td>les sujets trouvés par le robot, un fichier par jour</td></tr>
+    <tr><td class="mono">reference\docdialy\</td><td>la ligne éditoriale et la charte de la société</td></tr>
+    <tr><td class="mono">gabarits\docdialy\</td><td>les modèles de visuels</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ═══════════ 6 ═══════════ -->
+<h2 id="regles"><span class="n">B6</span>Les règles que les agents respectent toujours</h2>
+<div class="regle"><b>1</b><div><b>Pas de preuve, pas de publication.</b> Aucun chiffre, aucun nom de client, aucune affirmation qui ne figure pas dans les faits vérifiés de la société. Un trou est signalé, jamais comblé au hasard.</div></div>
+<div class="regle"><b>2</b><div><b>Santé : jamais de conseil médical.</b> On parle du logiciel, de l'organisation, des données. Jamais du patient, du soin ou du diagnostic.</div></div>
+<div class="regle"><b>3</b><div><b>Aucun émoji</b> dans ce qui porte le nom d'une société.</div></div>
+<div class="regle"><b>4</b><div><b>Rien ne part sans vous.</b> Les agents proposent, vous choisissez, vous publiez. Ils ne publient jamais et ne répondent à aucun commentaire.</div></div>
+<div class="regle"><b>5</b><div><b>Tout est gardé.</b> Chaque séance range son travail dans l'espace partagé. Si vous fermez Claude au milieu, la séance suivante reprend où elle s'était arrêtée.</div></div>
+
+<!-- ═══════════ 7 ═══════════ -->
+<h2 id="aide"><span class="n">B7</span>Si ça coince</h2>
+<div class="tab"><table>
+  <thead><tr><th>Ce que vous voyez</th><th>Ce que vous faites</th></tr></thead>
+  <tbody>
+    <tr><td>« aucun sujet aujourd'hui »</td><td>le robot n'a rien trouvé de pertinent : ajoutez des sites avec <span class="mono">/sources</span>, ou demandez à Claude de reprendre les sujets d'hier</td></tr>
+    <tr><td>une commande est « inconnue »</td><td>tapez <span class="mono">/reload-plugins</span>, ou fermez et rouvrez la session</td></tr>
+    <tr><td>« dépôt de travail introuvable »</td><td>vous n'êtes pas sur le bon dossier : rouvrez Claude sur <span class="mono">Documents\Avaliance Marketing</span>, ou tapez <span class="mono">/installer</span></td></tr>
+    <tr><td>le visuel ne sort pas</td><td>tapez <span class="mono">/installer</span> : il vérifie Chrome</td></tr>
+    <tr><td>« limite d'usage atteinte »</td><td>votre abonnement Claude a besoin de quelques heures de pause. Le travail est gardé : relancez plus tard la même commande</td></tr>
+    <tr><td>le texte ne vous plaît pas du tout</td><td>dites-le simplement à Claude. Si c'est récurrent, la voix est à corriger avec la commande de ligne éditoriale</td></tr>
+  </tbody>
+</table></div>
+
+<footer>Automatisation du service marketing Avaliance, version du 6 octobre 2026.</footer>
+</main>
+<script>
+  document.querySelectorAll(".bloc").forEach(function (b) {
+    var t = b.textContent.trim();
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.textContent = "Copier";
+    btn.addEventListener("click", function () {
+      var fini = function () { btn.textContent = "Copié"; btn.classList.add("ok");
+        setTimeout(function () { btn.textContent = "Copier"; btn.classList.remove("ok"); }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(fini, function () { secours(t); fini(); });
+      } else { secours(t); fini(); }
+    });
+    b.appendChild(btn);
+  });
+  function secours(t) {
+    var z = document.createElement("textarea"); z.value = t; document.body.appendChild(z);
+    z.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(z);
+  }
+
+  (function () {
+    var CLE = "poste-service-marketing";
+    var etat = {}; try { etat = JSON.parse(localStorage.getItem(CLE) || "{}"); } catch (e) {}
+    var cases = document.querySelectorAll(".etape[data-id] .tete input");
+    function maj() {
+      var n = 0;
+      cases.forEach(function (c) { c.closest(".etape").classList.toggle("faite", c.checked); if (c.checked) n++; });
+      document.getElementById("plein").style.width = (100 * n / cases.length) + "%";
+      document.getElementById("compte").textContent = n + " étape" + (n > 1 ? "s" : "") + " faite" + (n > 1 ? "s" : "") + " sur " + cases.length;
+    }
+    cases.forEach(function (c) {
+      var id = c.closest(".etape").getAttribute("data-id");
+      c.checked = !!etat[id];
+      c.addEventListener("change", function () { etat[id] = c.checked; try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} maj(); });
+    });
+    maj();
+  })();
+</script>
+</body>
+</html>
