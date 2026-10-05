@@ -141,29 +141,44 @@
   .onglets-pages a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
   .onglets-pages a[aria-current="page"] em { color: var(--fond); opacity: .75; }
   @media print { .onglets-pages { display: none; } }
+  :root { --douce-m: var(--douce); --accent-m: var(--violet); }
+
+  .bandeau { background: #430A4B; border-radius: 12px 12px 0 0; padding: 20px 26px 18px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 26px; }
+  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 6px; }
+
+  /* ══ UN SEUL MENU, UN SEUL SOUS-MENU ══ (Hamada, 05/10 : « je ne veux pas cette pagaille »)
+     Le menu vit dans le bandeau et ne change jamais. Le sous-menu, juste dessous, porte les
+     parties de la page courante. Rien d'autre ne sert a naviguer. */
+  .bandeau .menu { display: flex; gap: 4px; flex-wrap: wrap; }
+  .bandeau .menu a { color: rgba(255,255,255,0.78); text-decoration: none; font-family: "Sora", sans-serif;
+    font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+  .bandeau .menu a:hover { color: #FFFFFF; background: rgba(255,255,255,0.08); }
+  .bandeau .menu a[aria-current="page"] { color: #14101A; background: #AEBF38; font-weight: 600; }
+  .bandeau .marque img { display: block; height: 34px; width: auto; }
+  .sous-menu { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 2px; margin: 0 0 30px;
+    border-bottom: 1px solid var(--trait); padding: 0; }
+  .sous-menu a, .sous-menu button { flex: 0 0 auto; white-space: nowrap; background: none; border: 0;
+    border-bottom: 2px solid transparent; border-radius: 0; margin: 0 0 -1px; padding: 10px 14px;
+    font-family: "Sora", sans-serif; font-size: 14px; font-weight: 400; color: var(--douce-m);
+    text-decoration: none; cursor: pointer; display: block; }
+  .sous-menu a:hover, .sous-menu button:hover { color: var(--encre); }
+  .sous-menu button[aria-selected="true"], .sous-menu a[aria-current="true"] { color: var(--encre);
+    border-bottom-color: var(--accent-m); font-weight: 600; background: none; }
+  .sous-menu button em { display: none; }
+  @media print { .bandeau .menu, .sous-menu { display: none; } }
+  table.recap td.mono { white-space: nowrap; font-weight: 500; color: var(--encre); }
 </style>
 </head>
 <body>
 <main>
-<p class="surtitre">Schéma d'automatisation du service marketing Avaliance</p>
+<div class="bandeau">
+  <a class="marque" href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/"><img src="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84"></a>
+  <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html" aria-current="page">Guide</a></nav>
+</div>
+<div class="filet"></div>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#journee">Une journée type</a><a href="#commandes">Les commandes</a><a href="#equipe">Les agents</a><a href="#robot">Le robot de veille</a><a href="#fichiers">Vos fichiers</a><a href="#regles">Les règles</a><a href="#aide">Si ça coince</a></nav>
 <h1 class="titre-page">Le guide de tous les jours</h1>
-<nav class="onglets-pages" aria-label="Pages">
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v1"><em>Volet 1</em> Un seul process</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v2"><em>Volet 2</em> Ce qui se regroupe</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v3"><em>Volet 3</em> La chaîne regroupée</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v4"><em>À part</em> Le poste du service</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html"><em>Page</em> Installation</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html" aria-current="page"><em>Page</em> Guide</a>
-</nav>
-<nav class="sommaire" aria-label="Sommaire">
-  <a href="#journee">Une journée type</a>
-  <a href="#commandes">Les commandes</a>
-  <a href="#equipe">Les agents</a>
-  <a href="#robot">Le robot de veille</a>
-  <a href="#fichiers">Vos fichiers</a>
-  <a href="#regles">Les règles</a>
-  <a href="#aide">Si ça coince</a>
-</nav>
 <!-- ═══════════ 1 ═══════════ -->
 <h2 id="journee"><span class="n">1</span>Une journée type</h2>
 <p class="sous">Comptez de 20 à 40 minutes par publication.</p>
@@ -218,6 +233,23 @@ Instagram ou Facebook. Vous pouvez répondre à Claude en français, normalement
 <h2 id="commandes"><span class="n">2</span>Toutes les commandes</h2>
 <p class="sous">Une commande commence par une barre oblique. Remplacez <span class="mono">docdialy</span>
 par le nom de la société sur laquelle vous travaillez.</p>
+
+<div class="tab"><table class="recap">
+  <thead><tr><th>Commande</th><th>En une phrase</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">/hub-marketing</td><td>ouvre le tableau de bord : toutes les sociétés, leur schéma et leur inventaire</td></tr>
+    <tr><td class="mono">/societe docdialy</td><td>montre l'état d'une société et permet de changer son rythme de publication</td></tr>
+    <tr><td class="mono">/publier docdialy</td><td>la séance du jour : sujet, texte, visuel, avec vos trois validations</td></tr>
+    <tr><td class="mono">/voix docdialy</td><td>définit ou corrige le ton, les interdits et les faits citables d'une société</td></tr>
+    <tr><td class="mono">/charte docdialy</td><td>définit ou corrige les couleurs, les polices et le logo d'une société</td></tr>
+    <tr><td class="mono">/nouvelle-societe shifaa</td><td>ouvre une nouvelle société : la voix, puis la charte</td></tr>
+    <tr><td class="mono">/tester-source &lt;adresse&gt; docdialy</td><td>dit si un site peut être surveillé, avant de l'ajouter</td></tr>
+    <tr><td class="mono">/sources docdialy</td><td>ajoute ou retire un site, un mot-clé, une page à surveiller</td></tr>
+    <tr><td class="mono">/source-list docdialy</td><td>montre ce que le robot surveille, classé par type</td></tr>
+    <tr><td class="mono">/installer</td><td>prépare ou répare le poste, sans rien effacer</td></tr>
+  </tbody>
+</table></div>
+<p class="sous" style="margin-top:14px">Le détail de chaque commande suit.</p>
 
 <div class="cmd star">
   <div class="haut"><h3>Ouvrir le hub marketing</h3><span class="freq">quand vous voulez</span></div>

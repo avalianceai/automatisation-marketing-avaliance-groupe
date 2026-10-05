@@ -141,20 +141,43 @@
   .onglets-pages a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
   .onglets-pages a[aria-current="page"] em { color: var(--fond); opacity: .75; }
   @media print { .onglets-pages { display: none; } }
+  :root { --douce-m: var(--douce); --accent-m: var(--violet); }
+
+  .bandeau { background: #430A4B; border-radius: 12px 12px 0 0; padding: 20px 26px 18px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 26px; }
+  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 6px; }
+
+  /* ══ UN SEUL MENU, UN SEUL SOUS-MENU ══ (Hamada, 05/10 : « je ne veux pas cette pagaille »)
+     Le menu vit dans le bandeau et ne change jamais. Le sous-menu, juste dessous, porte les
+     parties de la page courante. Rien d'autre ne sert a naviguer. */
+  .bandeau .menu { display: flex; gap: 4px; flex-wrap: wrap; }
+  .bandeau .menu a { color: rgba(255,255,255,0.78); text-decoration: none; font-family: "Sora", sans-serif;
+    font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+  .bandeau .menu a:hover { color: #FFFFFF; background: rgba(255,255,255,0.08); }
+  .bandeau .menu a[aria-current="page"] { color: #14101A; background: #AEBF38; font-weight: 600; }
+  .bandeau .marque img { display: block; height: 34px; width: auto; }
+  .sous-menu { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 2px; margin: 0 0 30px;
+    border-bottom: 1px solid var(--trait); padding: 0; }
+  .sous-menu a, .sous-menu button { flex: 0 0 auto; white-space: nowrap; background: none; border: 0;
+    border-bottom: 2px solid transparent; border-radius: 0; margin: 0 0 -1px; padding: 10px 14px;
+    font-family: "Sora", sans-serif; font-size: 14px; font-weight: 400; color: var(--douce-m);
+    text-decoration: none; cursor: pointer; display: block; }
+  .sous-menu a:hover, .sous-menu button:hover { color: var(--encre); }
+  .sous-menu button[aria-selected="true"], .sous-menu a[aria-current="true"] { color: var(--encre);
+    border-bottom-color: var(--accent-m); font-weight: 600; background: none; }
+  .sous-menu button em { display: none; }
+  @media print { .bandeau .menu, .sous-menu { display: none; } }
 </style>
 </head>
 <body>
 <main>
-<p class="surtitre">Schéma d'automatisation du service marketing Avaliance</p>
+<div class="bandeau">
+  <a class="marque" href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/"><img src="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84"></a>
+  <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html" aria-current="page">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html">Guide</a></nav>
+</div>
+<div class="filet"></div>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#comment">Comment ça marche</a><a href="#installation">Les étapes</a></nav>
 <h1 class="titre-page">Installer le poste</h1>
-<nav class="onglets-pages" aria-label="Pages">
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v1"><em>Volet 1</em> Un seul process</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v2"><em>Volet 2</em> Ce qui se regroupe</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v3"><em>Volet 3</em> La chaîne regroupée</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v4"><em>À part</em> Le poste du service</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html" aria-current="page"><em>Page</em> Installation</a>
-  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html"><em>Page</em> Guide</a>
-</nav>
 <h2 id="comment">Comment ça marche</h2>
 <p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
 <div class="schema">

@@ -154,7 +154,7 @@
     font-weight: 600; letter-spacing: -0.005em;
   }
   .bandeau .qui span { color: rgba(255,255,255,0.72); }
-  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 30px; }
+  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 6px; }
 
   body {
     background: var(--fond);
@@ -574,20 +574,26 @@
   @media (prefers-reduced-motion: no-preference) {
     .rond, .boite, .nom, .lien { transition: fill .18s ease, stroke .18s ease, stroke-width .18s ease; }
   }
-  .onglets a.vers-guide {
-    display: flex; align-items: baseline; gap: 10px; text-decoration: none;
-    border: 1px solid var(--commun); background: var(--commun-pale);
-    color: var(--encre); font-size: 14.5px; padding: 11px 17px; border-radius: 10px; margin-left: auto;
-  }
-  .onglets a.vers-guide em { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
-    letter-spacing: .06em; text-transform: uppercase; color: var(--commun); }
-  .onglets a.vers-guide:hover { border-width: 2px; padding: 10px 16px; }
-  @media (max-width: 700px) { .onglets a.vers-guide { margin-left: 0; } }
-  /* SIX BOUTONS SUR UNE LIGNE */
-  .onglets { flex-wrap: nowrap; overflow-x: auto; }
-  .onglets button, .onglets a.vers-guide { flex: 0 0 auto; white-space: nowrap; padding: 9px 13px; font-size: 13.5px; gap: 7px; }
-  .onglets a.vers-guide { margin-left: 0; }
-  .onglets a.vers-guide:hover { border-width: 1px; padding: 9px 13px; border-color: var(--encre); }
+  /* ══ UN SEUL MENU, UN SEUL SOUS-MENU ══ (Hamada, 05/10 : « je ne veux pas cette pagaille »)
+     Le menu vit dans le bandeau et ne change jamais. Le sous-menu, juste dessous, porte les
+     parties de la page courante. Rien d'autre ne sert a naviguer. */
+  .bandeau .menu { display: flex; gap: 4px; flex-wrap: wrap; }
+  .bandeau .menu a { color: rgba(255,255,255,0.78); text-decoration: none; font-family: "Sora", sans-serif;
+    font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+  .bandeau .menu a:hover { color: #FFFFFF; background: rgba(255,255,255,0.08); }
+  .bandeau .menu a[aria-current="page"] { color: #14101A; background: #AEBF38; font-weight: 600; }
+  .bandeau .marque img { display: block; height: 34px; width: auto; }
+  .sous-menu { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 2px; margin: 0 0 30px;
+    border-bottom: 1px solid var(--trait); padding: 0; }
+  .sous-menu a, .onglets.sous-menu button { flex: 0 0 auto; white-space: nowrap; background: none; border: 0;
+    border-bottom: 2px solid transparent; border-radius: 0; margin: 0 0 -1px; padding: 10px 14px;
+    font-family: "Sora", sans-serif; font-size: 14px; font-weight: 400; color: var(--douce-m);
+    text-decoration: none; cursor: pointer; display: block; }
+  .sous-menu a:hover, .sous-menu button:hover { color: var(--encre); }
+  .onglets.sous-menu button[aria-selected="true"], .sous-menu a[aria-current="true"] { color: var(--encre) !important;
+    border-bottom-color: var(--accent-m) !important; font-weight: 600; background: none !important; }
+  .sous-menu button em { display: none; }
+  @media print { .bandeau .menu, .sous-menu { display: none; } }
 </style>
 </head>
 <body>
@@ -623,13 +629,24 @@
 </svg>
 
 <div class="bandeau">
-  <img src="logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84">
-  <div class="qui">
-    <b>Bentaleb Ahmed</b>
-    <span>18 septembre 2026 &middot; note interne</span>
-  </div>
+  <a class="marque" href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/"><img src="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84"></a>
+  <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/" aria-current="page">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html">Guide</a></nav>
 </div>
 <div class="filet"></div>
+<div class="onglets sous-menu" role="tablist" aria-label="Les volets">
+  <button role="tab" id="o1" aria-controls="v1" aria-selected="true">
+    <em>Volet 1</em> Un seul process
+  </button>
+  <button role="tab" id="o2" aria-controls="v2" aria-selected="false">
+    <em>Volet 2</em> Ce qui se regroupe
+  </button>
+  <button role="tab" id="o3" aria-controls="v3" aria-selected="false">
+    <em>Volet 3</em> La chaîne regroupée
+  </button>
+  <button role="tab" id="o4" aria-controls="v4" aria-selected="false">
+    <em>À part</em> Le poste du service
+  </button>
+</div>
 
 <h1>Automatisation du service Marketing Avaliance Groupe</h1>
 <p class="sous">Six comptes, quatorze étapes, un seul process. Trois volets pour trois
@@ -644,22 +661,6 @@ chaîne une fois regroupée.</p>
   <div class="mesure"><b>7</b><span>modules sur mesure, qui portent les 8 restants</span></div>
 </div>
 
-<div class="onglets" role="tablist" aria-label="Les volets">
-  <button role="tab" id="o1" aria-controls="v1" aria-selected="true">
-    <em>Volet 1</em> Un seul process
-  </button>
-  <button role="tab" id="o2" aria-controls="v2" aria-selected="false">
-    <em>Volet 2</em> Ce qui se regroupe
-  </button>
-  <button role="tab" id="o3" aria-controls="v3" aria-selected="false">
-    <em>Volet 3</em> La chaîne regroupée
-  </button>
-  <button role="tab" id="o4" aria-controls="v4" aria-selected="false">
-    <em>À part</em> Le poste du service
-  </button>
-  <a class="vers-guide" href="installation.html"><em>Page</em> Installation</a>
-  <a class="vers-guide" href="guide.html"><em>Page</em> Guide</a>
-</div>
 
 <!-- ══════════════════════════ VOLET 1 ══════════════════════════ -->
 <section class="volet" id="v1" role="tabpanel" aria-labelledby="o1" tabindex="0">
