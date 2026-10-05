@@ -583,6 +583,11 @@
     letter-spacing: .06em; text-transform: uppercase; color: var(--commun); }
   .onglets a.vers-guide:hover { border-width: 2px; padding: 10px 16px; }
   @media (max-width: 700px) { .onglets a.vers-guide { margin-left: 0; } }
+  /* SIX BOUTONS SUR UNE LIGNE */
+  .onglets { flex-wrap: nowrap; overflow-x: auto; }
+  .onglets button, .onglets a.vers-guide { flex: 0 0 auto; white-space: nowrap; padding: 9px 13px; font-size: 13.5px; gap: 7px; }
+  .onglets a.vers-guide { margin-left: 0; }
+  .onglets a.vers-guide:hover { border-width: 1px; padding: 9px 13px; border-color: var(--encre); }
 </style>
 </head>
 <body>
@@ -653,7 +658,7 @@ chaîne une fois regroupée.</p>
     <em>À part</em> Le poste du service
   </button>
   <a class="vers-guide" href="installation.html"><em>Page</em> Installation</a>
-  <a class="vers-guide" href="guide.html" style="margin-left:0"><em>Page</em> Guide</a>
+  <a class="vers-guide" href="guide.html"><em>Page</em> Guide</a>
 </div>
 
 <!-- ══════════════════════════ VOLET 1 ══════════════════════════ -->
@@ -2539,6 +2544,8 @@ aujourd'hui.</footer>
       document.getElementById(o.getAttribute("aria-controls")).hidden = !actif;
     });
   }
+
+  if (/^#v[1-4]$/.test(location.hash)) { ouvrirVolet("v" + location.hash.slice(2)); }
 
   onglets.forEach(function (o) {
     o.addEventListener("click", function () { ouvrirVolet(o.getAttribute("aria-controls")); });

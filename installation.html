@@ -34,7 +34,7 @@
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--fond); color: var(--encre);
          font-family: Sora, system-ui, sans-serif; font-size: 15.5px; line-height: 1.6; }
-  main { max-width: 900px; margin: 0 auto; padding: 32px 16px 80px; }
+  main { max-width: 1200px; margin: 0 auto; padding: 32px 16px 80px; }
   h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 6px; }
   h2 { font-size: 22px; margin: 46px 0 6px; letter-spacing: -0.01em; }
   h2 .n { color: var(--violet); margin-right: 8px; }
@@ -128,11 +128,33 @@
   .barre-haut nav a:hover { border-color: var(--violet); }
   .barre-haut nav a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
   @media print { .barre-haut nav { display: none; } }
+  .surtitre { margin: 0 0 4px; font-size: 13px; color: var(--pale); letter-spacing: .02em; }
+  .titre-page { margin: 0 0 18px; }
+  .onglets-pages { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 6px; margin: 0 0 28px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--trait); }
+  .onglets-pages a { flex: 0 0 auto; white-space: nowrap; display: flex; align-items: baseline; gap: 7px;
+    text-decoration: none; border: 1px solid var(--trait); background: var(--carte); color: var(--douce);
+    font-size: 13.5px; padding: 9px 13px; border-radius: 10px; }
+  .onglets-pages a em { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--pale); }
+  .onglets-pages a:hover { border-color: var(--encre); color: var(--encre); }
+  .onglets-pages a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
+  .onglets-pages a[aria-current="page"] em { color: var(--fond); opacity: .75; }
+  @media print { .onglets-pages { display: none; } }
 </style>
 </head>
 <body>
 <main>
-<header class="barre-haut"><h1>Installer le poste</h1><nav aria-label="Pages"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma directeur</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html" aria-current="page">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html">Guide</a></nav></header>
+<p class="surtitre">Schéma d'automatisation du service marketing Avaliance</p>
+<h1 class="titre-page">Installer le poste</h1>
+<nav class="onglets-pages" aria-label="Pages">
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v1"><em>Volet 1</em> Un seul process</a>
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v2"><em>Volet 2</em> Ce qui se regroupe</a>
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v3"><em>Volet 3</em> La chaîne regroupée</a>
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/#v4"><em>À part</em> Le poste du service</a>
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html" aria-current="page"><em>Page</em> Installation</a>
+  <a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html"><em>Page</em> Guide</a>
+</nav>
 <h2 id="comment">Comment ça marche</h2>
 <p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
 <div class="schema">
