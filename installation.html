@@ -223,33 +223,34 @@
   <div class="bloc">winget install --id Google.Chrome -e --source winget</div>
 </section>
 <section class="etape" data-id="b5">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>3. Connecter GitHub, une fois pour toutes</h3><span class="qui">PowerShell · 3 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Claude installe les agents depuis GitHub sans pouvoir afficher de fenêtre de connexion. On enregistre donc la connexion une fois, ici, pour qu'il ne la redemande plus.</p>
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>3. Connecter GitHub et créer le dossier de travail</h3><span class="qui">PowerShell · 3 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Cette commande copie l'armoire GitHub sur votre PC, dans Documents\Avaliance Marketing. C'est votre dossier de travail, dès maintenant et pour toujours. Elle enregistre aussi votre connexion GitHub, que Claude réutilisera pour installer les agents.</p>
   <p>Une fenêtre GitHub s'ouvre : connectez-vous avec votre compte GitHub.</p>
-  <div class="bloc">git ls-remote https://github.com/avalianceai/automatisation-marketing-avaliance-plugin.git HEAD</div>
-  <p class="attendu"><b>Résultat attendu :</b> une ligne de 40 caractères suivie de HEAD.</p>
+  <div class="bloc">git clone https://github.com/avalianceai/ava-marketing.git "$HOME\Documents\Avaliance Marketing"</div>
+  <p class="attendu"><b>Résultat attendu :</b> Cloning into ... done. Le dossier Avaliance Marketing apparaît dans Documents.</p>
   <p>Puis :</p>
   <div class="bloc">setx CLAUDE_CODE_PLUGIN_PREFER_HTTPS 1</div>
   <p class="attendu"><b>Résultat attendu :</b> SUCCESS: Specified value was saved.</p>
 </section>
 <section class="etape" data-id="b6">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>4. Installer Claude et ouvrir une première session</h3><span class="qui">navigateur puis Claude · 7 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Claude est l'application dans laquelle vous travaillerez. On y parle dans une <b>session</b> : une conversation ouverte sur un dossier de votre PC. L'onglet Code est celui qui sait utiliser les agents.</p>
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>4. Installer Claude et ouvrir votre session de travail</h3><span class="qui">navigateur puis Claude · 7 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Claude est l'application dans laquelle vous travaillerez. On y parle dans une <b>session</b> : une conversation ouverte sur un dossier de votre PC. Les agents travaillent dans ce dossier : c'est là qu'ils trouvent les chartes et les sujets. L'onglet Code est celui qui sait utiliser les agents.</p>
   <p>Téléchargez et installez Claude depuis cette adresse, puis connectez-vous avec votre compte Claude Pro.</p>
   <div class="bloc">https://claude.com/download</div>
-  <div class="ici"><b>Ouvrir une session, pas à pas :</b>
+  <div class="ici"><b>Ouvrir la session de travail, pas à pas :</b>
     <ol>
       <li>En haut de la fenêtre Claude, cliquez sur l'onglet <b>Code</b>.</li>
       <li>Cliquez sur <b>Nouvelle session</b>.</li>
-      <li>Claude demande un dossier : choisissez le <b>Bureau</b> (pour l'installation seulement).</li>
-      <li>En bas de l'écran apparaît la zone où l'on écrit : c'est là que vous taperez les commandes de l'étape suivante.</li>
+      <li>Claude demande un dossier : choisissez <b>Documents</b>, puis <b>Avaliance Marketing</b> (créé à l'étape 3).</li>
+      <li>En bas de l'écran apparaît la zone où l'on écrit : c'est là que vous taperez toutes les commandes, aujourd'hui et chaque jour.</li>
     </ol>
   </div>
+  <div class="bloc">Documents\Avaliance Marketing</div>
 </section>
 <section class="etape" data-id="b7">
   <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>5. Installer les agents</h3><span class="qui">Claude, onglet Code · 3 min</span></div>
   <p class="pourquoi"><b>Pourquoi :</b> On installe le paquet d'agents d'Avaliance : le rédacteur en chef, le rédacteur, le maquettiste, le contrôleur, et les commandes. Ils ne contiennent aucune société : ce sont des méthodes. Ils s'installent une fois pour toutes dans Claude, et serviront dans toutes vos sessions.</p>
-  <div class="ici"><b>Où taper :</b> dans la session ouverte à l'étape 4 (sur le Bureau), dans la zone d'écriture en bas. Collez une commande, appuyez sur Entrée, attendez la réponse, puis passez à la suivante.</div>
+  <div class="ici"><b>Où taper :</b> dans la session ouverte à l'étape 4 (sur Documents\Avaliance Marketing), dans la zone d'écriture en bas. Collez une commande, appuyez sur Entrée, attendez la réponse, puis passez à la suivante.</div>
   <div class="bloc">/plugin marketplace add avalianceai/automatisation-marketing-avaliance-plugin</div>
   <p class="attendu"><b>Résultat attendu :</b> Successfully added marketplace: avaliance-marketing</p>
   <div class="bloc">/plugin install automatisation-marketing-avaliance@avaliance-marketing</div>
@@ -261,23 +262,17 @@
 </section>
 <section class="etape" data-id="b8">
   <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>6. Préparer le poste</h3><span class="qui">Claude, même session · 5 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Les agents sont là, mais pas encore les dossiers des sociétés. Cette commande copie l'armoire sur votre PC, dans Documents\Avaliance Marketing, et vérifie que tout répond, visuel compris.</p>
-  <div class="ici"><b>Où taper :</b> toujours dans la même session (celle du Bureau). Quand Claude demande d'autoriser la séance à écrire, répondez Oui.</div>
+  <p class="pourquoi"><b>Pourquoi :</b> Les agents sont installés. Cette commande vérifie que tout répond : l'accès à l'armoire, le dossier de travail, la fabrication des visuels.</p>
+  <div class="ici"><b>Où taper :</b> toujours dans la même session. Quand Claude demande d'autoriser la séance à écrire, répondez Oui.</div>
   <div class="bloc">/installer</div>
   <p class="attendu"><b>Résultat attendu :</b> prêt : tapez /societe docdialy pour voir la société, puis /publier docdialy</p>
 </section>
 <section class="etape" data-id="b9">
-  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>7. Ouvrir votre session de travail, celle de tous les jours</h3><span class="qui">Claude · 1 min</span></div>
-  <p class="pourquoi"><b>Pourquoi :</b> Les agents travaillent dans le dossier sur lequel la session est ouverte. Ce dossier est votre copie de l'armoire : c'est là qu'ils trouvent les chartes et les sujets. La session du Bureau ne servait qu'à installer : vous pouvez la fermer.</p>
-  <div class="ici"><b>Ouvrir la session de travail :</b>
-    <ol>
-      <li>Onglet <b>Code</b>, puis <b>Nouvelle session</b>.</li>
-      <li>Comme dossier, choisissez <b>Documents</b>, puis <b>Avaliance Marketing</b> (le chemin est ci-dessous).</li>
-      <li>Tapez <span class="mono">/societe docdialy</span> pour voir la société, puis <span class="mono">/publier docdialy</span> pour la première publication.</li>
-    </ol>
-  </div>
-  <div class="bloc">Documents\Avaliance Marketing</div>
-  <p class="attendu"><b>Chaque matin ensuite :</b> ouvrez Claude, onglet Code, et reprenez une session sur ce dossier. Toutes les commandes du guide se tapent là.</p>
+  <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>7. Première société, première publication</h3><span class="qui">Claude, même session · 40 min</span></div>
+  <p class="pourquoi"><b>Pourquoi :</b> Tout est installé. On regarde d'abord ce qu'on sait de Docdialy, puis on lance la première séance de publication.</p>
+  <div class="ici"><b>Où taper :</b> toujours dans la même session, ouverte sur Documents\Avaliance Marketing. Chaque matin ensuite : ouvrez Claude, onglet Code, et reprenez une session sur ce dossier.</div>
+  <div class="bloc">/societe docdialy</div>
+  <div class="bloc">/publier docdialy</div>
 </section>
 <footer>Automatisation du service marketing Avaliance, version du 6 octobre 2026.</footer>
 </main>
