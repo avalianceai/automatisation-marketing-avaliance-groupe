@@ -574,6 +574,15 @@
   @media (prefers-reduced-motion: no-preference) {
     .rond, .boite, .nom, .lien { transition: fill .18s ease, stroke .18s ease, stroke-width .18s ease; }
   }
+  .onglets a.vers-guide {
+    display: flex; align-items: baseline; gap: 10px; text-decoration: none;
+    border: 1px solid var(--commun); background: var(--commun-pale);
+    color: var(--encre); font-size: 14.5px; padding: 11px 17px; border-radius: 10px; margin-left: auto;
+  }
+  .onglets a.vers-guide em { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--commun); }
+  .onglets a.vers-guide:hover { border-width: 2px; padding: 10px 16px; }
+  @media (max-width: 700px) { .onglets a.vers-guide { margin-left: 0; } }
 </style>
 </head>
 <body>
@@ -643,6 +652,7 @@ chaîne une fois regroupée.</p>
   <button role="tab" id="o4" aria-controls="v4" aria-selected="false">
     <em>À part</em> Le poste du service
   </button>
+  <a class="vers-guide" href="guide.html"><em>Guide</em> Installer et utiliser le poste</a>
 </div>
 
 <!-- ══════════════════════════ VOLET 1 ══════════════════════════ -->
