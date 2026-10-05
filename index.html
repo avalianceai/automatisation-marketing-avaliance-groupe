@@ -1872,6 +1872,130 @@ serveur n'est remise.</p>
 séance écrit la liste des sources dans le dépôt, le serveur relit et ratisse, les sujets
 reviennent dans le dépôt, et sa séance les lui présente.</div>
 
+<h3 class="section">Où vivent les agents, où vivent les chartes</h3>
+<p>Deux choses s'installent sur le PC du service, et il ne faut pas les confondre. Le plugin
+apporte les agents : ce sont des méthodes, les mêmes pour toutes les sociétés, et aucune
+société n'est écrite dedans. Le dépôt de travail apporte les chartes : un dossier par société,
+que les agents lisent et complètent. Un seul agent de ligne éditoriale sert donc toutes les
+sociétés, et c'est le nom qu'on lui donne qui décide dans quel dossier il écrit.</p>
+
+<div class="tableau" style="border:none">
+<svg viewBox="0 0 1200 620" role="img" style="width:100%;min-width:780px;display:block"
+     aria-label="Le plugin contient les agents, le depot contient un dossier par societe avec ses chartes, le serveur ratisse">
+  <defs>
+    <marker id="v4b-fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--encre-douce)"/>
+    </marker>
+  </defs>
+  <g font-family="Sora, sans-serif">
+
+    <!-- LE PLUGIN -->
+    <rect x="20" y="40" width="440" height="560" rx="16" fill="var(--commun-pale)" stroke="var(--commun)" stroke-width="1.5"/>
+    <text x="40" y="72" font-size="17" font-weight="700" fill="var(--commun)">LE PLUGIN</text>
+    <text x="40" y="94" font-size="13" fill="var(--encre-douce)">installé une fois, le même pour toutes les sociétés</text>
+
+    <text x="40" y="132" font-size="11" letter-spacing="1.1" fill="var(--encre-pale)">FABRIQUENT LES CHARTES, UNE FOIS PAR SOCIÉTÉ</text>
+    <rect x="40" y="142" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="167" font-size="14" font-weight="600" fill="var(--encre)">ligne éditoriale</text>
+    <text x="424" y="167" font-size="12" text-anchor="end" fill="var(--encre-douce)">écrit la voix</text>
+    <rect x="40" y="190" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="215" font-size="14" font-weight="600" fill="var(--encre)">charte graphique</text>
+    <text x="424" y="215" font-size="12" text-anchor="end" fill="var(--encre-douce)">écrit l'identité visuelle</text>
+
+    <text x="40" y="268" font-size="11" letter-spacing="1.1" fill="var(--encre-pale)">FONT LA PUBLICATION DU JOUR</text>
+    <rect x="40" y="278" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="303" font-size="14" font-weight="600" fill="var(--encre)">rédacteur en chef</text>
+    <text x="424" y="303" font-size="12" text-anchor="end" fill="var(--encre-douce)">trie les sujets</text>
+    <rect x="40" y="326" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="351" font-size="14" font-weight="600" fill="var(--encre)">rédacteur</text>
+    <text x="424" y="351" font-size="12" text-anchor="end" fill="var(--encre-douce)">propose les textes</text>
+    <rect x="40" y="374" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="399" font-size="14" font-weight="600" fill="var(--encre)">maquettiste</text>
+    <text x="424" y="399" font-size="12" text-anchor="end" fill="var(--encre-douce)">propose le visuel</text>
+    <rect x="40" y="422" width="400" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--commun)"/>
+    <text x="56" y="447" font-size="14" font-weight="600" fill="var(--encre)">directeur de publication</text>
+    <text x="424" y="447" font-size="12" text-anchor="end" fill="var(--encre-douce)">contrôle preuves et interdits</text>
+
+    <text x="40" y="504" font-size="11" letter-spacing="1.1" fill="var(--encre-pale)">LES COMMANDES QU'ELLE TAPE</text>
+    <g font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--encre)">
+      <text x="40" y="532">/installer    /societe docdialy    /sources</text>
+      <text x="40" y="558">/nouvelle-societe   /ligne-editoriale   /charte</text>
+    </g>
+
+    <!-- LE DEPOT -->
+    <rect x="740" y="40" width="440" height="560" rx="16" fill="var(--mesure-pale)" stroke="var(--mesure)" stroke-width="1.5"/>
+    <text x="760" y="72" font-size="17" font-weight="700" fill="var(--mesure)">LE DÉPÔT DE TRAVAIL</text>
+    <text x="760" y="94" font-size="13" fill="var(--encre-douce)">un dossier par société, cloné sur son PC</text>
+
+    <rect x="760" y="116" width="400" height="320" rx="10" fill="var(--fond-noeud)" stroke="var(--mesure)" stroke-width="1.5"/>
+    <text x="778" y="144" font-size="15" font-weight="700" fill="var(--encre)">docdialy</text>
+    <g font-size="12.5">
+      <text x="778" y="180" font-family="IBM Plex Mono, monospace" fill="var(--encre)">voix.md</text>
+      <text x="1144" y="180" text-anchor="end" font-weight="600" fill="var(--mesure)">charte éditoriale</text>
+      <text x="778" y="214" font-family="IBM Plex Mono, monospace" fill="var(--encre)">charte.md · gabarits/</text>
+      <text x="1144" y="214" text-anchor="end" font-weight="600" fill="var(--mesure)">charte graphique</text>
+      <text x="778" y="248" font-family="IBM Plex Mono, monospace" fill="var(--encre)">sources.tsv · metier.txt</text>
+      <text x="1144" y="248" text-anchor="end" fill="var(--encre-douce)">ce que le serveur ratisse</text>
+      <text x="778" y="282" font-family="IBM Plex Mono, monospace" fill="var(--encre)">preuves.md · interdits.md</text>
+      <text x="1144" y="282" text-anchor="end" fill="var(--encre-douce)">ce qu'on a le droit de dire</text>
+    </g>
+    <line x1="778" y1="304" x2="1144" y2="304" stroke="var(--trait)"/>
+    <text x="778" y="334" font-size="12.5" font-family="IBM Plex Mono, monospace" fill="var(--encre)">missions/docdialy/</text>
+    <text x="1144" y="334" font-size="12.5" text-anchor="end" fill="var(--encre-douce)">le travail du jour</text>
+    <text x="778" y="364" font-size="12" fill="var(--encre-douce)">sujets, puis angles, puis textes, puis visuels,</text>
+    <text x="778" y="384" font-size="12" fill="var(--encre-douce)">puis le dossier « prêt » qu'elle publie à la main</text>
+
+    <g font-size="13" font-weight="600" fill="var(--encre)" text-anchor="middle">
+      <rect x="760" y="452" width="195" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--trait)"/>
+      <text x="857" y="477">avaliance</text>
+      <rect x="965" y="452" width="195" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--trait)"/>
+      <text x="1062" y="477">shifaa</text>
+      <rect x="760" y="500" width="195" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--trait)"/>
+      <text x="857" y="525">vistapp</text>
+      <rect x="965" y="500" width="195" height="40" rx="8" fill="var(--fond-noeud)" stroke="var(--trait)" stroke-dasharray="5 4"/>
+      <text x="1062" y="525" font-weight="400" fill="var(--encre-douce)">la suivante</text>
+    </g>
+    <text x="960" y="576" font-size="12" text-anchor="middle" fill="var(--encre-pale)">même jeu de fichiers pour chaque société</text>
+
+    <!-- LES FLECHES -->
+    <g fill="none" stroke="var(--encre-douce)" stroke-width="1.5" marker-end="url(#v4b-fl)">
+      <path d="M440,162 C600,162 620,176 772,176"/>
+      <path d="M440,210 C600,210 620,210 772,210"/>
+      <path d="M440,370 C600,370 620,330 758,330"/>
+    </g>
+    <path d="M448,282 L456,282 L456,458 L448,458" fill="none" stroke="var(--encre-douce)" stroke-width="1.5"/>
+    <g font-size="12" fill="var(--encre-douce)" text-anchor="middle">
+      <text x="600" y="156">écrit</text>
+      <text x="600" y="203">écrit</text>
+      <text x="600" y="342">lisent la charte,</text>
+      <text x="600" y="358">écrivent le travail du jour</text>
+    </g>
+
+    <!-- LE SERVEUR -->
+    <rect x="500" y="470" width="200" height="96" rx="12" fill="var(--fond-carte)" stroke="var(--trait)" stroke-dasharray="5 4"/>
+    <text x="600" y="498" font-size="14" font-weight="700" text-anchor="middle" fill="var(--encre)">LE SERVEUR</text>
+    <text x="600" y="520" font-size="12" text-anchor="middle" fill="var(--encre-douce)">ratisse toute la journée</text>
+    <text x="600" y="540" font-size="12" text-anchor="middle" fill="var(--encre-douce)">sans IA, sans accès pour elle</text>
+    <path d="M700,500 C730,500 730,260 758,252" fill="none" stroke="var(--encre-pale)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#v4b-fl)"/>
+    <text x="712" y="440" font-size="11.5" fill="var(--encre-pale)" transform="rotate(-90 712 440)">lit les sources, dépose les sujets</text>
+  </g>
+</svg>
+</div>
+
+<div class="tableau">
+<table>
+  <thead><tr><th>Geste</th><th>Commande</th><th>Ce qui arrive</th></tr></thead>
+  <tbody>
+    <tr><td>Installer les agents</td><td class="num">/plugin install</td><td>les six agents et les commandes, une fois pour toutes</td></tr>
+    <tr><td>Récupérer les chartes</td><td class="num">/installer</td><td>le dépôt, avec le dossier de chaque société</td></tr>
+    <tr><td>Créer une société</td><td class="num">/nouvelle-societe shifaa</td><td>la ligne éditoriale écrit sa voix, puis la charte graphique son identité</td></tr>
+    <tr><td>Corriger une charte</td><td class="num">/ligne-editoriale docdialy<br>/charte docdialy</td><td>l'agent reprend le dossier de cette société, et lui seul</td></tr>
+    <tr><td>Ajouter une source</td><td class="num">/sources docdialy</td><td>le site entre dans sa liste, le serveur le ratisse au tour suivant</td></tr>
+    <tr><td>Publier</td><td class="num">/societe docdialy</td><td>la chaîne du jour, avec ses trois validations</td></tr>
+  </tbody>
+</table>
+</div>
+
 <h3 class="section">Une séance par société</h3>
 <p>Chaque société a sa voix et sa charte graphique, et aucune machine commune ne les remplace.
 Deux postes les fabriquent une fois par société : la ligne éditoriale écrit la voix, la charte
