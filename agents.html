@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Carte des agents</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --fond: #FFFFFF; --carte: #F7F7F8; --trait: #DDDCE0;
+    --encre: #212529; --douce: #5D5D5D; --pale: #8E8D94;
+    --violet: #430A4B; --violet-pale: #F1E9F3; --vert: #1E5B3A; --vert-pale: #E8F3EC;
+    --orange: #C2600B; --orange-pale: #FBF1E6; --rouge: #A93226;
+    --code: #16161A; --code-encre: #F2F2F4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fond: #0E0E11; --carte: #16161A; --trait: #34343C;
+      --encre: #F2F2F4; --douce: #A9A8B2; --pale: #6E6D77;
+      --violet: #C9A6D4; --violet-pale: #1F1726; --vert: #6FCF97; --vert-pale: #12221A;
+      --orange: #FB923C; --orange-pale: #241A11; --rouge: #F87171;
+      --code: #000000; --code-encre: #F2F2F4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fond: #0E0E11; --carte: #16161A; --trait: #34343C;
+    --encre: #F2F2F4; --douce: #A9A8B2; --pale: #6E6D77;
+    --violet: #C9A6D4; --violet-pale: #1F1726; --vert: #6FCF97; --vert-pale: #12221A;
+    --orange: #FB923C; --orange-pale: #241A11; --rouge: #F87171;
+    --code: #000000; --code-encre: #F2F2F4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--encre);
+         font-family: Sora, system-ui, sans-serif; font-size: 15.5px; line-height: 1.6; }
+  main { max-width: 1200px; margin: 0 auto; padding: 32px 16px 80px; }
+  h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font-size: 22px; margin: 46px 0 6px; letter-spacing: -0.01em; }
+  h2 .n { color: var(--violet); margin-right: 8px; }
+  .chapo { color: var(--douce); margin: 0 0 18px; max-width: 70ch; }
+  .sous { color: var(--douce); margin: 0 0 16px; max-width: 72ch; }
+  nav.sommaire { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+  nav.sommaire a { font-size: 13.5px; text-decoration: none; color: var(--encre); border: 1px solid var(--trait);
+                   background: var(--carte); padding: 6px 12px; border-radius: 20px; }
+
+  .resume { background: var(--violet-pale); border-left: 4px solid var(--violet); border-radius: 10px;
+            padding: 16px 18px; font-size: 16px; }
+  .resume b { color: var(--violet); }
+
+  .schema { border: 1px solid var(--trait); border-radius: 12px; padding: 14px; overflow-x: auto; margin: 12px 0; }
+  .schema svg { display: block; width: 100%; min-width: 620px; }
+
+  .cmd { border: 1px solid var(--trait); border-radius: 14px; margin: 16px 0; overflow: hidden; }
+  .cmd .haut { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;
+               padding: 14px 18px; background: var(--carte); border-bottom: 1px solid var(--trait); }
+  .cmd .haut h3 { margin: 0; font-size: 17px; }
+  .cmd .freq { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--pale); }
+  .cmd .corps { padding: 6px 18px 16px; }
+  .cmd .corps p { margin: 10px 0 0; color: var(--douce); }
+  .cmd .corps b { color: var(--encre); }
+  .cmd.star { border-color: var(--violet); border-width: 2px; }
+  .cmd.star .haut { background: var(--violet-pale); }
+
+  .bloc { position: relative; margin: 10px 0 0; background: var(--code); color: var(--code-encre);
+          border-radius: 8px; padding: 12px 92px 12px 14px; font-family: "IBM Plex Mono", monospace;
+          font-size: 14px; white-space: pre-wrap; word-break: break-all; }
+  .bloc button { position: absolute; top: 8px; right: 8px; font: 600 12.5px Sora, sans-serif;
+                 background: #FFFFFF; color: #212529; border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+  .bloc button.ok { background: #6FCF97; }
+
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 12px; }
+  .grille div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--douce); }
+  .grille b { display: block; color: var(--encre); font-size: 15px; margin-bottom: 4px; }
+  .grille .tag { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+                 text-transform: uppercase; margin-bottom: 6px; }
+  .tag.fab { color: var(--orange); } .tag.jour { color: var(--violet); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--pale); }
+  .tab { overflow-x: auto; }
+  code, .mono { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; }
+  .v { color: var(--vert); font-weight: 600; } .o { color: var(--orange); font-weight: 600; } .r { color: var(--rouge); font-weight: 600; }
+  .regle { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--trait); }
+  .regle b { min-width: 30px; color: var(--violet); }
+  footer { margin-top: 50px; color: var(--pale); font-size: 13px; }
+  @media print {
+    nav.sommaire, .bloc button { display: none; }
+    .cmd, .schema, .regle { break-inside: avoid; }
+    h2 { break-after: avoid; }
+  }
+
+  .etape { border: 1px solid var(--trait); border-radius: 12px; padding: 16px 18px; margin: 14px 0; background: var(--fond); }
+  .etape.faite { opacity: .55; }
+  .tete { display: flex; align-items: flex-start; gap: 12px; }
+  .tete input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--vert); flex: 0 0 auto; cursor: pointer; }
+  .tete h3 { margin: 0; font-size: 16.5px; flex: 1; }
+  .qui { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--pale); white-space: nowrap; }
+  .etape > p, .etape > .bloc { margin-left: 34px; }
+  .etape > p { margin-top: 8px; margin-bottom: 0; color: var(--douce); }
+  .etape > p.attendu { font-size: 13.5px; color: var(--vert); }
+  .etape > p.pourquoi { padding: 8px 12px; border-radius: 8px; background: var(--carte); font-size: 14px; color: var(--encre); }
+  .pourquoi b { color: var(--violet); font-weight: 600; }
+  .partie { margin: 54px 0 6px; padding: 18px 20px; border-radius: 14px; background: var(--violet-pale); border-left: 5px solid var(--violet); }
+  .partie.inst { background: var(--orange-pale); border-left-color: var(--orange); }
+  .partie h2 { margin: 0; font-size: 24px; }
+  .partie p { margin: 4px 0 0; color: var(--douce); }
+  .avance { position: sticky; top: 0; z-index: 5; background: var(--fond); padding: 8px 0 10px; border-bottom: 1px solid var(--trait); }
+  .avance .barre { height: 8px; background: var(--carte); border-radius: 4px; overflow: hidden; border: 1px solid var(--trait); }
+  .avance .plein { height: 100%; width: 0; background: var(--vert); transition: width .2s; }
+  .avance .txt { font-size: 13px; color: var(--douce); margin-top: 5px; }
+  .trois { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 12px 0 0; }
+  .trois div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--douce); }
+  .trois b { display: block; color: var(--encre); font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 560px) { .etape > p, .etape > .bloc { margin-left: 0; } }
+  @media print { .avance, .tete input { display: none; } .etape { break-inside: avoid; opacity: 1 !important; } .partie { break-before: page; } }
+  .ici { margin: 10px 0 0 34px; border: 2px solid var(--orange); border-radius: 10px; padding: 10px 14px; background: var(--orange-pale); font-size: 14.5px; }
+  .ici b { color: var(--orange); }
+  .ici ol { margin: 6px 0 0; padding-left: 20px; }
+  @media (max-width: 560px) { .ici { margin-left: 0; } }
+  .barre-haut { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    flex-wrap: wrap; margin: 0 0 26px; padding-bottom: 16px; border-bottom: 1px solid var(--trait); }
+  .barre-haut h1 { margin: 0; }
+  .barre-haut nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .barre-haut nav a { text-decoration: none; font-size: 14px; color: var(--encre); border: 1px solid var(--trait);
+    background: var(--carte); padding: 8px 14px; border-radius: 10px; }
+  .barre-haut nav a:hover { border-color: var(--violet); }
+  .barre-haut nav a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
+  @media print { .barre-haut nav { display: none; } }
+  .surtitre { margin: 0 0 4px; font-size: 13px; color: var(--pale); letter-spacing: .02em; }
+  .titre-page { margin: 0 0 18px; }
+  .onglets-pages { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 6px; margin: 0 0 28px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--trait); }
+  .onglets-pages a { flex: 0 0 auto; white-space: nowrap; display: flex; align-items: baseline; gap: 7px;
+    text-decoration: none; border: 1px solid var(--trait); background: var(--carte); color: var(--douce);
+    font-size: 13.5px; padding: 9px 13px; border-radius: 10px; }
+  .onglets-pages a em { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--pale); }
+  .onglets-pages a:hover { border-color: var(--encre); color: var(--encre); }
+  .onglets-pages a[aria-current="page"] { background: var(--violet); border-color: var(--violet); color: var(--fond); }
+  .onglets-pages a[aria-current="page"] em { color: var(--fond); opacity: .75; }
+  @media print { .onglets-pages { display: none; } }
+  :root { --douce-m: var(--douce); --accent-m: var(--violet); }
+
+  .bandeau { background: #430A4B; border-radius: 12px 12px 0 0; padding: 20px 26px 18px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 26px; }
+  .filet { height: 5px; background: #AEBF38; border-radius: 0 0 3px 3px; margin: 0 0 6px; }
+
+  /* ══ UN SEUL MENU, UN SEUL SOUS-MENU ══ (Hamada, 05/10 : « je ne veux pas cette pagaille »)
+     Le menu vit dans le bandeau et ne change jamais. Le sous-menu, juste dessous, porte les
+     parties de la page courante. Rien d'autre ne sert a naviguer. */
+  .bandeau .menu { display: flex; gap: 4px; flex-wrap: wrap; }
+  .bandeau .menu a { color: rgba(255,255,255,0.78); text-decoration: none; font-family: "Sora", sans-serif;
+    font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+  .bandeau .menu a:hover { color: #FFFFFF; background: rgba(255,255,255,0.08); }
+  .bandeau .menu a[aria-current="page"] { color: #14101A; background: #AEBF38; font-weight: 600; }
+  .bandeau .marque img { display: block; height: 34px; width: auto; }
+  .sous-menu { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 2px; margin: 0 0 30px;
+    border-bottom: 1px solid var(--trait); padding: 0; }
+  .sous-menu a, .sous-menu button { flex: 0 0 auto; white-space: nowrap; background: none; border: 0;
+    border-bottom: 2px solid transparent; border-radius: 0; margin: 0 0 -1px; padding: 10px 14px;
+    font-family: "Sora", sans-serif; font-size: 14px; font-weight: 400; color: var(--douce-m);
+    text-decoration: none; cursor: pointer; display: block; }
+  .sous-menu a:hover, .sous-menu button:hover { color: var(--encre); }
+  .sous-menu button[aria-selected="true"], .sous-menu a[aria-current="true"] { color: var(--encre);
+    border-bottom-color: var(--accent-m); font-weight: 600; background: none; }
+  .sous-menu button em { display: none; }
+  @media print { .bandeau .menu, .sous-menu { display: none; } }
+  table.recap td.mono { white-space: nowrap; font-weight: 500; color: var(--encre); }
+  .famille { margin: 46px 0 8px; }
+  .famille h2 { margin: 0 0 4px; font-size: 22px; }
+  .famille p { margin: 0; color: var(--douce); max-width: 80ch; }
+  .carte-svg { border: 1px solid var(--trait); border-radius: 12px; padding: 14px; overflow-x: auto; margin: 12px 0; }
+  .carte-svg svg { display: block; width: 100%; min-width: 760px; }
+  .agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 10px 0 0; }
+  .agents > div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--douce); }
+  .agents b { display: block; color: var(--encre); font-size: 15px; margin-bottom: 4px; }
+  .agents .lig { margin-top: 6px; font-size: 13px; }
+  .agents .lig span { color: var(--encre); font-family: "IBM Plex Mono", monospace; font-size: 12.5px; }
+  .legende { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--douce); margin: 4px 0 0; }
+  .legende i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<main>
+<div class="bandeau">
+  <a class="marque" href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/"><img src="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/logo-avaliance-blanc.png" alt="Avaliance" width="364" height="84"></a>
+  <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/agents.html" aria-current="page">Agents</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html">Guide</a></nav>
+</div>
+<div class="filet"></div>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#carte">La carte</a><a href="#preparer">Préparer une société</a><a href="#alimenter">Les sources et le robot</a><a href="#publier">Publier</a><a href="#suivre">Suivre</a></nav>
+<h1 class="titre-page">La carte des agents</h1>
+
+<section class="famille" id="carte"><h2>La carte</h2>
+<p>Quatre familles, dans l'ordre où on s'en sert : on prépare une société, on lui donne des sources, on publie, on suit.</p></section>
+<div class="carte-svg"><svg viewBox="0 0 1000 200" role="img" aria-label="Les quatre familles : preparer, alimenter, publier, suivre"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs><g font-family="Sora, sans-serif" text-anchor="middle"><text x="115" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">1. PRÉPARER</text><text x="375" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">2. ALIMENTER</text><text x="635" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">3. PUBLIER</text><text x="885" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">4. SUIVRE</text><rect x="20" y="40" width="190" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="115" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Une société</text><text x="115" y="90" font-size="11.5" fill="var(--douce)">sa voix, sa charte</text><rect x="280" y="40" width="190" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="375" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Ses sources</text><text x="375" y="90" font-size="11.5" fill="var(--douce)">ce que le robot lit</text><rect x="540" y="40" width="190" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="635" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Une publication</text><text x="635" y="90" font-size="11.5" fill="var(--douce)">texte + image</text><rect x="790" y="40" width="190" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="885" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">L&#x27;état</text><text x="885" y="90" font-size="11.5" fill="var(--douce)">hub, fiche société</text><path d="M212,75 C245,75 245,75 278,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M472,75 C505,75 505,75 538,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M732,75 C760,75 760,75 788,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><rect x="20" y="135" width="190" height="46" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="115" y="156" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/nouvelle-societe</text><text x="115" y="173" font-size="11.5" fill="var(--douce)">/voix · /charte</text><rect x="280" y="135" width="190" height="46" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="375" y="156" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/sources</text><text x="375" y="173" font-size="11.5" fill="var(--douce)">/tester-source · /source-list</text><rect x="540" y="135" width="190" height="46" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="635" y="156" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/publier</text><text x="635" y="173" font-size="11.5" fill="var(--douce)">/full-auto · /full-auto-off</text><rect x="790" y="135" width="190" height="46" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="885" y="156" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/hub-marketing</text><text x="885" y="173" font-size="11.5" fill="var(--douce)">/societe</text></g></svg></div><div class="legende"><span><i style="background:var(--violet-pale);border:2px solid var(--violet)"></i>ce que vous tapez ou dites</span>
+<span><i style="border:1.6px solid var(--encre)"></i>un agent</span><span><i style="background:var(--orange-pale);border:2px solid var(--orange)"></i>ce que vous faites</span>
+<span><i style="border:1.5px dashed var(--pale)"></i>un dossier ou le robot</span><span><i style="background:var(--vert-pale);border:2px solid var(--vert)"></i>le résultat</span></div>
+<section class="famille" id="preparer"><h2>1. Préparer une société</h2>
+<p>Deux agents, une fois par société. Ils vous posent des questions et écrivent le dossier de la société. Tous les autres agents le lisent ensuite.</p></section>
+<div class="carte-svg"><svg viewBox="0 0 1000 340" role="img" aria-label="Preparer une societe"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs><g font-family="Sora, sans-serif" text-anchor="middle"><text x="110" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">VOUS DITES</text><text x="390" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">L'AGENT</text><text x="690" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">VOUS RÉPONDEZ</text><text x="900" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">IL ÉCRIT</text><rect x="10" y="60" width="200" height="56" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="86" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/nouvelle-societe</text><text x="110" y="103" font-size="11.5" fill="var(--douce)">enchaîne les deux</text><rect x="10" y="160" width="200" height="50" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="183" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/voix</text><text x="110" y="200" font-size="11.5" fill="var(--douce)">reprendre la voix</text><rect x="10" y="240" width="200" height="50" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="263" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/charte</text><text x="110" y="280" font-size="11.5" fill="var(--douce)">reprendre la charte</text><rect x="290" y="150" width="200" height="64" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="390" y="180" font-size="13.5" font-weight="700" fill="var(--encre)">Agent Voix</text><text x="390" y="197" font-size="11.5" fill="var(--douce)">l&#x27;entretien éditorial</text><rect x="290" y="240" width="200" height="64" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="390" y="270" font-size="13.5" font-weight="700" fill="var(--encre)">Agent Charte</text><text x="390" y="287" font-size="11.5" fill="var(--douce)">l&#x27;identité visuelle</text><rect x="590" y="150" width="200" height="64" rx="10" fill="var(--orange-pale)" stroke="var(--orange)" stroke-width="2"/><text x="690" y="180" font-size="13.5" font-weight="700" fill="var(--encre)">Vos réponses</text><text x="690" y="197" font-size="11.5" fill="var(--douce)">ton, cibles, interdits</text><rect x="590" y="240" width="200" height="64" rx="10" fill="var(--orange-pale)" stroke="var(--orange)" stroke-width="2"/><text x="690" y="270" font-size="13.5" font-weight="700" fill="var(--encre)">Vos fichiers</text><text x="690" y="287" font-size="11.5" fill="var(--douce)">logo, couleurs</text><rect x="830" y="140" width="160" height="84" rx="10" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="5 4"/><text x="910" y="180" font-size="13.5" font-weight="700" fill="var(--encre)">reference/</text><text x="910" y="197" font-size="11.5" fill="var(--douce)">voix · interdits · preuves</text><rect x="830" y="236" width="160" height="84" rx="10" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="5 4"/><text x="910" y="276" font-size="13.5" font-weight="700" fill="var(--encre)">gabarits/</text><text x="910" y="293" font-size="11.5" fill="var(--douce)">charte · logo · modèles</text><path d="M212,88 C250,88 250,175 288,175" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,88 C250,88 250,265 288,265" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,185 C250,185 250,182 288,182" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,265 C250,265 250,272 288,272" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M492,182 C540,182 540,182 588,182" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="540" y="176" font-size="11" fill="var(--douce)">questions</text><path d="M492,272 C540,272 540,272 588,272" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="540" y="266" font-size="11" fill="var(--douce)">questions</text><path d="M792,182 C810,182 810,182 828,182" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M792,272 C810,272 810,278 828,278" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/></g></svg></div><div class="agents"><div><b>Agent Voix</b>Mène l'entretien : à qui on parle, sur quel ton, ce qu'on ne dit jamais, quels faits on peut citer.<div class="lig">Appelé par <span>/voix · /nouvelle-societe</span></div><div class="lig">Écrit dans <span>reference/&lt;société&gt;/</span></div></div><div><b>Agent Charte</b>Relève les couleurs, les polices et le logo, mesure la lisibilité, prépare les modèles de visuels.<div class="lig">Appelé par <span>/charte · /nouvelle-societe</span></div><div class="lig">Écrit dans <span>reference/&lt;société&gt;/charte.md · gabarits/&lt;société&gt;/</span></div></div></div>
+<section class="famille" id="alimenter"><h2>2. Alimenter : les sources et le robot</h2>
+<p>Vous dites quels sites surveiller. Claude les teste, les inscrit sur votre oui, et le robot du serveur les lit toute la journée.</p></section>
+<div class="carte-svg"><svg viewBox="0 0 1000 280" role="img" aria-label="Les sources et le robot"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs><g font-family="Sora, sans-serif" text-anchor="middle"><text x="110" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">VOUS DITES</text><text x="370" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">CLAUDE</text><text x="620" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">GITHUB</text><text x="870" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">LE ROBOT</text><rect x="10" y="40" width="200" height="50" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="63" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/sources</text><text x="110" y="80" font-size="11.5" fill="var(--douce)">« propose des sources »</text><rect x="10" y="110" width="200" height="50" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="133" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/tester-source</text><text x="110" y="150" font-size="11.5" fill="var(--douce)">« ce site marche ? »</text><rect x="10" y="180" width="200" height="50" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="203" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/source-list</text><text x="110" y="220" font-size="11.5" fill="var(--douce)">« quelles sources ? »</text><rect x="270" y="70" width="200" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="370" y="103" font-size="13.5" font-weight="700" fill="var(--encre)">Test</text><text x="370" y="120" font-size="11.5" fill="var(--douce)">vert · orange · rouge</text><rect x="270" y="180" width="200" height="50" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="370" y="203" font-size="13.5" font-weight="700" fill="var(--encre)">La liste</text><text x="370" y="220" font-size="11.5" fill="var(--douce)">par type, par pays</text><rect x="530" y="70" width="180" height="70" rx="10" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="5 4"/><text x="620" y="103" font-size="13.5" font-weight="700" fill="var(--encre)">sources.tsv</text><text x="620" y="120" font-size="11.5" fill="var(--douce)">un fichier par société</text><rect x="780" y="60" width="200" height="90" rx="10" fill="var(--carte)" stroke="var(--pale)" stroke-dasharray="2 3"/><text x="880" y="103" font-size="13.5" font-weight="700" fill="var(--encre)">Robot de veille</text><text x="880" y="120" font-size="11.5" fill="var(--douce)">toutes les 20 min, sans IA</text><rect x="530" y="190" width="180" height="70" rx="10" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="5 4"/><text x="620" y="223" font-size="13.5" font-weight="700" fill="var(--encre)">Les sujets du jour</text><text x="620" y="240" font-size="11.5" fill="var(--douce)">missions/&lt;s&gt;/1-sujets</text><path d="M212,65 C240,65 240,100 268,100" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,135 C240,135 240,110 268,110" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,205 C240,205 240,205 268,205" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M472,105 C500,105 500,105 528,105" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="500" y="99" font-size="11" fill="var(--douce)">vos oui</text><path d="M712,105 C745,105 745,105 778,105" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="745" y="99" font-size="11" fill="var(--douce)">relit</text><path d="M880,152 C796,152 796,225 712,225" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="796" y="182" font-size="11" fill="var(--douce)">dépose</text></g></svg></div><div class="agents"><div><b>Robot de veille</b>Lit les sources de chaque société toutes les 20 minutes et dépose les sujets du jour. Aucune IA.<div class="lig">Appelé par <span>personne : il tourne seul</span></div><div class="lig">Écrit dans <span>missions/&lt;société&gt;/1-sujets/</span></div></div><div><b>Claude, pour les sources</b>Propose des sources, les teste par lot, inscrit les vertes, retire les mortes.<div class="lig">Appelé par <span>/sources · /tester-source · /source-list</span></div><div class="lig">Écrit dans <span>reference/&lt;société&gt;/sources.tsv</span></div></div></div>
+<section class="famille" id="publier"><h2>3. Publier</h2>
+<p>Quatre agents à la suite. En full auto, rien ne vous est demandé avant le dossier prêt. En full auto off, la séance s'arrête trois fois.</p></section>
+<div class="carte-svg"><svg viewBox="0 0 1000 240" role="img" aria-label="La seance de publication"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs><g font-family="Sora, sans-serif" text-anchor="middle"><text x="500" y="18" font-size="11" letter-spacing="1.2" fill="var(--pale)">/PUBLIER DOCDIALY — EN FULL AUTO, AUCUNE QUESTION JUSQU'AU BOUT</text><rect x="10" y="40" width="155" height="70" rx="10" fill="var(--carte)" stroke="var(--trait)" stroke-dasharray="5 4"/><text x="87" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Les sujets</text><text x="87" y="90" font-size="11.5" fill="var(--douce)">du robot</text><rect x="175" y="40" width="155" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="252" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Rédacteur en chef</text><text x="252" y="90" font-size="11.5" fill="var(--douce)">garde le mieux prouvé</text><rect x="340" y="40" width="155" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="417" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Rédacteur</text><text x="417" y="90" font-size="11.5" fill="var(--douce)">un texte par réseau</text><rect x="505" y="40" width="155" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="582" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Directeur</text><text x="582" y="90" font-size="11.5" fill="var(--douce)">preuves, interdits</text><rect x="670" y="40" width="155" height="70" rx="10" fill="var(--fond)" stroke="var(--encre)" stroke-width="1.6"/><text x="747" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Maquettiste</text><text x="747" y="90" font-size="11.5" fill="var(--douce)">prompt d&#x27;image</text><rect x="835" y="40" width="155" height="70" rx="10" fill="var(--vert-pale)" stroke="var(--vert)" stroke-width="2"/><text x="912" y="73" font-size="13.5" font-weight="700" fill="var(--encre)">Dossier prêt</text><text x="912" y="90" font-size="11.5" fill="var(--douce)">vous publiez</text><path d="M167,75 C170,75 170,75 173,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M332,75 C335,75 335,75 338,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M497,75 C500,75 500,75 503,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M662,75 C665,75 665,75 668,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M827,75 C830,75 830,75 833,75" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="252" y="140" font-size="12" font-weight="600" fill="var(--violet)">en « full auto off » : vous choisissez ici</text><text x="417" y="140" font-size="12" font-weight="600" fill="var(--violet)">et ici</text><text x="710" y="140" font-size="12" font-weight="600" fill="var(--violet)">et ici</text><text x="582" y="140" font-size="12" font-weight="600" fill="var(--rouge)">rejette ce qui n'est pas prouvé</text><rect x="722" y="165" width="155" height="56" rx="10" fill="var(--orange-pale)" stroke="var(--orange)" stroke-width="2"/><text x="799" y="191" font-size="13.5" font-weight="700" fill="var(--encre)">ChatGPT</text><text x="799" y="208" font-size="11.5" fill="var(--douce)">vous générez l&#x27;image</text><path d="M800,112 C800,112 800,163 800,163" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/></g></svg></div><div class="agents"><div><b>Rédacteur en chef</b>Trie les sujets du robot, garde ceux qu'on peut prouver, jette le reste avec le motif.<div class="lig">Appelé par <span>/publier</span></div><div class="lig">Écrit dans <span>missions/&lt;société&gt;/2-angles/</span></div></div><div><b>Rédacteur</b>Écrit un texte par réseau, dans la voix de la société, avec ses seuls faits vérifiés.<div class="lig">Appelé par <span>/publier</span></div><div class="lig">Écrit dans <span>missions/&lt;société&gt;/3-papier/</span></div></div><div><b>Directeur de publication</b>Relit tout : refuse un chiffre non prouvé, un mot interdit, un conseil médical.<div class="lig">Appelé par <span>/publier</span></div><div class="lig">Écrit dans <span>missions/&lt;société&gt;/6-audit/</span></div></div><div><b>Maquettiste</b>Prépare l'image : un prompt pour ChatGPT en full auto, un modèle aux couleurs de la société sinon.<div class="lig">Appelé par <span>/publier</span></div><div class="lig">Écrit dans <span>missions/&lt;société&gt;/pret/</span></div></div></div>
+<section class="famille" id="suivre"><h2>4. Suivre</h2>
+<p>Deux façons de voir où en est le service, sans rien modifier.</p></section>
+<div class="carte-svg"><svg viewBox="0 0 1000 230" role="img" aria-label="Suivre"><defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--pale)"/></marker></defs><g font-family="Sora, sans-serif" text-anchor="middle"><text x="110" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">VOUS DITES</text><text x="500" y="22" font-size="11" letter-spacing="1.2" fill="var(--pale)">CE QUI S'OUVRE</text><rect x="10" y="40" width="200" height="56" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="66" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/hub-marketing</text><text x="110" y="83" font-size="11.5" fill="var(--douce)">« skill hub »</text><rect x="10" y="120" width="200" height="56" rx="10" fill="var(--violet-pale)" stroke="var(--violet)" stroke-width="2"/><text x="110" y="146" font-size="13.5" font-weight="700" fill="var(--encre)" font-family="IBM Plex Mono, monospace">/societe docdialy</text><text x="110" y="163" font-size="11.5" fill="var(--douce)">« skill société »</text><rect x="330" y="30" width="650" height="76" rx="10" fill="var(--vert-pale)" stroke="var(--vert)" stroke-width="2"/><text x="655" y="66" font-size="13.5" font-weight="700" fill="var(--encre)">Le hub, dans votre navigateur</text><text x="655" y="83" font-size="11.5" fill="var(--douce)">toutes les sociétés · le schéma de chacune · son inventaire · les agents · les commandes</text><rect x="330" y="116" width="650" height="70" rx="10" fill="var(--vert-pale)" stroke="var(--vert)" stroke-width="2"/><text x="655" y="149" font-size="13.5" font-weight="700" fill="var(--encre)">La fiche de la société, dans Claude</text><text x="655" y="166" font-size="11.5" fill="var(--douce)">voix · charte · sources · rythme de publication (modifiable) · dernières publications</text><path d="M212,68 C270,68 270,68 328,68" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><path d="M212,148 C270,148 270,151 328,151" fill="none" stroke="var(--pale)" stroke-width="1.6" marker-end="url(#fl)"/><text x="655" y="214" font-size="12" fill="var(--douce)">Le hub se met à jour tout seul après chaque commande.</text></g></svg></div>
+<footer>Automatisation du service marketing Avaliance, version du 6 octobre 2026.</footer>
+</main>
+</body>
+</html>
