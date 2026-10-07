@@ -246,6 +246,13 @@
   .cas a b { display: block; color: var(--encre); font-size: 15.5px; margin-bottom: 4px; }
   .cas a:hover { border-width: 2px; padding: 13px 15px; }
   p.sous2 { margin: 0; color: var(--douce); font-size: 14.5px; }
+  .choix-soc { position: sticky; top: 0; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+    background: var(--fond); padding: 12px 0; border-bottom: 1px solid var(--trait); margin: 0 0 8px; }
+  .choix-soc label { font-weight: 700; color: var(--encre); }
+  .choix-soc input { font: 500 15px "IBM Plex Mono", monospace; padding: 9px 12px; min-width: 260px; border-radius: 8px;
+    border: 2px solid var(--violet); background: var(--carte); color: var(--encre); }
+  .choix-soc .aide-soc { font-size: 13px; color: var(--pale); }
+  .soc { color: var(--violet); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -257,7 +264,12 @@
 <div class="filet"></div>
 <nav class="sous-menu" aria-label="Sur cette page"><a href="#nouvelle">A. Nouvelle, sans rien</a><a href="#documents">B. Nouvelle, avec documents</a><a href="#existante">C. Déjà créée</a><a href="#changer">D. Changer</a><a href="#commandes">Toutes les commandes</a><a href="#schemas">Schémas</a><a href="#aide">Si ça coince</a></nav>
 <h1 class="titre-page">Le guide</h1>
-<p class="sous2">Toutes les commandes se tapent dans Claude, onglet Code, dans une session ouverte sur <span class="mono">Documents\Avaliance Marketing</span>. Remplacez le nom de la société par le vôtre.</p>
+<div class="choix-soc"><label for="soc">Votre société</label>
+<input id="soc" list="socs" placeholder="choisir ou taper…" autocomplete="off" spellcheck="false">
+<datalist id="socs"><option value="docdialy"><option value="shifaa"><option value="ava-manager"></datalist>
+<span class="aide-soc">Toutes les commandes de la page se mettent à jour avec ce nom.</span></div>
+
+<p class="sous2">Toutes les commandes se tapent dans Claude, onglet Code, dans une session ouverte sur <span class="mono">Documents\Avaliance Marketing</span>.</p>
 <h2 class="part" id="cas">Quel est votre cas ?</h2><div class="cas">
 <a href="#nouvelle"><b>A. Nouvelle société, sans rien</b>vous partez de zéro</a>
 <a href="#documents"><b>B. Nouvelle société, avec ses documents</b>elle a déjà un site, une charte, un logo, des textes</a>
@@ -265,33 +277,33 @@
 <a href="#changer"><b>D. Changer quelque chose</b>la voix, la charte, le rythme, les sources, le mode</a>
 </div>
 <h2 class="part" id="nouvelle">A. Nouvelle société, sans rien</h2><p class="sous2">Une seule fois. Environ 45 minutes, puis une heure d'attente.</p><ol class="etapes">
-<li><div class="quoi">Créer la société<span class="duree">20 min</span></div><div class="bloc">/nouvelle-societe ava-manager</div><div class="lig"><b>À quoi ça sert :</b> donner à la société sa voix et son image, une fois pour toutes. Tous les agents s'en serviront ensuite.</div><div class="lig"><b>Ce qui se passe :</b> deux agents vous interrogent à tour de rôle. L'agent Voix : à qui parle-t-on, sur quel ton, que ne dit-on jamais, quels faits a-t-on le droit de citer. Puis l'agent Charte : couleurs, polices, logo. Il écrit tout dans le dossier de la société.</div></li>
-<li><div class="quoi">Fixer le rythme : le chef<span class="duree">5 min</span></div><div class="bloc">/chef ava-manager</div><div class="lig"><b>À quoi ça sert :</b> décider combien on publie, où et quand. Sans lui, la publication ne sait pas combien de textes écrire ni pour quels réseaux.</div><div class="lig"><b>Ce qui se passe :</b> le chef vous propose 2 ou 3 plans et vous demande : combien de publications par semaine, sur quels réseaux (LinkedIn, Facebook, Instagram), quels jours, quelle forme de visuel, et quel ton selon les jours (léger, sérieux). Il enregistre le plan.</div></li>
-<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour ava-manager</div><div class="lig"><b>À quoi ça sert :</b> dire au robot quels sites lire pour cette société. Sans sources, aucun sujet n'arrive.</div><div class="lig"><b>Ce qui se passe :</b> Claude cherche des sites et des flux d'actualité sur votre métier, les teste un par un, et vous montre un tableau vert, orange, rouge. Vous répondez oui : les verts sont ajoutés.</div></li>
+<li><div class="quoi">Créer la société<span class="duree">20 min</span></div><div class="bloc">/nouvelle-societe <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> donner à la société sa voix et son image, une fois pour toutes. Tous les agents s'en serviront ensuite.</div><div class="lig"><b>Ce qui se passe :</b> deux agents vous interrogent à tour de rôle. L'agent Voix : à qui parle-t-on, sur quel ton, que ne dit-on jamais, quels faits a-t-on le droit de citer. Puis l'agent Charte : couleurs, polices, logo. Il écrit tout dans le dossier de la société.</div></li>
+<li><div class="quoi">Fixer le rythme : le chef<span class="duree">5 min</span></div><div class="bloc">/chef <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> décider combien on publie, où et quand. Sans lui, la publication ne sait pas combien de textes écrire ni pour quels réseaux.</div><div class="lig"><b>Ce qui se passe :</b> le chef vous propose 2 ou 3 plans et vous demande : combien de publications par semaine, sur quels réseaux (LinkedIn, Facebook, Instagram), quels jours, quelle forme de visuel, et quel ton selon les jours (léger, sérieux). Il enregistre le plan.</div></li>
+<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> dire au robot quels sites lire pour cette société. Sans sources, aucun sujet n'arrive.</div><div class="lig"><b>Ce qui se passe :</b> Claude cherche des sites et des flux d'actualité sur votre métier, les teste un par un, et vous montre un tableau vert, orange, rouge. Vous répondez oui : les verts sont ajoutés.</div></li>
 <li><div class="quoi">Attendre le robot<span class="duree">1 h</span></div><div class="lig"><b>À quoi ça sert :</b> laisser le robot faire son premier passage.</div><div class="lig"><b>Ce qui se passe :</b> le robot du serveur lit les nouvelles sources et dépose les premiers sujets du jour. Vous n'avez rien à faire.</div></li>
-<li><div class="quoi">Vérifier la société<span class="duree">2 min</span></div><div class="bloc">/societe ava-manager</div><div class="lig"><b>À quoi ça sert :</b> contrôler que tout est prêt avant de publier.</div><div class="lig"><b>Ce qui se passe :</b> une fiche s'affiche : voix, charte, sources, rythme, sujets du jour. S'il manque quelque chose, elle le dit.</div></li>
-<li><div class="quoi">Première publication<span class="duree">10 min</span></div><div class="bloc">/publier ava-manager</div><div class="lig"><b>À quoi ça sert :</b> produire une publication prête à poster.</div><div class="lig"><b>Ce qui se passe :</b> voir le cas C.</div></li>
+<li><div class="quoi">Vérifier la société<span class="duree">2 min</span></div><div class="bloc">/societe <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> contrôler que tout est prêt avant de publier.</div><div class="lig"><b>Ce qui se passe :</b> une fiche s'affiche : voix, charte, sources, rythme, sujets du jour. S'il manque quelque chose, elle le dit.</div></li>
+<li><div class="quoi">Première publication<span class="duree">10 min</span></div><div class="bloc">/publier <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> produire une publication prête à poster.</div><div class="lig"><b>Ce qui se passe :</b> voir le cas C.</div></li>
 </ol>
 <h2 class="part" id="documents">B. Nouvelle société, avec ses documents</h2><p class="sous2">Elle a déjà un site, une charte, un logo, des textes.</p><ol class="etapes">
-<li><div class="quoi">Créer la société en lui donnant vos documents<span class="duree">15 min</span></div><div class="bloc">/nouvelle-societe ava-manager</div><div class="bloc">Lis le dossier C:\Users\...\Ava Manager, le site https://... et prends le logo C:\Users\...\logo.png</div><div class="lig"><b>À quoi ça sert :</b> la même chose que le cas A, mais plus vite : l'agent lit d'abord ce qui existe.</div><div class="lig"><b>Ce qui se passe :</b> lancez la commande, puis répondez à sa première question avec la phrase ci-dessous, en mettant vos chemins. Il lit tout, en tire la voix et la charte, et ne vous pose de questions que sur ce qui manque.</div></li>
-<li><div class="quoi">Vérifier ce qu'il a compris<span class="duree">5 min</span></div><div class="bloc">/societe ava-manager</div><div class="lig"><b>À quoi ça sert :</b> relire ce que l'agent a retenu avant d'aller plus loin.</div><div class="lig"><b>Ce qui se passe :</b> la fiche de la société s'affiche. Ce qui est faux se corrige au cas D.</div></li>
-<li><div class="quoi">Fixer le rythme : le chef<span class="duree">5 min</span></div><div class="bloc">/chef ava-manager</div><div class="lig"><b>À quoi ça sert :</b> décider combien on publie, où et quand.</div><div class="lig"><b>Ce qui se passe :</b> comme au cas A, étape 2.</div></li>
-<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour ava-manager</div><div class="lig"><b>À quoi ça sert :</b> dire au robot quels sites lire.</div><div class="lig"><b>Ce qui se passe :</b> comme au cas A, étape 3. Puis attendre le robot, une heure.</div></li>
+<li><div class="quoi">Créer la société en lui donnant vos documents<span class="duree">15 min</span></div><div class="bloc">/nouvelle-societe <span class="soc">ava-manager</span></div><div class="bloc">Lis le dossier C:\Users\...\Ava Manager, le site https://... et prends le logo C:\Users\...\logo.png</div><div class="lig"><b>À quoi ça sert :</b> la même chose que le cas A, mais plus vite : l'agent lit d'abord ce qui existe.</div><div class="lig"><b>Ce qui se passe :</b> lancez la commande, puis répondez à sa première question avec la phrase ci-dessous, en mettant vos chemins. Il lit tout, en tire la voix et la charte, et ne vous pose de questions que sur ce qui manque.</div></li>
+<li><div class="quoi">Vérifier ce qu'il a compris<span class="duree">5 min</span></div><div class="bloc">/societe <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> relire ce que l'agent a retenu avant d'aller plus loin.</div><div class="lig"><b>Ce qui se passe :</b> la fiche de la société s'affiche. Ce qui est faux se corrige au cas D.</div></li>
+<li><div class="quoi">Fixer le rythme : le chef<span class="duree">5 min</span></div><div class="bloc">/chef <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> décider combien on publie, où et quand.</div><div class="lig"><b>Ce qui se passe :</b> comme au cas A, étape 2.</div></li>
+<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour <span class="soc">ava-manager</span></div><div class="lig"><b>À quoi ça sert :</b> dire au robot quels sites lire.</div><div class="lig"><b>Ce qui se passe :</b> comme au cas A, étape 3. Puis attendre le robot, une heure.</div></li>
 </ol>
 <div class="diff"><div><b>/nouvelle-societe</b>crée une société qui n'existe pas encore. Une seule fois.</div><div><b>/societe</b>montre l'état d'une société déjà créée. Autant de fois que vous voulez.</div></div>
 <h2 class="part" id="existante">C. Société déjà créée : publier</h2><p class="sous2">Chaque jour. Environ 15 minutes par publication.</p><ol class="etapes">
-<li><div class="quoi">Voir où elle en est<span class="duree">1 min</span></div><div class="bloc">/societe docdialy</div><div class="lig"><b>À quoi ça sert :</b> savoir ce qui vous attend aujourd'hui.</div><div class="lig"><b>Ce qui se passe :</b> la fiche montre le plan du jour (combien, quel ton), les sujets trouvés par le robot, et les dernières publications.</div></li>
-<li><div class="quoi">Lancer la publication<span class="duree">5 min</span></div><div class="bloc">/publier docdialy</div><div class="lig"><b>À quoi ça sert :</b> fabriquer la publication du jour.</div><div class="lig"><b>Ce qui se passe :</b> le chef applique le plan du jour, le rédacteur en chef choisit le sujet le mieux prouvé, le rédacteur écrit un texte par réseau, le directeur vérifie les preuves et les interdits, le maquettiste écrit le prompt d'image. En full auto, aucune question.</div></li>
+<li><div class="quoi">Voir où elle en est<span class="duree">1 min</span></div><div class="bloc">/societe <span class="soc">docdialy</span></div><div class="lig"><b>À quoi ça sert :</b> savoir ce qui vous attend aujourd'hui.</div><div class="lig"><b>Ce qui se passe :</b> la fiche montre le plan du jour (combien, quel ton), les sujets trouvés par le robot, et les dernières publications.</div></li>
+<li><div class="quoi">Lancer la publication<span class="duree">5 min</span></div><div class="bloc">/publier <span class="soc">docdialy</span></div><div class="lig"><b>À quoi ça sert :</b> fabriquer la publication du jour.</div><div class="lig"><b>Ce qui se passe :</b> le chef applique le plan du jour, le rédacteur en chef choisit le sujet le mieux prouvé, le rédacteur écrit un texte par réseau, le directeur vérifie les preuves et les interdits, le maquettiste écrit le prompt d'image. En full auto, aucune question.</div></li>
 <li><div class="quoi">Fabriquer l'image<span class="duree">3 min</span></div><div class="lig"><b>À quoi ça sert :</b> obtenir le visuel.</div><div class="lig"><b>Ce qui se passe :</b> ouvrez le dossier prêt, copiez le prompt d'image dans ChatGPT, téléchargez l'image.</div></li>
 <li><div class="quoi">Publier<span class="duree">5 min</span></div><div class="lig"><b>À quoi ça sert :</b> mettre la publication en ligne.</div><div class="lig"><b>Ce qui se passe :</b> copiez le texte de chaque réseau, joignez l'image, publiez. La fiche A-PUBLIER dit quoi mettre où.</div></li>
 </ol>
 <h2 class="part" id="changer">D. Changer quelque chose</h2><p class="sous2">Une commande par chose à changer.</p>
 <div class="tab"><table><thead><tr><th>Je veux changer</th><th>Commande</th></tr></thead><tbody>
-<tr><td>le ton, les cibles, les interdits, les faits citables</td><td class="mono">/voix ava-manager</td></tr>
-<tr><td>les couleurs, les polices, le logo</td><td class="mono">/charte ava-manager</td></tr>
-<tr><td>le nombre de publications, les réseaux, les jours, le ton du jour</td><td class="mono">/chef ava-manager</td></tr>
-<tr><td>les sites surveillés</td><td class="mono">/sources ava-manager</td></tr>
-<tr><td>tester un site avant de l'ajouter</td><td class="mono">/tester-source https://... ava-manager</td></tr>
+<tr><td>le ton, les cibles, les interdits, les faits citables</td><td class="mono">/voix <span class="soc">ava-manager</span></td></tr>
+<tr><td>les couleurs, les polices, le logo</td><td class="mono">/charte <span class="soc">ava-manager</span></td></tr>
+<tr><td>le nombre de publications, les réseaux, les jours, le ton du jour</td><td class="mono">/chef <span class="soc">ava-manager</span></td></tr>
+<tr><td>les sites surveillés</td><td class="mono">/sources <span class="soc">ava-manager</span></td></tr>
+<tr><td>tester un site avant de l'ajouter</td><td class="mono">/tester-source https://... <span class="soc">ava-manager</span></td></tr>
 <tr><td>ne plus être interrogée pendant la publication</td><td class="mono">/full-auto</td></tr>
 <tr><td>valider chaque étape de la publication</td><td class="mono">/full-auto-off</td></tr>
 </tbody></table></div>
@@ -300,15 +312,15 @@
   <thead><tr><th>Appeler par commande</th><th>Appeler par texte</th><th>Ce que ça fait</th></tr></thead>
   <tbody>
     <tr><td class="mono">/hub-marketing</td><td>« skill hub »</td><td>ouvre le tableau de bord : toutes les sociétés, leur schéma et leur inventaire</td></tr>
-    <tr><td class="mono">/societe docdialy</td><td>« skill société docdialy »</td><td>montre l'état d'une société et permet de changer son rythme de publication</td></tr>
-    <tr><td class="mono">/chef docdialy</td><td>« skill chef docdialy »</td><td>décide combien de publications, sur quels réseaux, et le ton du jour</td></tr>
-    <tr><td class="mono">/publier docdialy</td><td>« skill publier docdialy »</td><td>la séance du jour, jusqu'au dossier prêt à publier</td></tr>
-    <tr><td class="mono">/voix docdialy</td><td>« skill voix docdialy »</td><td>définit ou corrige le ton, les interdits et les faits citables d'une société</td></tr>
-    <tr><td class="mono">/charte docdialy</td><td>« skill charte docdialy »</td><td>définit ou corrige les couleurs, les polices et le logo d'une société</td></tr>
-    <tr><td class="mono">/nouvelle-societe shifaa</td><td>« skill nouvelle société shifaa »</td><td>ouvre une nouvelle société : la voix, puis la charte</td></tr>
-    <tr><td class="mono">/tester-source &lt;adresse&gt; docdialy</td><td>« skill tester source, puis l'adresse »</td><td>dit si un site peut être surveillé, avant de l'ajouter</td></tr>
-    <tr><td class="mono">/sources docdialy</td><td>« skill sources docdialy »</td><td>ajoute ou retire un site, un mot-clé, une page à surveiller</td></tr>
-    <tr><td class="mono">/source-list docdialy</td><td>« skill liste des sources docdialy »</td><td>montre ce que le robot surveille, classé par type</td></tr>
+    <tr><td class="mono">/societe <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill société <span class="soc"><span class="soc">docdialy</span></span> »</td><td>montre l'état d'une société et permet de changer son rythme de publication</td></tr>
+    <tr><td class="mono">/chef <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill chef <span class="soc"><span class="soc">docdialy</span></span> »</td><td>décide combien de publications, sur quels réseaux, et le ton du jour</td></tr>
+    <tr><td class="mono">/publier <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill publier <span class="soc"><span class="soc">docdialy</span></span> »</td><td>la séance du jour, jusqu'au dossier prêt à publier</td></tr>
+    <tr><td class="mono">/voix <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill voix <span class="soc"><span class="soc">docdialy</span></span> »</td><td>définit ou corrige le ton, les interdits et les faits citables d'une société</td></tr>
+    <tr><td class="mono">/charte <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill charte <span class="soc"><span class="soc">docdialy</span></span> »</td><td>définit ou corrige les couleurs, les polices et le logo d'une société</td></tr>
+    <tr><td class="mono">/nouvelle-societe <span class="soc"><span class="soc">shifaa</span></span></td><td>« skill nouvelle société <span class="soc"><span class="soc">shifaa</span></span> »</td><td>ouvre une nouvelle société : la voix, puis la charte</td></tr>
+    <tr><td class="mono">/tester-source &lt;adresse&gt; <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill tester source, puis l'adresse »</td><td>dit si un site peut être surveillé, avant de l'ajouter</td></tr>
+    <tr><td class="mono">/sources <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill sources <span class="soc"><span class="soc">docdialy</span></span> »</td><td>ajoute ou retire un site, un mot-clé, une page à surveiller</td></tr>
+    <tr><td class="mono">/source-list <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill liste des sources <span class="soc"><span class="soc">docdialy</span></span> »</td><td>montre ce que le robot surveille, classé par type</td></tr>
     <tr><td class="mono">/full-auto</td><td>« skill full auto »</td><td>la séance va jusqu'au bout sans question (par défaut)</td></tr>
     <tr><td class="mono">/full-auto-off</td><td>« full auto off »</td><td>la séance vous demande à chaque étape</td></tr>
     <tr><td class="mono">/guide</td><td>« ouvre le guide », « ouvre la page d'installation »</td><td>ouvre ces pages dans le navigateur</td></tr>
@@ -356,10 +368,11 @@
 </main>
 <script>
   document.querySelectorAll(".bloc").forEach(function (b) {
-    var t = b.textContent.trim();
     var btn = document.createElement("button");
     btn.type = "button"; btn.textContent = "Copier";
     btn.addEventListener("click", function () {
+      var c = b.cloneNode(true); c.querySelectorAll("button").forEach(function (x) { x.remove(); });
+      var t = c.textContent.trim();
       var fini = function () { btn.textContent = "Copié"; btn.classList.add("ok");
         setTimeout(function () { btn.textContent = "Copier"; btn.classList.remove("ok"); }, 1500); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -390,6 +403,30 @@
     });
     maj();
   })();
+</script>
+<script>
+(function () {
+  var champ = document.getElementById("soc"), CLE = "guide-societe";
+  function poser(v) {
+    var n = (v || "").trim().toLowerCase().replace(/\s+/g, "-") || "votre-societe";
+    document.querySelectorAll(".soc").forEach(function (e) { e.textContent = n; });
+  }
+  try { champ.value = localStorage.getItem(CLE) || ""; } catch (e) {}
+  poser(champ.value);
+  champ.addEventListener("input", function () { poser(champ.value); try { localStorage.setItem(CLE, champ.value); } catch (e) {} });
+})();
+</script>
+<script>
+(function () {
+  var champ = document.getElementById("soc"), CLE = "guide-societe";
+  function poser(v) {
+    var n = (v || "").trim().toLowerCase().replace(/\s+/g, "-") || "votre-societe";
+    document.querySelectorAll(".soc").forEach(function (e) { e.textContent = n; });
+  }
+  try { champ.value = localStorage.getItem(CLE) || ""; } catch (e) {}
+  poser(champ.value);
+  champ.addEventListener("input", function () { poser(champ.value); try { localStorage.setItem(CLE, champ.value); } catch (e) {} });
+})();
 </script>
 </body>
 </html>
