@@ -262,7 +262,7 @@
   <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/agents.html">Agents</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html" aria-current="page">Guide</a></nav>
 </div>
 <div class="filet"></div>
-<nav class="sous-menu" aria-label="Sur cette page"><a href="#nouvelle">A. Nouvelle, sans rien</a><a href="#documents">B. Nouvelle, avec documents</a><a href="#existante">C. Déjà créée</a><a href="#changer">D. Changer</a><a href="#commandes">Toutes les commandes</a><a href="#schemas">Schémas</a><a href="#aide">Si ça coince</a></nav>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#nouvelle">A. Nouvelle, sans rien</a><a href="#documents">B. Nouvelle, avec documents</a><a href="#existante">C. Déjà créée</a><a href="#changer">D. Changer</a><a href="#elements">E. Chaque élément</a><a href="#commandes">Toutes les commandes</a><a href="#schemas">Schémas</a><a href="#aide">Si ça coince</a></nav>
 <h1 class="titre-page">Le guide</h1>
 <div class="choix-soc"><label for="soc">Votre société</label>
 <input id="soc" list="socs" placeholder="choisir ou taper…" autocomplete="off" spellcheck="false">
@@ -307,20 +307,32 @@
 <tr><td>ne plus être interrogée pendant la publication</td><td class="mono">/full-auto</td></tr>
 <tr><td>valider chaque étape de la publication</td><td class="mono">/full-auto-off</td></tr>
 </tbody></table></div>
+<h2 class="part" id="elements">E. Chaque élément : le créer, le modifier</h2><p class="sous2">Ce que contient une société, et la commande pour chaque geste. Pour modifier, lancez la commande puis dites simplement ce que vous voulez changer.</p>
+<div class="tab"><table class="elem"><thead><tr><th>Élément</th><th>Ce que c'est</th><th>Le créer</th><th>Le modifier</th></tr></thead><tbody>
+<tr><td><b>Ligne éditoriale</b></td><td>le ton, les cibles, ce qu'on dit, ce qu'on ne dit jamais</td><td class="mono">/voix <span class="soc">ava-manager</span></td><td class="mono">/voix <span class="soc">ava-manager</span><br><span class="ex">« le ton doit être plus direct »</span></td></tr>
+<tr><td><b>Références</b></td><td>les faits qu'on a le droit de citer : chiffres, clients, réalisations, avec leur source</td><td class="mono">/voix <span class="soc">ava-manager</span></td><td class="mono">/voix <span class="soc">ava-manager</span><br><span class="ex">« ajoute cette référence : … source : … »</span></td></tr>
+<tr><td><b>Interdits</b></td><td>les sujets et les mots à ne jamais publier</td><td class="mono">/voix <span class="soc">ava-manager</span></td><td class="mono">/voix <span class="soc">ava-manager</span><br><span class="ex">« n'utilise plus le mot … »</span></td></tr>
+<tr><td><b>Charte graphique</b></td><td>les couleurs, les polices, les formats des visuels</td><td class="mono">/charte <span class="soc">ava-manager</span></td><td class="mono">/charte <span class="soc">ava-manager</span><br><span class="ex">« la couleur principale est … »</span></td></tr>
+<tr><td><b>Logo</b></td><td>le logo posé sur les visuels</td><td class="mono">/charte <span class="soc">ava-manager</span></td><td class="mono">/charte <span class="soc">ava-manager</span><br><span class="ex">« prends ce logo : C:\…\logo.svg »</span></td></tr>
+<tr><td><b>Rythme de publication</b></td><td>combien, sur quels réseaux, quels jours, quel ton selon les jours</td><td class="mono">/chef <span class="soc">ava-manager</span></td><td class="mono">/chef <span class="soc">ava-manager</span><br><span class="ex">« passe à 2 par semaine »</span></td></tr>
+<tr><td><b>Sources</b></td><td>les sites que le robot lit pour trouver les sujets</td><td class="mono">/sources <span class="soc">ava-manager</span></td><td class="mono">/sources <span class="soc">ava-manager</span><br><span class="ex">« ajoute ce site », « retire celui-là »</span></td></tr>
+<tr><td><b>Mode de publication</b></td><td>tout automatique, ou validation à chaque étape (vaut pour toutes les sociétés)</td><td class="mono">par défaut : full auto</td><td class="mono">/full-auto<br>/full-auto-off</td></tr>
+<tr><td><b>La société entière</b></td><td>tout ce qui précède, d'un coup</td><td class="mono">/nouvelle-societe <span class="soc">ava-manager</span></td><td class="mono">/societe <span class="soc">ava-manager</span><br><span class="ex">pour voir l'état, puis la commande de l'élément</span></td></tr>
+</tbody></table></div>
 <h2 class="part" id="commandes">Toutes les commandes</h2><p class="sous2">Chaque commande se tape, ou se dit en français.</p>
 <div class="tab"><table class="recap">
   <thead><tr><th>Appeler par commande</th><th>Appeler par texte</th><th>Ce que ça fait</th></tr></thead>
   <tbody>
     <tr><td class="mono">/hub-marketing</td><td>« skill hub »</td><td>ouvre le tableau de bord : toutes les sociétés, leur schéma et leur inventaire</td></tr>
-    <tr><td class="mono">/societe <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill société <span class="soc"><span class="soc">docdialy</span></span> »</td><td>montre l'état d'une société et permet de changer son rythme de publication</td></tr>
-    <tr><td class="mono">/chef <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill chef <span class="soc"><span class="soc">docdialy</span></span> »</td><td>décide combien de publications, sur quels réseaux, et le ton du jour</td></tr>
-    <tr><td class="mono">/publier <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill publier <span class="soc"><span class="soc">docdialy</span></span> »</td><td>la séance du jour, jusqu'au dossier prêt à publier</td></tr>
-    <tr><td class="mono">/voix <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill voix <span class="soc"><span class="soc">docdialy</span></span> »</td><td>définit ou corrige le ton, les interdits et les faits citables d'une société</td></tr>
-    <tr><td class="mono">/charte <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill charte <span class="soc"><span class="soc">docdialy</span></span> »</td><td>définit ou corrige les couleurs, les polices et le logo d'une société</td></tr>
-    <tr><td class="mono">/nouvelle-societe <span class="soc"><span class="soc">shifaa</span></span></td><td>« skill nouvelle société <span class="soc"><span class="soc">shifaa</span></span> »</td><td>ouvre une nouvelle société : la voix, puis la charte</td></tr>
-    <tr><td class="mono">/tester-source &lt;adresse&gt; <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill tester source, puis l'adresse »</td><td>dit si un site peut être surveillé, avant de l'ajouter</td></tr>
-    <tr><td class="mono">/sources <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill sources <span class="soc"><span class="soc">docdialy</span></span> »</td><td>ajoute ou retire un site, un mot-clé, une page à surveiller</td></tr>
-    <tr><td class="mono">/source-list <span class="soc"><span class="soc">docdialy</span></span></td><td>« skill liste des sources <span class="soc"><span class="soc">docdialy</span></span> »</td><td>montre ce que le robot surveille, classé par type</td></tr>
+    <tr><td class="mono">/societe <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill société <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>montre l'état d'une société et permet de changer son rythme de publication</td></tr>
+    <tr><td class="mono">/chef <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill chef <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>décide combien de publications, sur quels réseaux, et le ton du jour</td></tr>
+    <tr><td class="mono">/publier <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill publier <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>la séance du jour, jusqu'au dossier prêt à publier</td></tr>
+    <tr><td class="mono">/voix <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill voix <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>définit ou corrige le ton, les interdits et les faits citables d'une société</td></tr>
+    <tr><td class="mono">/charte <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill charte <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>définit ou corrige les couleurs, les polices et le logo d'une société</td></tr>
+    <tr><td class="mono">/nouvelle-societe <span class="soc"><span class="soc"><span class="soc">shifaa</span></span></span></td><td>« skill nouvelle société <span class="soc"><span class="soc"><span class="soc">shifaa</span></span></span> »</td><td>ouvre une nouvelle société : la voix, puis la charte</td></tr>
+    <tr><td class="mono">/tester-source &lt;adresse&gt; <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill tester source, puis l'adresse »</td><td>dit si un site peut être surveillé, avant de l'ajouter</td></tr>
+    <tr><td class="mono">/sources <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill sources <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>ajoute ou retire un site, un mot-clé, une page à surveiller</td></tr>
+    <tr><td class="mono">/source-list <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span></td><td>« skill liste des sources <span class="soc"><span class="soc"><span class="soc">docdialy</span></span></span> »</td><td>montre ce que le robot surveille, classé par type</td></tr>
     <tr><td class="mono">/full-auto</td><td>« skill full auto »</td><td>la séance va jusqu'au bout sans question (par défaut)</td></tr>
     <tr><td class="mono">/full-auto-off</td><td>« full auto off »</td><td>la séance vous demande à chaque étape</td></tr>
     <tr><td class="mono">/guide</td><td>« ouvre le guide », « ouvre la page d'installation »</td><td>ouvre ces pages dans le navigateur</td></tr>
@@ -403,6 +415,18 @@
     });
     maj();
   })();
+</script>
+<script>
+(function () {
+  var champ = document.getElementById("soc"), CLE = "guide-societe";
+  function poser(v) {
+    var n = (v || "").trim().toLowerCase().replace(/\s+/g, "-") || "votre-societe";
+    document.querySelectorAll(".soc").forEach(function (e) { e.textContent = n; });
+  }
+  try { champ.value = localStorage.getItem(CLE) || ""; } catch (e) {}
+  poser(champ.value);
+  champ.addEventListener("input", function () { poser(champ.value); try { localStorage.setItem(CLE, champ.value); } catch (e) {} });
+})();
 </script>
 <script>
 (function () {

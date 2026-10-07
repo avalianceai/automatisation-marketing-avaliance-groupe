@@ -167,6 +167,13 @@
     border-bottom-color: var(--accent-m); font-weight: 600; background: none; }
   .sous-menu button em { display: none; }
   @media print { .bandeau .menu, .sous-menu { display: none; } }
+  .choix-soc { position: sticky; top: 0; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+    background: var(--fond); padding: 12px 0; border-bottom: 1px solid var(--trait); margin: 0 0 8px; }
+  .choix-soc label { font-weight: 700; color: var(--encre); }
+  .choix-soc input { font: 500 15px "IBM Plex Mono", monospace; padding: 9px 12px; min-width: 260px; border-radius: 8px;
+    border: 2px solid var(--violet); background: var(--carte); color: var(--encre); }
+  .choix-soc .aide-soc { font-size: 13px; color: var(--pale); }
+  .soc { color: var(--violet); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -178,6 +185,10 @@
 <div class="filet"></div>
 <nav class="sous-menu" aria-label="Sur cette page"><a href="#comment">Comment ça marche</a><a href="#installation">Les étapes</a><a href="#questions">Les questions</a></nav>
 <h1 class="titre-page">Installer le poste</h1>
+<div class="choix-soc"><label for="soc">Votre société</label>
+<input id="soc" list="socs" placeholder="choisir ou taper…" autocomplete="off" spellcheck="false">
+<datalist id="socs"><option value="docdialy"><option value="shifaa"><option value="ava-manager"></datalist>
+<span class="aide-soc">Les commandes de la page se mettent à jour avec ce nom (le même que dans le guide).</span></div>
 <h2 id="comment">Comment ça marche</h2>
 <p class="sous">Trois endroits. Vous n'en touchez que deux : le serveur, vous ne le voyez jamais.</p>
 <div class="schema">
@@ -290,7 +301,7 @@
   <p class="pourquoi"><b>Pourquoi :</b> Les agents sont installés. Cette commande vérifie que tout répond : l'accès à l'armoire, le dossier de travail, la fabrication des visuels. Elle construit aussi votre hub.</p>
   <div class="ici"><b>Où taper :</b> toujours dans la même session. Quand Claude demande d'autoriser la séance à écrire, répondez Oui.</div>
   <div class="bloc">/installer-marketing</div>
-  <p class="attendu"><b>Résultat attendu :</b> prêt : tapez /societe docdialy pour voir la société, puis /publier docdialy</p>
+  <p class="attendu"><b>Résultat attendu :</b> prêt : tapez /societe <span class="soc">docdialy</span> pour voir la société, puis /publier <span class="soc">docdialy</span></p>
   <p>Puis ouvrez votre hub, le tableau de bord du service :</p>
   <div class="bloc">/hub-marketing</div>
   <p class="attendu"><b>Résultat attendu :</b> une page s'ouvre dans le navigateur avec la liste des sociétés. Il se mettra à jour tout seul.</p>
@@ -299,8 +310,8 @@
   <div class="tete"><input type="checkbox" aria-label="Étape faite"><h3>7. Première société, première publication</h3><span class="qui">Claude, même session · 40 min</span></div>
   <p class="pourquoi"><b>Pourquoi :</b> Tout est installé. On regarde d'abord ce qu'on sait de Docdialy, puis on lance la première séance de publication.</p>
   <div class="ici"><b>Où taper :</b> toujours dans la même session, ouverte sur Documents\Avaliance Marketing. Chaque matin ensuite : ouvrez Claude, onglet Code, et reprenez une session sur ce dossier.</div>
-  <div class="bloc">/societe docdialy</div>
-  <div class="bloc">/publier docdialy</div>
+  <div class="bloc">/societe <span class="soc">docdialy</span></div>
+  <div class="bloc">/publier <span class="soc">docdialy</span></div>
 </section>
 
 <h2 id="questions" style="margin-top:48px">Les questions qu'on pose toujours</h2>
@@ -324,10 +335,11 @@
 </main>
 <script>
   document.querySelectorAll(".bloc").forEach(function (b) {
-    var t = b.textContent.trim();
     var btn = document.createElement("button");
     btn.type = "button"; btn.textContent = "Copier";
     btn.addEventListener("click", function () {
+      var c = b.cloneNode(true); c.querySelectorAll("button").forEach(function (x) { x.remove(); });
+      var t = c.textContent.trim();
       var fini = function () { btn.textContent = "Copié"; btn.classList.add("ok");
         setTimeout(function () { btn.textContent = "Copier"; btn.classList.remove("ok"); }, 1500); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -358,6 +370,18 @@
     });
     maj();
   })();
+</script>
+<script>
+(function () {
+  var champ = document.getElementById("soc"), CLE = "guide-societe";
+  function poser(v) {
+    var n = (v || "").trim().toLowerCase().replace(/\s+/g, "-") || "votre-societe";
+    document.querySelectorAll(".soc").forEach(function (e) { e.textContent = n; });
+  }
+  try { champ.value = localStorage.getItem(CLE) || ""; } catch (e) {}
+  poser(champ.value);
+  champ.addEventListener("input", function () { poser(champ.value); try { localStorage.setItem(CLE, champ.value); } catch (e) {} });
+})();
 </script>
 </body>
 </html>
