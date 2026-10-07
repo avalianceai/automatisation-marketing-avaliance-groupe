@@ -180,13 +180,17 @@
   .agents .lig span { color: var(--encre); font-family: "IBM Plex Mono", monospace; font-size: 12.5px; }
   .legende { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--douce); margin: 4px 0 0; }
   .legende i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
-  .choix-soc { position: sticky; top: 0; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  .choix-soc { position: sticky; top: 0; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
     background: var(--fond); padding: 12px 0; border-bottom: 1px solid var(--trait); margin: 0 0 8px; }
-  .choix-soc label { font-weight: 700; color: var(--encre); }
-  .choix-soc input { font: 500 15px "IBM Plex Mono", monospace; padding: 9px 12px; min-width: 260px; border-radius: 8px;
+  .choix-soc .lab { font-weight: 700; color: var(--encre); margin-right: 6px; }
+  .choix-soc .pastille { font: 600 14px Sora, sans-serif; padding: 8px 16px; border-radius: 20px; cursor: pointer;
+    border: 1.5px solid var(--violet); background: var(--carte); color: var(--encre); }
+  .choix-soc .pastille[aria-pressed="true"] { background: var(--violet); color: var(--fond); }
+  .choix-soc .pastille.autre { border-style: dashed; }
+  .choix-soc input { font: 500 14px "IBM Plex Mono", monospace; padding: 8px 12px; min-width: 240px; border-radius: 8px;
     border: 2px solid var(--violet); background: var(--carte); color: var(--encre); }
-  .choix-soc .aide-soc { font-size: 13px; color: var(--pale); }
   .soc { color: var(--violet); font-weight: 600; }
+  .sous-menu { flex-wrap: wrap !important; overflow: visible !important; }
 </style>
 </head>
 <body>
@@ -198,10 +202,7 @@
 <div class="filet"></div>
 <nav class="sous-menu" aria-label="Sur cette page"><a href="#carte">La carte</a><a href="#preparer">Préparer une société</a><a href="#alimenter">Les sources et le robot</a><a href="#publier">Publier</a><a href="#suivre">Suivre</a></nav>
 <h1 class="titre-page">La carte des agents</h1>
-<div class="choix-soc"><label for="soc">Votre société</label>
-<input id="soc" list="socs" placeholder="choisir ou taper…" autocomplete="off" spellcheck="false">
-<datalist id="socs"><option value="docdialy"><option value="shifaa"><option value="ava-manager"></datalist>
-<span class="aide-soc">Les commandes de la page se mettent à jour avec ce nom (le même que dans le guide).</span></div>
+<div class="choix-soc"><span class="lab">Votre société</span><button type="button" class="pastille" data-soc="docdialy">Docdialy</button><button type="button" class="pastille" data-soc="shifaa">Shifaa</button><button type="button" class="pastille" data-soc="ava-manager">Ava Manager</button><button type="button" class="pastille autre" data-soc="">Autre…</button><input id="soc" placeholder="nom de la nouvelle société" autocomplete="off" spellcheck="false" hidden></div>
 
 <section class="famille" id="carte"><h2>La carte</h2>
 <p>Quatre familles, dans l'ordre où on s'en sert : on prépare une société, on lui donne des sources, on publie, on suit.</p></section>
@@ -224,14 +225,31 @@
 </main>
 <script>
 (function () {
-  var champ = document.getElementById("soc"), CLE = "guide-societe";
+  var CLE = "guide-societe", champ = document.getElementById("soc");
+  var boutons = document.querySelectorAll(".choix-soc .pastille");
+  function norm(v) { return (v || "").trim().toLowerCase().replace(/\s+/g, "-"); }
   function poser(v) {
-    var n = (v || "").trim().toLowerCase().replace(/\s+/g, "-") || "votre-societe";
+    var n = norm(v) || "votre-societe";
     document.querySelectorAll(".soc").forEach(function (e) { e.textContent = n; });
+    var connu = false;
+    boutons.forEach(function (b) {
+      var on = b.dataset.soc && b.dataset.soc === norm(v);
+      if (on) connu = true;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    var autre = document.querySelector(".choix-soc .autre");
+    if (!connu && norm(v)) { autre.setAttribute("aria-pressed", "true"); champ.hidden = false; champ.value = v; }
+    try { localStorage.setItem(CLE, v || ""); } catch (e) {}
   }
-  try { champ.value = localStorage.getItem(CLE) || ""; } catch (e) {}
-  poser(champ.value);
-  champ.addEventListener("input", function () { poser(champ.value); try { localStorage.setItem(CLE, champ.value); } catch (e) {} });
+  boutons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (b.classList.contains("autre")) { champ.hidden = false; champ.focus(); poser(champ.value); return; }
+      champ.hidden = true; poser(b.dataset.soc);
+    });
+  });
+  champ.addEventListener("input", function () { poser(champ.value); });
+  var v = ""; try { v = localStorage.getItem(CLE) || ""; } catch (e) {}
+  poser(v || "docdialy");
 })();
 </script>
 </body>
