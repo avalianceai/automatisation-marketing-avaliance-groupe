@@ -184,6 +184,68 @@
   @media (max-width: 640px) { .diff { grid-template-columns: 1fr; } }
   h2.part { margin: 46px 0 2px; font-size: 22px; }
   p.sous2 { margin: 0; color: var(--douce); font-size: 14.5px; }
+  .etapes { list-style: none; padding: 0; margin: 14px 0 0; counter-reset: e; }
+  .etapes > li { counter-increment: e; display: grid; grid-template-columns: 44px 1fr; gap: 0 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .etapes > li::before { content: counter(e); width: 34px; height: 34px; border-radius: 50%;
+    background: var(--violet); color: var(--fond); font-weight: 700; display: flex; align-items: center;
+    justify-content: center; font-size: 15px; grid-row: span 3; }
+  .etapes .quoi { font-size: 15px; color: var(--encre); font-weight: 600; margin: 2px 0 0; }
+  .etapes .bloc { margin: 8px 0 0; }
+  .etapes .dit { font-size: 13.5px; color: var(--douce); margin: 6px 0 0; }
+  .etapes .duree { font-weight: 400; color: var(--pale); font-size: 13px; margin-left: 6px; }
+  .diff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 0; }
+  .diff div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; color: var(--douce); }
+  .diff b { display: block; color: var(--encre); font-family: "IBM Plex Mono", monospace; font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 640px) { .diff { grid-template-columns: 1fr; } }
+  h2.part { margin: 46px 0 2px; font-size: 22px; }
+  .cas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 14px 0 0; }
+  .cas a { display: block; text-decoration: none; border: 1px solid var(--violet); border-radius: 12px; padding: 14px 16px; color: var(--douce); font-size: 14px; background: var(--violet-pale); }
+  .cas a b { display: block; color: var(--encre); font-size: 15.5px; margin-bottom: 4px; }
+  .cas a:hover { border-width: 2px; padding: 13px 15px; }
+  p.sous2 { margin: 0; color: var(--douce); font-size: 14.5px; }
+  .etapes { list-style: none; padding: 0; margin: 14px 0 0; counter-reset: e; }
+  .etapes > li { counter-increment: e; display: grid; grid-template-columns: 44px 1fr; gap: 0 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .etapes > li::before { content: counter(e); width: 34px; height: 34px; border-radius: 50%;
+    background: var(--violet); color: var(--fond); font-weight: 700; display: flex; align-items: center;
+    justify-content: center; font-size: 15px; grid-column: 1; grid-row: 1 / span 9; }
+  .etapes > li > * { grid-column: 2; }
+  .etapes .quoi { font-size: 15px; color: var(--encre); font-weight: 600; margin: 2px 0 0; }
+  .etapes .bloc { margin: 8px 0 0; }
+  .etapes .dit { font-size: 13.5px; color: var(--douce); margin: 6px 0 0; }
+  .etapes .duree { font-weight: 400; color: var(--pale); font-size: 13px; margin-left: 6px; }
+  .diff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 0; }
+  .diff div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; color: var(--douce); }
+  .diff b { display: block; color: var(--encre); font-family: "IBM Plex Mono", monospace; font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 640px) { .diff { grid-template-columns: 1fr; } }
+  h2.part { margin: 46px 0 2px; font-size: 22px; }
+  .cas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 14px 0 0; }
+  .cas a { display: block; text-decoration: none; border: 1px solid var(--violet); border-radius: 12px; padding: 14px 16px; color: var(--douce); font-size: 14px; background: var(--violet-pale); }
+  .cas a b { display: block; color: var(--encre); font-size: 15.5px; margin-bottom: 4px; }
+  .cas a:hover { border-width: 2px; padding: 13px 15px; }
+  p.sous2 { margin: 0; color: var(--douce); font-size: 14.5px; }
+  .etapes { list-style: none; padding: 0; margin: 14px 0 0; counter-reset: e; }
+  .etapes > li { counter-increment: e; display: grid; grid-template-columns: 44px 1fr; gap: 0 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .etapes > li::before { content: counter(e); width: 34px; height: 34px; border-radius: 50%;
+    background: var(--violet); color: var(--fond); font-weight: 700; display: flex; align-items: center;
+    justify-content: center; font-size: 15px; grid-column: 1; grid-row: 1 / span 9; }
+  .etapes > li > * { grid-column: 2; }
+  .etapes .quoi { font-size: 15px; color: var(--encre); font-weight: 600; margin: 2px 0 0; }
+  .etapes .bloc { margin: 8px 0 0; }
+  .etapes .dit { font-size: 13.5px; color: var(--douce); margin: 6px 0 0; }
+  .etapes .duree { font-weight: 400; color: var(--pale); font-size: 13px; margin-left: 6px; }
+  .diff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 0; }
+  .diff div { border: 1px solid var(--trait); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; color: var(--douce); }
+  .diff b { display: block; color: var(--encre); font-family: "IBM Plex Mono", monospace; font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 640px) { .diff { grid-template-columns: 1fr; } }
+  h2.part { margin: 46px 0 2px; font-size: 22px; }
+  .cas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 14px 0 0; }
+  .cas a { display: block; text-decoration: none; border: 1px solid var(--violet); border-radius: 12px; padding: 14px 16px; color: var(--douce); font-size: 14px; background: var(--violet-pale); }
+  .cas a b { display: block; color: var(--encre); font-size: 15.5px; margin-bottom: 4px; }
+  .cas a:hover { border-width: 2px; padding: 13px 15px; }
+  p.sous2 { margin: 0; color: var(--douce); font-size: 14.5px; }
 </style>
 </head>
 <body>
@@ -193,35 +255,44 @@
   <nav class="menu" aria-label="Menu"><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/">Schéma</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/agents.html">Agents</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/installation.html">Installation</a><a href="https://avalianceai.github.io/automatisation-marketing-avaliance-groupe/guide.html" aria-current="page">Guide</a></nav>
 </div>
 <div class="filet"></div>
-<nav class="sous-menu" aria-label="Sur cette page"><a href="#nouvelle">Nouvelle société</a><a href="#jour">Publier chaque jour</a><a href="#sources">Les sources</a><a href="#regler">Régler</a><a href="#commandes">Toutes les commandes</a><a href="#schemas">Schémas</a><a href="#aide">Si ça coince</a></nav>
+<nav class="sous-menu" aria-label="Sur cette page"><a href="#nouvelle">A. Nouvelle, sans rien</a><a href="#documents">B. Nouvelle, avec documents</a><a href="#existante">C. Déjà créée</a><a href="#changer">D. Changer</a><a href="#commandes">Toutes les commandes</a><a href="#schemas">Schémas</a><a href="#aide">Si ça coince</a></nav>
 <h1 class="titre-page">Le guide</h1>
 <p class="sous2">Toutes les commandes se tapent dans Claude, onglet Code, dans une session ouverte sur <span class="mono">Documents\Avaliance Marketing</span>. Remplacez le nom de la société par le vôtre.</p>
-<h2 class="part" id="nouvelle">1. Créer une nouvelle société</h2><p class="sous2">Une seule fois par société. Environ 45 minutes, plus une heure d'attente pour le robot.</p><ol class="etapes">
-<li><div class="quoi">Créer la société<span class="duree">20 min</span></div><div class="bloc">/nouvelle-societe ava-manager</div><div class="dit">Un agent vous pose des questions sur la voix (ton, cibles, interdits, faits citables), puis un autre sur la charte (couleurs, polices, logo). Donnez-lui vos documents et votre logo.</div></li>
-<li><div class="quoi">Fixer le rythme<span class="duree">5 min</span></div><div class="bloc">/chef ava-manager</div><div class="dit">Combien de publications par semaine, sur quels réseaux, quels jours, quel ton.</div></li>
-<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour ava-manager</div><div class="dit">Claude cherche des sites, les teste, et vous montre vert, orange ou rouge. Répondez oui pour ajouter les verts.</div></li>
-<li><div class="quoi">Attendre le robot<span class="duree">1 h</span></div><div class="dit">Le robot lit les nouvelles sources au passage suivant et dépose les premiers sujets. Rien à faire.</div></li>
-<li><div class="quoi">Vérifier la société<span class="duree">2 min</span></div><div class="bloc">/societe ava-manager</div><div class="dit">Une fiche : voix, charte, sources, rythme. Tout doit être présent.</div></li>
-<li><div class="quoi">Première publication<span class="duree">10 min</span></div><div class="bloc">/publier ava-manager</div><div class="dit">Voir la partie 2.</div></li>
+<h2 class="part" id="cas">Quel est votre cas ?</h2><div class="cas">
+<a href="#nouvelle"><b>A. Nouvelle société, sans rien</b>vous partez de zéro</a>
+<a href="#documents"><b>B. Nouvelle société, avec ses documents</b>elle a déjà un site, une charte, un logo, des textes</a>
+<a href="#existante"><b>C. Société déjà créée</b>vous publiez</a>
+<a href="#changer"><b>D. Changer quelque chose</b>la voix, la charte, le rythme, les sources, le mode</a>
+</div>
+<h2 class="part" id="nouvelle">A. Nouvelle société, sans rien</h2><p class="sous2">Une seule fois. Environ 45 minutes, puis une heure d'attente.</p><ol class="etapes">
+<li><div class="quoi">Créer la société<span class="duree">20 min</span></div><div class="bloc">/nouvelle-societe ava-manager</div><div class="dit">L'agent vous pose ses questions : ton, cibles, interdits, faits citables, puis couleurs et logo. Répondez simplement.</div></li>
+<li><div class="quoi">Fixer le rythme<span class="duree">5 min</span></div><div class="bloc">/chef ava-manager</div><div class="dit">Combien de publications, sur quels réseaux, quels jours, quel ton.</div></li>
+<li><div class="quoi">Trouver les sources<span class="duree">10 min</span></div><div class="bloc">propose-moi des sources pour ava-manager</div><div class="dit">Claude cherche et teste des sites. Répondez oui pour ajouter les verts.</div></li>
+<li><div class="quoi">Attendre le robot<span class="duree">1 h</span></div><div class="dit">Il dépose les premiers sujets. Rien à faire.</div></li>
+<li><div class="quoi">Vérifier, puis publier<span class="duree">10 min</span></div><div class="bloc">/societe ava-manager</div><div class="bloc">/publier ava-manager</div><div class="dit">La fiche doit montrer voix, charte, sources et rythme. Ensuite, suivez le cas C.</div></li>
+</ol>
+<h2 class="part" id="documents">B. Nouvelle société, avec ses documents</h2><p class="sous2">Plus rapide : l'agent lit d'abord ce qui existe et ne vous demande que ce qui manque.</p><ol class="etapes">
+<li><div class="quoi">Créer la société en lui donnant tout<span class="duree">15 min</span></div><div class="bloc">/nouvelle-societe ava-manager</div><div class="bloc">Lis le dossier C:\...\Ava Manager, le site https://... et prends le logo C:\...\logo.png</div><div class="dit">Lancez la commande, puis répondez à sa première question avec la phrase ci-dessus, en mettant vos chemins et votre site.</div></li>
+<li><div class="quoi">Vérifier ce qu'il a compris<span class="duree">5 min</span></div><div class="bloc">/societe ava-manager</div><div class="dit">Relisez la fiche. Ce qui est faux se corrige au cas D.</div></li>
+<li><div class="quoi">La suite comme le cas A<span class="duree">15 min</span></div><div class="bloc">/chef ava-manager</div><div class="bloc">propose-moi des sources pour ava-manager</div><div class="dit">Le rythme, puis les sources, puis le robot.</div></li>
 </ol>
 <div class="diff"><div><b>/nouvelle-societe</b>crée une société qui n'existe pas encore. Une seule fois.</div><div><b>/societe</b>montre l'état d'une société déjà créée. Autant de fois que vous voulez.</div></div>
-<h2 class="part" id="jour">2. Publier, chaque jour</h2><p class="sous2">Environ 15 minutes par publication.</p><ol class="etapes">
-<li><div class="quoi">Ouvrir la session<span class="duree">1 min</span></div><div class="dit">Claude, onglet Code, session sur <span class="mono">Documents\Avaliance Marketing</span>.</div></li>
-<li><div class="quoi">Lancer la publication<span class="duree">5 min</span></div><div class="bloc">/publier docdialy</div><div class="dit">En full auto, la séance va jusqu'au bout sans question : sujet, texte par réseau, contrôle, prompt d'image.</div></li>
-<li><div class="quoi">Fabriquer l'image<span class="duree">3 min</span></div><div class="dit">Ouvrez le dossier prêt, copiez le prompt d'image dans ChatGPT, téléchargez l'image.</div></li>
-<li><div class="quoi">Publier<span class="duree">5 min</span></div><div class="dit">Copiez le texte de chaque réseau, joignez l'image, publiez. La fiche A-PUBLIER dit quoi mettre où.</div></li>
+<h2 class="part" id="existante">C. Société déjà créée : publier</h2><p class="sous2">Chaque jour. Environ 15 minutes par publication.</p><ol class="etapes">
+<li><div class="quoi">Voir où elle en est<span class="duree">1 min</span></div><div class="bloc">/societe docdialy</div><div class="dit">Rythme, sujets du jour, dernières publications.</div></li>
+<li><div class="quoi">Lancer la publication<span class="duree">5 min</span></div><div class="bloc">/publier docdialy</div><div class="dit">En full auto, la séance va jusqu'au bout sans question.</div></li>
+<li><div class="quoi">Fabriquer l'image<span class="duree">3 min</span></div><div class="dit">Dans le dossier prêt : copiez le prompt d'image dans ChatGPT, téléchargez l'image.</div></li>
+<li><div class="quoi">Publier<span class="duree">5 min</span></div><div class="dit">Copiez le texte de chaque réseau, joignez l'image. La fiche A-PUBLIER dit quoi mettre où.</div></li>
 </ol>
-<h2 class="part" id="sources">3. Gérer les sources</h2><ol class="etapes">
-<li><div class="quoi">Tester un site<span class="duree">1 min</span></div><div class="bloc">/tester-source https://www.exemple.com ava-manager</div><div class="dit">Dit si le robot peut le lire et s'il parle de votre métier. N'ajoute rien.</div></li>
-<li><div class="quoi">Ajouter ou retirer<span class="duree">2 min</span></div><div class="bloc">/sources ava-manager</div><div class="dit">Dites en français : ajoute ce site, retire celui-là, teste toutes les sources.</div></li>
-<li><div class="quoi">Voir la liste<span class="duree">1 min</span></div><div class="bloc">/source-list ava-manager</div><div class="dit">Ce que le robot surveille, classé par type.</div></li>
-</ol>
-<h2 class="part" id="regler">4. Régler et corriger</h2><ol class="etapes">
-<li><div class="quoi">Choisir le mode<span class="duree">1 min</span></div><div class="bloc">/full-auto</div><div class="bloc">/full-auto-off</div><div class="dit">Par défaut : la séance ne pose aucune question. Avec /full-auto-off, elle vous demande à chaque étape.</div></li>
-<li><div class="quoi">Corriger la voix ou la charte<span class="duree">10 min</span></div><div class="bloc">/voix ava-manager</div><div class="bloc">/charte ava-manager</div><div class="dit">Reprend l'entretien de la voix, ou de la charte avec /charte.</div></li>
-<li><div class="quoi">Voir le tableau de bord<span class="duree">1 min</span></div><div class="bloc">/hub-marketing</div><div class="dit">Toutes les sociétés, leur schéma, leurs agents, dans le navigateur.</div></li>
-<li><div class="quoi">Réparer le poste<span class="duree">3 min</span></div><div class="bloc">/installer-marketing</div><div class="dit">Revérifie tout sans rien effacer.</div></li>
-</ol>
+<h2 class="part" id="changer">D. Changer quelque chose</h2><p class="sous2">Une commande par chose à changer.</p>
+<div class="tab"><table><thead><tr><th>Je veux changer</th><th>Commande</th></tr></thead><tbody>
+<tr><td>le ton, les cibles, les interdits, les faits citables</td><td class="mono">/voix ava-manager</td></tr>
+<tr><td>les couleurs, les polices, le logo</td><td class="mono">/charte ava-manager</td></tr>
+<tr><td>le nombre de publications, les réseaux, les jours, le ton du jour</td><td class="mono">/chef ava-manager</td></tr>
+<tr><td>les sites surveillés</td><td class="mono">/sources ava-manager</td></tr>
+<tr><td>tester un site avant de l'ajouter</td><td class="mono">/tester-source https://... ava-manager</td></tr>
+<tr><td>ne plus être interrogée pendant la publication</td><td class="mono">/full-auto</td></tr>
+<tr><td>valider chaque étape de la publication</td><td class="mono">/full-auto-off</td></tr>
+</tbody></table></div>
 <h2 class="part" id="commandes">Toutes les commandes</h2><p class="sous2">Chaque commande se tape, ou se dit en français.</p>
 <div class="tab"><table class="recap">
   <thead><tr><th>Appeler par commande</th><th>Appeler par texte</th><th>Ce que ça fait</th></tr></thead>
